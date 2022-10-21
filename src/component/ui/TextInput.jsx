@@ -13,7 +13,7 @@ function TextInput(props){
     return(
         <StyleTextInput 
             type={type || "text"} 
-            width={maxWidth}
+            maxWidth={maxWidth}
             placeholder={placeholder}
         />
     );

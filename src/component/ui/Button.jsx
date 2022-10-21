@@ -9,6 +9,7 @@ const StyledButton = styledComponents.button`
     }
     cursor: pointer;
     vertical-align: bottom;
+    margin: 5px;
 `;
 
 function Button(props){

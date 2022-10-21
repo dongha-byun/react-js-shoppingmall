@@ -14,7 +14,7 @@ function Search(props){
 
     return(
         <SearchWrapper>
-            <TextInput type="text"></TextInput>
+            <TextInput maxWidth="420px" type="text" />
             <Button 
                 imgSrc="/images/search.jpeg" 
                 onClick={()=> {
