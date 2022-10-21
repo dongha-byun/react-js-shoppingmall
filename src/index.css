@@ -7,7 +7,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+input[type="text"], input[type="password"]{
+  padding: 0;
+  box-sizing: border-box;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a{
+  text-decoration: none;
+}
+
+li{
+  list-style: none;
+}
+
+.mt-10{
+  margin-top: 10px;
+}
+.mb-10{
+  margin-bottom: 10px;
+}
+.mt-5{
+  margin-top: 5px;
+}
+.mb-5{
+  margin-bottom: 5px;
+}
+.text-blue{
+  color: blue;
 }

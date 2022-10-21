@@ -3,14 +3,19 @@ import styledComponents from "styled-components";
 
 const StyleTextInput = styledComponents.input`
     width: 100%;
-    max-width: 300px;
+    ${(props)=> props.maxWidth && `max-width: ${props.maxWidth};`};
     line-height: 30px;
-    font-size: 1.2em;
+    margin-bottom: 5px;
 `;
 
 function TextInput(props){
+    const {type, placeholder, maxWidth} = props;
     return(
-        <StyleTextInput type="text" />
+        <StyleTextInput 
+            type={type || "text"} 
+            width={maxWidth}
+            placeholder={placeholder}
+        />
     );
 }
 
