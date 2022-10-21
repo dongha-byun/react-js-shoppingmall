@@ -12,6 +12,7 @@ import Login from './component/page/login/Login';
 import SignUp from './component/page/login/SignUp';
 import FindId from './component/page/login/FindId';
 import FindPw from './component/page/login/FindPw';
+import ProductView from './component/product/view/ProductView';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="sign-up" element={<SignUp/>}></Route>
             <Route path="find-id" element={<FindId/>}></Route>
             <Route path="find-pw" element={<FindPw/>}></Route>
+            <Route path="product-view" element={<ProductView/>}></Route>
         </Routes>
     </BrowserRouter>
   );

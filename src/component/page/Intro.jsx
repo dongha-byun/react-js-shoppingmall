@@ -13,6 +13,7 @@ function Intro(props){
                 <li><Link to="/sign-up">회원가입 화면</Link></li>
                 <li><Link to="/find-id">아이디찾기 화면</Link></li>
                 <li><Link to="/find-pw">비밀번호찾기 화면</Link></li>
+                <li><Link to="/product-view">상품조회 화면</Link></li>
             </ul>
         </Wrapper>
     );
