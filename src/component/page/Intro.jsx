@@ -15,7 +15,10 @@ function Intro(props){
                 <li><Link to="/find-pw">비밀번호찾기 화면</Link></li>
                 <li><Link to="/product-view">상품조회 화면</Link></li>
                 <li><Link to="/my-basket">장바구니 목록 화면</Link></li>
-                <li><Link to="/my-basket">장바구니 목록 화면</Link></li>
+                <li><Link to="/buy">구매 화면</Link></li>
+                <li><Link to="/payment">결제 화면</Link></li>
+                <li><Link to="/producy-question">상품 문의사항 작성 화면</Link></li>
+                <li><Link to="/user-config">상품 문의사항 작성 화면</Link></li>
             </ul>
         </Wrapper>
     );
