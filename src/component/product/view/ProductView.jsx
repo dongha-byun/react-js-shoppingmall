@@ -46,6 +46,14 @@ const ProductQuestionWrapper = styledComponents.div`
 function ProductView(props){
     const [price, setPrice] = useState(11111);
 
+    const buyNow = () =>{
+        alert("바로구매");
+    }
+
+    const intoBasket = () =>{
+        alert("장바구니")
+    }
+
     return(
         <ProductViewPageWrapper>
             <Header></Header>
@@ -65,8 +73,12 @@ function ProductView(props){
                         <span>{price}</span>
                     </div>
                     <div>
-                        <button type="button">장바구니</button>
-                        <button type="button">바로구매</button>
+                        <button type="button" onClick={(e)=>{
+                            intoBasket();
+                        }}>장바구니</button>
+                        <button type="button" onClick={(e)=>{
+                            buyNow();
+                        }}>바로구매</button>
                     </div>
                 </ProductPriceWrapper>
             </ProductViewWrapper>
