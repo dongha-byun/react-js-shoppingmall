@@ -24,6 +24,25 @@ const ProductPriceWrapper = styledComponents.div`
     margin-left: 10px;
 `;
 
+const ProductDetailWrapper = styledComponents.div`
+    margin-top: 5px;
+    border-top: 1px solid blue;
+    border-bottom: 1px solid blue;
+    height: 500px;
+`;
+const ProductReviewWrapper = styledComponents.div`
+    margin-top: 5px;    
+    border-top: 1px solid green;
+    border-bottom: 1px solid green;
+    height: 500px;
+`;
+const ProductQuestionWrapper = styledComponents.div`
+    margin-top: 5px;
+    border-top: 1px solid red;
+    border-bottom: 1px solid red;
+    height: 500px;
+`;
+
 function ProductView(props){
     const [price, setPrice] = useState(11111);
 
@@ -45,8 +64,38 @@ function ProductView(props){
                     <div>
                         <span>{price}</span>
                     </div>
+                    <div>
+                        <button type="button">장바구니</button>
+                        <button type="button">바로구매</button>
+                    </div>
                 </ProductPriceWrapper>
             </ProductViewWrapper>
+            <ProductDetailWrapper>
+                <h2>상품정보</h2>
+                <div>
+                    아래 내용은 상품정보를 소개한 글 입니다.
+                    텍스트로 할지 이미지 한장으로 할지는 고민입니다.
+                </div>
+            </ProductDetailWrapper>
+            <ProductReviewWrapper>
+                <h2>리뷰</h2>
+                <div>
+                    <div>
+                        <div>리뷰이미지영역 / 있으면 보여주고 없으면 말고!</div>
+                        <div>리뷰제목/작성자/작성자가 측정한 평점</div>
+                    </div>
+                    <div>
+                        리뷰내용
+                    </div>
+                </div>
+            </ProductReviewWrapper>
+            <ProductQuestionWrapper>
+                <h2>문의사항</h2>
+                <div>
+                    <div>문의사항 등록글</div>
+                    <div>==&gt; 문의사항 답변</div>
+                </div>
+            </ProductQuestionWrapper>
         </ProductViewPageWrapper>
     );
 }
