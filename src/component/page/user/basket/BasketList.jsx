@@ -7,7 +7,8 @@ function BasketList(props){
     return (
         <div>
             {items.map((item, index) => {
-                return (<Basket 
+                return (
+                <Basket 
                     key={index} 
                 />)
             } )}
