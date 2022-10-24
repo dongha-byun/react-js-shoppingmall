@@ -6,15 +6,18 @@ const StyleTextInput = styledComponents.input`
     ${(props)=> props.maxWidth && `max-width: ${props.maxWidth};`};
     line-height: 30px;
     margin-bottom: 5px;
+    ${(props)=> props.readOnly && `background-color: #eeeeee;`}
 `;
 
 function TextInput(props){
-    const {type, placeholder, maxWidth} = props;
+    const {type, placeholder, maxWidth, value, readOnly} = props;
     return(
         <StyleTextInput 
             type={type || "text"} 
             maxWidth={maxWidth}
             placeholder={placeholder}
+            value={value}
+            readOnly={readOnly||false}
         />
     );
 }
