@@ -10,21 +10,18 @@ body {
   max-width: 1080px;
   margin: 0 auto;
 }
-
-input[type="text"], input[type="password"]{
-  padding: 0;
-  box-sizing: border-box;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
+input[type="text"], input[type="password"]{
+  padding: 0;
+  box-sizing: border-box;
+}
 a{
   text-decoration: none;
 }
-
 li{
   list-style: none;
 }
@@ -43,4 +40,13 @@ li{
 }
 .text-blue{
   color: blue;
+}
+.font-15{
+  font-size: 15px;
+}
+.float-right{
+  float: right;
+}
+.float-left{
+  float: left;
 }
