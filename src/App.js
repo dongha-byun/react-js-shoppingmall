@@ -13,6 +13,7 @@ import SignUp from './component/page/login/SignUp';
 import FindId from './component/page/login/FindId';
 import FindPw from './component/page/login/FindPw';
 import ProductView from './component/product/view/ProductView';
+import BasketListPage from './component/page/user/BaskListPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="find-id" element={<FindId/>}></Route>
             <Route path="find-pw" element={<FindPw/>}></Route>
             <Route path="product-view" element={<ProductView/>}></Route>
+            <Route path="my-basket" element={<BasketListPage/>}></Route>
         </Routes>
     </BrowserRouter>
   );
