@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styledComponents from "styled-components";
 import Header from "../../page/Header";
+import TextButton from "../../ui/TextButton";
 
 const ProductViewPageWrapper = styledComponents.div`
     width: 100%;
@@ -45,13 +47,14 @@ const ProductQuestionWrapper = styledComponents.div`
 
 function ProductView(props){
     const [price, setPrice] = useState(11111);
+    const navigate = useNavigate();
 
     const buyNow = () =>{
         alert("바로구매");
     }
 
     const intoBasket = () =>{
-        alert("장바구니")
+        alert("장바구니");
     }
 
     return(
@@ -73,12 +76,18 @@ function ProductView(props){
                         <span>{price}</span>
                     </div>
                     <div>
-                        <button type="button" onClick={(e)=>{
-                            intoBasket();
-                        }}>장바구니</button>
-                        <button type="button" onClick={(e)=>{
-                            buyNow();
-                        }}>바로구매</button>
+                        <TextButton 
+                            value="장바구니 추가"
+                            onClick={()=>{
+                                intoBasket();
+                            }}
+                        />
+                        <TextButton 
+                            value="바로구매"
+                            onClick={()=>{
+                                buyNow();
+                            }}
+                        />
                     </div>
                 </ProductPriceWrapper>
             </ProductViewWrapper>
@@ -103,6 +112,12 @@ function ProductView(props){
             </ProductReviewWrapper>
             <ProductQuestionWrapper>
                 <h2>문의사항</h2>
+                <div>
+                    <TextButton value="글쓰기" 
+                        onClick={()=>{
+                            navigate("/product-question");
+                        }}/>
+                </div>
                 <div>
                     <div>문의사항 등록글</div>
                     <div>==&gt; 문의사항 답변</div>

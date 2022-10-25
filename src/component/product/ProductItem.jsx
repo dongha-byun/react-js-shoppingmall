@@ -17,11 +17,10 @@ const ProductImage = styledComponents.img`
 `;
 
 function ProductItem(props){
-
-    const {src, name, score, scoreCnt} = props;
+    const {src, name, score, scoreCnt, onClick} = props;
 
     return(
-        <ProductWrapper>
+        <ProductWrapper onClick={onClick}>
             <ProductImage src={src} />
             <ProductInfo name={name} score={score} scoreCnt={scoreCnt} />
         </ProductWrapper>
