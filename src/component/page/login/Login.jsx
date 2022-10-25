@@ -2,7 +2,7 @@ import React from "react";
 import styledComponents from "styled-components";
 import TextInput from "../../ui/TextInput";
 import TextButton from "../../ui/TextButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../common/Logo";
 
 const LoginPageWrapper = styledComponents.div`
@@ -36,6 +36,8 @@ const ButtonWrapper = styledComponents.div`
 
 
 function Login(){
+    const navigate = useNavigate();
+
     return (
         <LoginPageWrapper>
             <Logo></Logo>
@@ -46,9 +48,9 @@ function Login(){
                     <TextInput type="password" placeholder="비밀번호"></TextInput>
                 </InputWrapper>
                 <LabelWrapper>
-                    <Link to="/findId">아이디찾기</Link>
+                    <Link to="/find-id">아이디찾기</Link>
                     &nbsp;<span class="text-blue">|</span>&nbsp;
-                    <Link to="/findPw">비밀번호찾기</Link>
+                    <Link to="/find-pw">비밀번호찾기</Link>
                 </LabelWrapper>
                 <div class="mb-5"></div>
                 <ButtonWrapper>
@@ -65,7 +67,7 @@ function Login(){
                         width="100%"
                         height="50px"
                         onClick={()=>{
-                            alert("Sign Up");
+                            navigate("/sign-up");
                         }}
                         value="회원가입"
                     />

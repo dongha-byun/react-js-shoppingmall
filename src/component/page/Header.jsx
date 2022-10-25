@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styledComponents from "styled-components";
 import Search from "../search/Search";
 import Button from "../ui/Button";
+import TextButton from "../ui/TextButton";
 
 const StyledHeader = styledComponents.div`
     width: calc(100% - 20px);
@@ -13,6 +15,7 @@ const StyledHeader = styledComponents.div`
 `;
 
 function Header(props){
+    const navigate = useNavigate();
     return(
         <StyledHeader>
             <Button
@@ -24,13 +27,23 @@ function Header(props){
                 height='100px'
             />
             <Search></Search>
-            <Button
-                imgSrc="/images/more.png" 
-                onClick={()=> {
-                    alert("more");
+            <TextButton
+                value="로그인"
+                onClick={() => {
+                    navigate("/login");
                 }}
-                width='100px'
-                height='100px'
+            />
+            <TextButton
+                value="장바구니"
+                onClick={() => {
+                    navigate("/my-basket");
+                }}
+            />
+            <TextButton
+                value="마이페이지"
+                onClick={() => {
+                    navigate("/my-page");
+                }}
             />
         </StyledHeader>
     );

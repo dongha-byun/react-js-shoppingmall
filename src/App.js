@@ -16,6 +16,7 @@ import ProductView from './component/product/view/ProductView';
 import BasketListPage from './component/page/user/basket/BaskListPage';
 import BuyInfoFormPage from './component/page/buy/BuyInfoFormPage';
 import UserConfigPage from './component/page/user/config/UserConfigPage';
+import ProductQuestionPage from './component/product/question/ProductQuestionPage';
 
 function App() {
   return (
@@ -27,10 +28,11 @@ function App() {
             <Route path="sign-up" element={<SignUp/>}></Route>
             <Route path="find-id" element={<FindId/>}></Route>
             <Route path="find-pw" element={<FindPw/>}></Route>
-            <Route path="user-config" element={<UserConfigPage/>}></Route>
+            <Route path="my-page" element={<UserConfigPage/>}></Route>
             <Route path="product-view" element={<ProductView/>}></Route>
             <Route path="my-basket" element={<BasketListPage/>}></Route>
             <Route path="buy" element={<BuyInfoFormPage/>}></Route>
+            <Route path="product-question" element={<ProductQuestionPage/>}></Route>
         </Routes>
     </BrowserRouter>
   );
