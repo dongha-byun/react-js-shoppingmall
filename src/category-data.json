@@ -1,18 +1,86 @@
 [
     {
         "id": 1,
-        "name": "식품"
+        "name": "식품",
+        "subCategories": [
+            {
+                "id" : 11,
+                "name": "과일",
+                "subCategories": []
+            },
+            {
+                "id" : 12,
+                "name": "채소",
+                "subCategories": []
+            },
+            {
+                "id" : 13,
+                "name": "고기",
+                "subCategories": []
+            }
+        ]
     },
     {
         "id": 2,
-        "name": "전자기기"
+        "name": "전자기기",
+        "subCategories": [
+            {
+                "id" : 21,
+                "name": "카메라",
+                "subCategories": []
+            },
+            {
+                "id" : 22,
+                "name": "컴퓨터",
+                "subCategories": []
+            },
+            {
+                "id" : 23,
+                "name": "핸드폰",
+                "subCategories": []
+            }
+        ]
     },
     {
         "id": 3,
-        "name": "유아용품"
+        "name": "유아용품",
+        "subCategories": [
+            {
+                "id" : 31,
+                "name": "장난감",
+                "subCategories": []
+            },
+            {
+                "id" : 32,
+                "name": "책",
+                "subCategories": []
+            }
+        ]
     },
     {
         "id": 4,
-        "name": "스포츠"
+        "name": "스포츠용품",
+        "subCategories": [
+            {
+                "id" : 41,
+                "name": "야구용품",
+                "subCategories": []
+            },
+            {
+                "id" : 42,
+                "name": "축구용품",
+                "subCategories": []
+            },
+            {
+                "id" : 43,
+                "name": "배드민턴용품",
+                "subCategories": []
+            },
+            {
+                "id" : 44,
+                "name": "탁구/테니스용품",
+                "subCategories": []
+            }
+        ]
     }
 ]

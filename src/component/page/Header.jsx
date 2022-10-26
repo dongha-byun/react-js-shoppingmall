@@ -4,6 +4,7 @@ import styledComponents from "styled-components";
 import Search from "../search/Search";
 import TextButton from "../ui/TextButton";
 import CategoryMenuButton from "../category/CategoryMenuButton";
+import Logo from "../common/Logo";
 
 const StyledHeader = styledComponents.div`
     width: calc(100% - 20px);
@@ -19,6 +20,7 @@ function Header(props){
     return(
         <StyledHeader>
             <CategoryMenuButton/>
+            <Logo></Logo>
             <Search></Search>
             <TextButton
                 value="로그인"

@@ -1,14 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styledComponents from "styled-components";
 
 const LogoWrapper = styledComponents.div`
-    height: 150px;
-    margin: 10px 0;
+    width: 150px;
+    margin: 10px auto;
 `;
 
 function Logo(){
+    const navigate = useNavigate();
     return (
-        <LogoWrapper></LogoWrapper>
+        <LogoWrapper>
+            <img src="images/pot.jpeg" width="150px" height="80px" 
+                onClick={()=>{
+                    navigate("/home");
+                }}
+            />
+        </LogoWrapper>
     );
 }
 

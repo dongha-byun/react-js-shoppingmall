@@ -11,10 +11,9 @@ function Home(props){
     return(
         <HomeWrapper>
             <Header></Header>
-            <ProductList></ProductList>
-            <ProductList></ProductList>
-            <ProductList></ProductList>
-            <ProductList></ProductList>
+            <ProductList sectionName="추천 상품!" />
+            <ProductList sectionName="최근 본 상품" />
+            <ProductList />
         </HomeWrapper>
     );
 }
