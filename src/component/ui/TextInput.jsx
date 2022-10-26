@@ -10,7 +10,7 @@ const StyleTextInput = styledComponents.input`
 `;
 
 function TextInput(props){
-    const {type, placeholder, maxWidth, value, readOnly} = props;
+    const {type, placeholder, maxWidth, value, readOnly, onChange} = props;
     return(
         <StyleTextInput 
             type={type || "text"} 
@@ -18,6 +18,7 @@ function TextInput(props){
             placeholder={placeholder}
             value={value}
             readOnly={readOnly||false}
+            onChange = {onChange}
         />
     );
 }
