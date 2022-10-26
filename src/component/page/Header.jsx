@@ -2,8 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styledComponents from "styled-components";
 import Search from "../search/Search";
-import Button from "../ui/Button";
 import TextButton from "../ui/TextButton";
+import CategoryMenuButton from "../category/CategoryMenuButton";
 
 const StyledHeader = styledComponents.div`
     width: calc(100% - 20px);
@@ -18,14 +18,7 @@ function Header(props){
     const navigate = useNavigate();
     return(
         <StyledHeader>
-            <Button
-                imgSrc="/images/more.png" 
-                onClick={()=> {
-                    alert("more");
-                }}
-                width='100px'
-                height='100px'
-            />
+            <CategoryMenuButton/>
             <Search></Search>
             <TextButton
                 value="로그인"
