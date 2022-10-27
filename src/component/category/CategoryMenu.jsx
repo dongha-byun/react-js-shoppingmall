@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Category from "./Category";
 
@@ -9,12 +10,19 @@ const StyledCategoryMenuWrapper = styled.div`
     background-color: white;
     position: absolute;
     z-index: 999;
+    ${(props) => props.isSubCategory && `left: 150px; top: -1px;`}
 `;
 
 function CategoryMenu(props){
-    const {categories} = props;
+    const {categories, isSubCategory} = props;
+    const navigate = useNavigate();
+
+    const onClickCategory = (categoryId) => {
+        navigate("/product-list/"+categoryId);
+    }
+
     return(
-        <StyledCategoryMenuWrapper>
+        <StyledCategoryMenuWrapper isSubCategory={isSubCategory}>
             <ul>
                 {categories.map((category) => {
                     return(
@@ -22,8 +30,9 @@ function CategoryMenu(props){
                             key={category.id}
                             category={category}
                             onClick={()=>{
-                                alert(`${category.name}`);
+                                onClickCategory(`${category.id}`);
                             }}
+                            isSubCategory={isSubCategory}
                         />
                     );
                 })}

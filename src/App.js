@@ -17,6 +17,7 @@ import BasketListPage from './component/page/user/basket/BaskListPage';
 import BuyInfoFormPage from './component/page/buy/BuyInfoFormPage';
 import UserConfigPage from './component/page/user/config/UserConfigPage';
 import ProductQuestionPage from './component/product/question/ProductQuestionPage';
+import ProductSearchListPage from './component/product/search/ProductSearchListPage';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="my-basket" element={<BasketListPage/>}></Route>
             <Route path="buy" element={<BuyInfoFormPage/>}></Route>
             <Route path="product-question" element={<ProductQuestionPage/>}></Route>
+            <Route path="product-list/:categoryId" element={<ProductSearchListPage/>}></Route>
         </Routes>
     </BrowserRouter>
   );

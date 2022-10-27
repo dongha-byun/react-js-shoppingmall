@@ -1,26 +1,39 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import CategoryMenu from "./CategoryMenu";
-import data from "../../category-data.json"
 
 const StyledCategoryLi = styled.li`
-    cursor: pointer;
+    ${(isSubCategory) => (isSubCategory ? "cursor: pointer;" : "")}
+`;
+
+const StyledCategoryNameSpan = styled.span`
+    margin: 0 10px;
 `;
 
 function Category(props){
-    const {category, onClick} = props;
-    const [mouseOverStyle, setMouseOverStyle] = useState(0);
+    const {category, onClick, isSubCategory} = props;
+    const [mouseOverStyle, setMouseOverStyle] = useState(false);
     
+    const mouseOver = () => {
+        setMouseOverStyle(true);
+    }
+
+    const mouseOut = () => {
+        setMouseOverStyle(false);
+    }
+
     return(
-        <StyledCategoryLi 
-            onClick={onClick}
-            onMouseOver={() => setMouseOverStyle(1)}
-            onMouseOut={() => setMouseOverStyle(0)}
+        <StyledCategoryLi
+            onMouseOver={() => mouseOver()}
+            onMouseOut={() => mouseOut()}
         >
-            {category.name}
-            { mouseOverStyle ? (
+            <StyledCategoryNameSpan onClick={isSubCategory && onClick}>
+                {category.name}
+            </StyledCategoryNameSpan>
+            { mouseOverStyle && !isSubCategory ? (
                 <CategoryMenu 
-                    categories = {data}
+                    categories = {category.subCategories}
+                    isSubCategory = {true}
                 />
                 ) : (
                 ""
