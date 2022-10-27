@@ -3,7 +3,7 @@ import styledComponents from "styled-components";
 import ProductInfo from "./ProductInfo";
 
 const ProductWrapper = styledComponents.div`
-    width: 20%;
+    width: ${(props) => props.width || `20%` };
     height: 300px;
     margin: 0 auto;
     padding: 12px 0px;
@@ -17,10 +17,10 @@ const ProductImage = styledComponents.img`
 `;
 
 function ProductItem(props){
-    const {src, name, score, scoreCnt, onClick} = props;
+    const {src, name, score, scoreCnt, onClick, width} = props;
 
     return(
-        <ProductWrapper onClick={onClick}>
+        <ProductWrapper onClick={onClick} width={width}>
             <ProductImage src={src} />
             <ProductInfo name={name} score={score} scoreCnt={scoreCnt} />
         </ProductWrapper>
