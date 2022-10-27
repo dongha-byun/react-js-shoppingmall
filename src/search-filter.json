@@ -1,0 +1,22 @@
+[
+    {
+        "id": "1",
+        "name": "판매량순",
+        "value": "SELL"
+    },
+    {
+        "id": "2",
+        "name": "평점높은순",
+        "value": "SCORE"
+    },
+    {
+        "id": "3",
+        "name": "낮은가격순",
+        "value": "PRICE"
+    },
+    {
+        "id": "4",
+        "name": "최신순",
+        "value": "RECENT"
+    }
+]
