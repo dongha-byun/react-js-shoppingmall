@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../../Header";
 import BasketList from "./BasketList";
 import styledComponents from "styled-components";
 
@@ -10,7 +9,6 @@ function BasketListPage(props){
 
     return (
         <BasketListPageWrapper>
-            <Header></Header>
             <BasketList></BasketList>
         </BasketListPageWrapper>
     );

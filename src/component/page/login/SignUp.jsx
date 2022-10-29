@@ -16,7 +16,6 @@ function SignUp(){
 
     return (
         <SignUpWrapper>
-            <Logo></Logo>
             <h3>가입정보 입력</h3>
             <TextInput placeholder="아이디"></TextInput>
             <TextInput type="password" placeholder="비밀번호"></TextInput>

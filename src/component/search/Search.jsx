@@ -5,7 +5,6 @@ import Button from "../ui/Button";
 
 const SearchWrapper = styledComponents.div`
     width: 100%;
-    max-width: 560px;
     margin: auto;
     text-align: center;
 `;
