@@ -59,6 +59,10 @@ li{
   align-items: flex-start;
 }
 
+.display-none{
+  display: none;
+}
+
 .grid-container{
   display: grid;
   grid-template-areas: 

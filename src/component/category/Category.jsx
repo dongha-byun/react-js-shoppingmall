@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import CategoryMenu from "./CategoryMenu";
+
+const StyledCategoryUl = styled.ul`
+    cursor: pointer;
+`;
 
 const StyledCategoryLi = styled.li`
-    ${(isSubCategory) => (isSubCategory ? "cursor: pointer;" : "")}
+    cursor: pointer;
 `;
 
 const StyledCategoryNameSpan = styled.span`
@@ -11,35 +15,33 @@ const StyledCategoryNameSpan = styled.span`
 `;
 
 function Category(props){
-    const {category, onClick, isSubCategory} = props;
-    const [mouseOverStyle, setMouseOverStyle] = useState(false);
+    const {category} = props;
+    const [isSubView, setIsSubView] = useState(false);
+    const navigate = useNavigate();
     
-    const mouseOver = () => {
-        setMouseOverStyle(true);
-    }
-
-    const mouseOut = () => {
-        setMouseOverStyle(false);
+    const searchByCategory = (categoryId) => {
+        navigate("/product-list/"+categoryId);
     }
 
     return(
-        <StyledCategoryLi
-            onMouseOver={() => mouseOver()}
-            onMouseOut={() => mouseOut()}
-        >
-            <StyledCategoryNameSpan onClick={isSubCategory && onClick}>
-                {category.name}
-            </StyledCategoryNameSpan>
-            { mouseOverStyle && !isSubCategory ? (
-                <CategoryMenu 
-                    categories = {category.subCategories}
-                    isSubCategory = {true}
-                />
-                ) : (
-                ""
-                )
-            }
-        </StyledCategoryLi>
+        <StyledCategoryUl>
+            <StyledCategoryLi onClick={()=>setIsSubView(!isSubView)}>
+                <StyledCategoryNameSpan >
+                    {category.name}
+                </StyledCategoryNameSpan>
+            </StyledCategoryLi>
+            {category.subCategories.length > 0 && category.subCategories.map((sub) => {
+                return (
+                    <StyledCategoryLi key={sub.id} className={isSubView ? ``:`display-none`} onClick={(event) => {
+                        searchByCategory(`${sub.id}`);
+                    }}>
+                        <StyledCategoryNameSpan>
+                            {sub.name}
+                        </StyledCategoryNameSpan>
+                    </StyledCategoryLi>
+                );
+            })}
+        </StyledCategoryUl>
     )
 }
 

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Category from "./Category";
+import data from "../../category-data.json";
 
 const StyledCategoryMenuWrapper = styled.div`
     width: 100%;
@@ -13,31 +14,24 @@ const StyledCategoryMenuWrapper = styled.div`
     ${(props) => props.isSubCategory && `left: 150px; top: -1px;`}
 `;
 
+const SectionWrapper = styled.div`
+
+`;
+
 function CategoryMenu(props){
-    const {categories, isSubCategory} = props;
     const navigate = useNavigate();
 
-    const onClickCategory = (categoryId) => {
-        navigate("/product-list/"+categoryId);
-    }
-
     return(
-        <StyledCategoryMenuWrapper isSubCategory={isSubCategory}>
-            <ul>
-                {categories.map((category) => {
-                    return(
-                        <Category
-                            key={category.id}
-                            category={category}
-                            onClick={()=>{
-                                onClickCategory(`${category.id}`);
-                            }}
-                            isSubCategory={isSubCategory}
-                        />
-                    );
-                })}
-            </ul>
-        </StyledCategoryMenuWrapper>
+        <SectionWrapper>
+            {data.map((category) => {
+                return(
+                    <Category
+                        key={category.id}
+                        category={category}
+                    />
+                );
+            })}
+        </SectionWrapper>
     );
 }
 
