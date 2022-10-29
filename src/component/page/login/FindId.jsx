@@ -15,7 +15,6 @@ const FindIdWrapper = styledComponents.div`
 function FindId(){
     return(
         <FindIdWrapper>
-            <Logo></Logo>
             <h3>아이디 찾기</h3>
             <TextInput placeholder="이름" />
             <TextInput placeholder="연락처" />

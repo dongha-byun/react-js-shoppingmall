@@ -15,7 +15,6 @@ const FindPwWrapper = styledComponents.div`
 function FindPw(){
     return(
         <FindPwWrapper>
-            <Logo></Logo>
             <h3>비밀번호 찾기</h3>
             <TextInput placeholder="아이디" />
             <TextInput placeholder="이름" />

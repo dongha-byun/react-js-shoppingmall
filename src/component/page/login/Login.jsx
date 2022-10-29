@@ -40,7 +40,6 @@ function Login(){
 
     return (
         <LoginPageWrapper>
-            <Logo></Logo>
             <h3>로그인</h3>
             <LoginWrapper>
                 <InputWrapper>
