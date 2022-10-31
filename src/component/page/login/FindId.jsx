@@ -1,6 +1,5 @@
 import React from "react";
 import styledComponents from "styled-components";
-import Logo from "../../common/Logo";
 import TextInput from "../../ui/TextInput";
 import TextButton from "../../ui/TextButton";
 

@@ -3,7 +3,6 @@ import styledComponents from "styled-components";
 import TextInput from "../../ui/TextInput";
 import TextButton from "../../ui/TextButton";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../common/Logo";
 
 const LoginPageWrapper = styledComponents.div`
     width: 100%;

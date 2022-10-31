@@ -2,7 +2,6 @@ import React from "react";
 import styledComponents from "styled-components";
 import TextButton from "../../ui/TextButton";
 import TextInput from "../../ui/TextInput";
-import Logo from "../../common/Logo";
 
 const SignUpWrapper = styledComponents.div`
     width: 100%;

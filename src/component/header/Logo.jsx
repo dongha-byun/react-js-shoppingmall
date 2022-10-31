@@ -11,7 +11,7 @@ function Logo(){
     const navigate = useNavigate();
     return (
         <LogoWrapper>
-            <img src="/images/pot.jpeg" width="150px" height="80px" 
+            <img src="/images/pot.jpeg" width="150px" height="80px" alt="logo"
                 onClick={()=>{
                     navigate("/");
                 }}
