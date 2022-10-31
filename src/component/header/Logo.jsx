@@ -4,7 +4,7 @@ import styledComponents from "styled-components";
 
 const LogoWrapper = styledComponents.div`
     width: 150px;
-    margin: 10px auto;
+    margin: auto;
 `;
 
 function Logo(){
