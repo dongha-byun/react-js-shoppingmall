@@ -1,26 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
 import Category from "./Category";
 import data from "../../category-data.json";
 
-const StyledCategoryMenuWrapper = styled.div`
-    width: 100%;
-    max-width: 150px;
-    border: 1px solid #dddddd;
-    background-color: white;
-    position: absolute;
-    z-index: 999;
-    ${(props) => props.isSubCategory && `left: 150px; top: -1px;`}
-`;
-
 const SectionWrapper = styled.div`
-
+    border-right: 1px solid black;
+    height: 100%;
+    min-height: 720px;
 `;
 
 function CategoryMenu(props){
-    const navigate = useNavigate();
-
     return(
         <SectionWrapper>
             {data.map((category) => {

@@ -1,13 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledCategoryUl = styled.ul`
     cursor: pointer;
+    border-bottom: 1px solid gray;
+    padding-left: 10px;
 `;
 
 const StyledCategoryLi = styled.li`
     cursor: pointer;
+    margin-bottom: 5px;
+`;
+
+const StyledCategorySubLi = styled.li`
+    cursor: pointer;
+    color: #333333;
 `;
 
 const StyledCategoryNameSpan = styled.span`
@@ -32,13 +40,13 @@ function Category(props){
             </StyledCategoryLi>
             {category.subCategories.length > 0 && category.subCategories.map((sub) => {
                 return (
-                    <StyledCategoryLi key={sub.id} className={isSubView ? ``:`display-none`} onClick={(event) => {
+                    <StyledCategorySubLi key={sub.id} className={isSubView ? ``:`display-none`} onClick={(event) => {
                         searchByCategory(`${sub.id}`);
                     }}>
                         <StyledCategoryNameSpan>
                             {sub.name}
                         </StyledCategoryNameSpan>
-                    </StyledCategoryLi>
+                    </StyledCategorySubLi>
                 );
             })}
         </StyledCategoryUl>
