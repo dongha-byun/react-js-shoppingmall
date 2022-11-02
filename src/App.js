@@ -8,10 +8,6 @@ import {
 // == pages == //
 import Home from './component/page/Home';
 import Intro from './component/page/Intro';
-import Login from './component/page/login/Login';
-import SignUp from './component/page/login/SignUp';
-import FindId from './component/page/login/FindId';
-import FindPw from './component/page/login/FindPw';
 import ProductView from './component/product/view/ProductView';
 import BasketListPage from './component/page/user/basket/BaskListPage';
 import BuyInfoFormPage from './component/page/buy/BuyInfoFormPage';
@@ -33,10 +29,6 @@ function App() {
           <Routes>
               <Route index element={<Home/>}></Route>
               <Route path="intro" element={<Intro/>}></Route>
-              <Route path="login" element={<Login/>}></Route>
-              <Route path="sign-up" element={<SignUp/>}></Route>
-              <Route path="find-id" element={<FindId/>}></Route>
-              <Route path="find-pw" element={<FindPw/>}></Route>
               <Route path="product-view" element={<ProductView/>}></Route>
               <Route path="my-basket" element={<BasketListPage/>}></Route>
               <Route path="buy" element={<BuyInfoFormPage/>}></Route>
