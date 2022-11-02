@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -11,6 +11,7 @@ const StyledCategoryUl = styled.ul`
 const StyledCategoryLi = styled.li`
     cursor: pointer;
     margin-bottom: 5px;
+    font-weight: bold;
 `;
 
 const StyledCategorySubLi = styled.li`
@@ -23,27 +24,30 @@ const StyledCategoryNameSpan = styled.span`
 `;
 
 function Category(props){
-    const {category} = props;
-    const [isSubView, setIsSubView] = useState(false);
+    const {category, activeCategoryId, setActiveCategoryId, openCategoryId, setOpenCategoryId} = props;
     const navigate = useNavigate();
-    
+   
     const searchByCategory = (categoryId) => {
         navigate("/product-list/"+categoryId);
+        setActiveCategoryId(categoryId);
     }
 
     return(
         <StyledCategoryUl>
-            <StyledCategoryLi onClick={()=>setIsSubView(!isSubView)}>
+            <StyledCategoryLi onClick={()=>setOpenCategoryId(category.id)}>
                 <StyledCategoryNameSpan >
                     {category.name}
                 </StyledCategoryNameSpan>
             </StyledCategoryLi>
             {category.subCategories.length > 0 && category.subCategories.map((sub) => {
                 return (
-                    <StyledCategorySubLi key={sub.id} className={isSubView ? ``:`display-none`} onClick={(event) => {
-                        searchByCategory(`${sub.id}`);
-                    }}>
-                        <StyledCategoryNameSpan>
+                    <StyledCategorySubLi key={sub.id} id={sub.id} 
+                        className={ category.id == openCategoryId ? "" : "display-none" }
+                        onClick={()=>{
+                            searchByCategory(`${sub.id}`);
+                        }}
+                    >
+                        <StyledCategoryNameSpan className={sub.id == activeCategoryId && "active-menu"}>
                             {sub.name}
                         </StyledCategoryNameSpan>
                     </StyledCategorySubLi>
