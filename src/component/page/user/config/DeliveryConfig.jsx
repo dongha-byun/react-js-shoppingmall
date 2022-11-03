@@ -6,11 +6,11 @@ import { useState } from "react";
 import Modal from "../../../modal/Modal";
 import "../../../modal/css/modal.css";
 import DeliveryForm from "../../../delivery/DeliveryForm";
+import deliveryInfos from "../../../../sample-data/delivery-data.json";
 
 const DeliveryConfigWrapper = styledComponents.div``;
 
 function DeliveryConfig(props){
-    const deliveryList=[1,2,3,4];
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -29,7 +29,6 @@ function DeliveryConfig(props){
         });
     }
     const addDelivery = () => {
-        console.log(JSON.stringify(values));
         handleClose();
     }
 
@@ -42,13 +41,13 @@ function DeliveryConfig(props){
                 onClick={()=>{
                     setShow(!show);
                 }}/>
-            {deliveryList.map((data, index) => {
+            {deliveryInfos.map((data, index) => {
                 return(
-                    <DeliveryView key={index} id={data} />
+                    <DeliveryView key={index} delivery={data} />
                 );
             })}
 
-            <Modal open={show} close={handleClose} confirm={addDelivery} header="배송정보 추가">
+            <Modal open={show} close={handleClose} confirm={addDelivery} header="배송정보 추가" confirmMessage="추가">
                 <DeliveryForm onChangeForm={onChangeForm}/>
             </Modal>
         </DeliveryConfigWrapper>

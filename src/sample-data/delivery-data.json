@@ -1,0 +1,30 @@
+[
+    {
+        "id": "1",
+        "address": "서울특별시 영등포구 당산로 95",
+        "detailAddress": "102동 501호",
+        "zipCode": "07264",
+        "requestMessage": "택배 보관함에 넣어주세요."
+    },
+    {
+        "id": "2",
+        "address": "경기도 안양시 만안구 안양대학교",
+        "detailAddress": "303호",
+        "zipCode": "37101",
+        "requestMessage": "도착 시 연락주세요."
+    },
+    {
+        "id": "3",
+        "address": "서울시 강동구 암사동 41번지",
+        "detailAddress": "403호",
+        "zipCode": "04304",
+        "requestMessage": "1층에서 #0091 누르고 들어와서 문 앞에 놔주세요."
+    },
+    {
+        "id": "4",
+        "address": "부산광역시 해운대로 17",
+        "detailAddress": "301동 209호",
+        "zipCode": "10922",
+        "requestMessage": "부재 시, 경비실에 맡겨주세요."
+    }
+]
