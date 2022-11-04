@@ -5,16 +5,13 @@ const ProductInfoWrapper = styledComponents.div`
     padding: 0 10px;
 `;
 
-const ProductName = styledComponents.span`
-    display: flex;
-    font-size: 1.2em;
-    width: 200px;
+const ProductName = styledComponents.div`
+    font-size: 1em;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-stretch: normal;
 `;
 
-const ProductScore = styledComponents.span`
+const ProductScore = styledComponents.div`
     float: right;
 `;
 
