@@ -50,10 +50,10 @@ li{
   font-size: 15px;
 }
 .float-right{
-  float: right;
+  float: right !important;
 }
 .float-left{
-  float: left;
+  float: left !important;
 }
 
 .text-center{
@@ -83,4 +83,10 @@ li{
 
 .common-btn-style{
   width: 100%;
+}
+
+.main-content{
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
 }
