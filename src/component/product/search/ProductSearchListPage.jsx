@@ -6,12 +6,18 @@ import SearchFilter from "./filter/SearchFilter";
 
 const StyledSearchListPageWrapper = styled.div``;
 
+const StyledSearchHeaderDiv = styled.div`
+    padding-left: 20px;
+`;
+
 function ProductSearchListPage(props){
     const {categoryId} = useParams();
 
     return (
         <StyledSearchListPageWrapper>
-            <h3>categoryId : {categoryId}</h3>
+            <StyledSearchHeaderDiv >
+                <h3>categoryId : {categoryId}</h3>
+            </StyledSearchHeaderDiv>
             <SearchFilter />
             <ProductSearchList />
         </StyledSearchListPageWrapper>

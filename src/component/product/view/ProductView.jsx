@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styledComponents from "styled-components";
 import ProductPriceComponent from "./ProductPriceComponent";
 import { Tabs, Tab } from "react-bootstrap";
@@ -27,7 +26,6 @@ const ProductViewWrapper = styledComponents.div`
 const ProductImageWrapper = styledComponents.div``;
 
 function ProductView(props){
-    const navigate = useNavigate();
     const [tabName, setTabName] = useState("DETAIL");
 
     return(

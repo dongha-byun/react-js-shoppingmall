@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import TextButton from "../../ui/TextButton";
 import { Button } from "react-bootstrap";
 
 const ProductPriceComponentWrapper = styled.div`

@@ -17,7 +17,7 @@ const ProductSection = styledComponents.div`
 
 function ProductList(props){
     const {sectionName} = props;
-    const products = [0,1,2,3,4];
+    const products = [0,1,2,3];
     const navigate = useNavigate();
     return(
         <ProductListWrapper>
