@@ -7,10 +7,11 @@ const StyleTextInput = styledComponents.input`
     line-height: 30px;
     margin-bottom: 5px;
     ${(props)=> props.readOnly && `background-color: #eeeeee;`}
+    ${(props)=> props.textAlign && `text-align: ${props.textAlign}`}
 `;
 
 function TextInput(props){
-    const {type, placeholder, maxWidth, value, readOnly, onChange} = props;
+    const {type, placeholder, maxWidth, value, readOnly, onChange, name, id, textAlign} = props;
     return(
         <StyleTextInput 
             type={type || "text"} 
@@ -19,6 +20,9 @@ function TextInput(props){
             value={value}
             readOnly={readOnly||false}
             onChange = {onChange}
+            name = {name}
+            id = {id}
+            textAlign = {textAlign}
         />
     );
 }
