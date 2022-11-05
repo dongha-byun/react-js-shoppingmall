@@ -55,17 +55,14 @@ li{
 .float-left{
   float: left !important;
 }
-
-.text-center{
-  text-align: center;
+.display-inline{
+  display: inline;
 }
-
 .display-row{
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 }
-
 .display-none{
   display: none;
 }
@@ -84,7 +81,9 @@ li{
 .common-btn-style{
   width: 100%;
 }
-
+.text-center{
+  text-align: center;
+}
 .main-content{
   width: 100%;
   max-width: 1080px;

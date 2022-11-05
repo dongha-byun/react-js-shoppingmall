@@ -22,7 +22,7 @@ import CategorySideNavBar from './component/category/CategorySideNavBar';
 import FindId from './component/page/login/form/FindId';
 import FindPw from './component/page/login/form/FindPw';
 import SignUp from './component/page/login/form/SignUp';
-
+import ProvideManagePage from './component/provide/ProvideManagePage';
 
 function App() {
   return (
@@ -44,6 +44,7 @@ function App() {
                 <Route path="find-id" element={<FindId/>}></Route>
                 <Route path="find-pw" element={<FindPw/>}></Route>
                 <Route path="sign-up" element={<SignUp/>}></Route>
+                <Route path="provide-manage" element={<ProvideManagePage/>}></Route>
             </Routes>
           </div>
       </BrowserRouter>

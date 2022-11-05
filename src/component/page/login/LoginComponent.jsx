@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import TextButton from "../../ui/TextButton";
-import Modal from "../../modal/Modal";
 import Login from "./form/Login";
 import { useNavigate } from "react-router-dom";
+import CommonModal from "../../modal/CommonModal";
 
 const StyledLoginComponentWrapper = styled.div`
 
@@ -49,14 +49,14 @@ function LoginComponent(){
                 }}
             />
             <TextButton
-                value="판매관리"
+                value="상품관리"
                 onClick={() => {
-                    navigate("/provide");
+                    navigate("/provide-manage");
                 }}
             />
-            <Modal open={isOpen} close={handleClose} header="로그인">
+            <CommonModal show={isOpen} handleClose={handleClose} headerMessage={"로그인"}>
                 <Login menuClick={menuClick} login={login} onChange={loginInputChange}/>
-            </Modal>
+            </CommonModal>
         </StyledLoginComponentWrapper>
     );
 }
