@@ -1,6 +1,6 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import styledComponents from "styled-components";
-import TextButton from "../ui/TextButton";
 
 const DeliveryViewWrapper = styledComponents.div`
     border: 1px solid black;
@@ -10,12 +10,19 @@ const DeliveryViewWrapper = styledComponents.div`
 
 const StyledTable = styledComponents.table`
     margin: 10px 0;
+    width: 100%;
 `;
 
 const StyledTh = styledComponents.th`
     text-align: right;
+    width: 100px;
 `;
-
+const StyledTd = styledComponents.td`
+    padding-left: 15px;
+`;
+const StyledButtonTd = styledComponents.td`
+    text-align: right;
+`;
 const StyledHeaderDiv = styledComponents.div`
     font-weight: bold;
 `;
@@ -29,23 +36,23 @@ function DeliveryView(props){
                 <tbody>
                     <tr>
                         <StyledTh>우편번호</StyledTh>
-                        <td>{delivery.zipCode}</td>
+                        <StyledTd>{delivery.zipCode}</StyledTd>
+                        <StyledButtonTd rowSpan={3}>
+                            <Button variant="danger" onClick={()=>{
+                                alert(`삭제 ${delivery.id}`);
+                            }}>삭제</Button>
+                        </StyledButtonTd>
                     </tr>
                     <tr>
                         <StyledTh>주소</StyledTh>
-                        <td>{delivery.address}</td>
+                        <StyledTd>{delivery.address} / {delivery.detailAddress}</StyledTd>
                     </tr>
                     <tr>
                         <StyledTh>배송 요청사항</StyledTh>
-                        <td>{delivery.requestMessage}</td>
+                        <StyledTd>{delivery.requestMessage}</StyledTd>
                     </tr>
                 </tbody>
             </StyledTable>
-            <div>
-                <TextButton value="삭제" onClick={()=> {
-                    alert(`삭제 ${delivery.id}`);
-                }} />
-            </div>
         </DeliveryViewWrapper>
     );
 }
