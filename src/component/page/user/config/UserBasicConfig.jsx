@@ -3,7 +3,7 @@ import styledComponents from "styled-components";
 import TextInput from "../../../ui/TextInput";
 
 const UserBasicConfigWrapper = styledComponents.div`
-    
+    padding: 20px;
 `;
 
 function UserBasicConfig(props){
