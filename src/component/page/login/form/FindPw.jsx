@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styledComponents from "styled-components";
-import TextInput from "../../../ui/TextInput";
-import TextButton from "../../../ui/TextButton";
+import { Form, Button } from "react-bootstrap";
 
 const FindPwWrapper = styledComponents.div`
     width: 100%;
@@ -12,20 +11,42 @@ const FindPwWrapper = styledComponents.div`
 `;
 
 function FindPw(){
+
+    const [findIdValue, setFindIdValue] = useState({
+        formName: "",
+        formTelNo: ""
+    });
+    const onChangeValue = (event) => {
+        setFindIdValue({
+            ...findIdValue,
+            [event.target.id] : event.target.value
+        });
+    }
+    const findIPw = () => {
+        // post and close modal
+    }
+
     return(
         <FindPwWrapper>
             <h3>비밀번호 찾기</h3>
-            <TextInput placeholder="아이디" />
-            <TextInput placeholder="이름" />
-            <TextInput placeholder="연락처" />
-            <TextButton 
-                value="회원정보 찾기"
-                width="100%"
-                height="50px"
-                onClick={()=>{
-                    alert("아이디로 회원정보 조회");
-                }}
-            />
+            <Form>
+                <Form.Group className="mb-3" controlId="formLoginId">
+                    <Form.Label>아이디</Form.Label>
+                    <Form.Control type="text" onChange={onChangeValue}/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formName">
+                    <Form.Label>이름</Form.Label>
+                    <Form.Control type="text" onChange={onChangeValue}/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formTelNo">
+                    <Form.Label>연락처</Form.Label>
+                    <Form.Control type="text" placeholder="000-0000-0000" onChange={onChangeValue}/>
+                </Form.Group>
+            </Form>
+            <Button className="float-right" variant="primary" onClick={()=>alert("아이디로 회원정보 조회")}>
+                회원정보 찾기
+            </Button>
+            
         </FindPwWrapper>
     );
 }

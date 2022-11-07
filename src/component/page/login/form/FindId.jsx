@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styledComponents from "styled-components";
-import TextButton from "../../../ui/TextButton";
 import { Form, Button } from "react-bootstrap";
 import CommonModal from "../../../modal/CommonModal";
 
@@ -36,7 +35,7 @@ function FindId(){
             <Form>
                 <Form.Group className="mb-3" controlId="formName">
                     <Form.Label>이름</Form.Label>
-                    <Form.Control type="text" placeholder="이름" onChange={onChangeValue}/>
+                    <Form.Control type="text" onChange={onChangeValue}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formTelNo">
                     <Form.Label>연락처</Form.Label>
@@ -47,9 +46,8 @@ function FindId(){
                 아이디 찾기
             </Button>
             
-            <CommonModal show={show} handleClose={handleClose} header="아이디 조회"
-                footerEvent={findId} footerMessage="확인">
-                조회된 아이디는 ****** 입니다.
+            <CommonModal show={show} handleClose={handleClose} headerMessage="조회결과">
+                <p>조회된 아이디는 ****** 입니다.</p>
             </CommonModal>
         </FindIdWrapper>
     );

@@ -25,7 +25,7 @@ function LoginComponent(){
     const loginInputChange = (event) => {
         setLoginValue({
             ...loginValue,
-            [event.target.name]: event.target.value
+            [event.target.id]: event.target.value
         });
     }
 
