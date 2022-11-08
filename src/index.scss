@@ -85,3 +85,31 @@ li{
   max-width: 1080px;
   margin: 0 auto;
 }
+
+.buy.READY{
+  color: black;
+}
+.buy.ING{
+  color: blue;
+}
+.buy.END{
+  color: black;
+}
+.buy.RETURN_REQ{
+  color: blue;
+}
+.buy.RETURN_END{
+  color: black;
+}
+.buy.EXCHANGE_REQ{
+  color: red;
+}
+.buy.EXCHANGE_END{
+  color: black;
+}
+.buy.CHECKING{
+  color: yellow;
+}
+.buy.CANCEL{
+  color: red;
+}

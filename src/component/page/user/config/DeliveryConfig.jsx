@@ -6,6 +6,7 @@ import DeliveryForm from "../../../delivery/DeliveryForm";
 import deliveryInfos from "../../../../sample-data/delivery-data.json";
 import { Button } from "react-bootstrap";
 import CommonModal from "../../../modal/CommonModal";
+import { useNavigate } from "react-router-dom";
 
 const DeliveryConfigWrapper = styledComponents.div`
     padding: 20px;
@@ -18,6 +19,7 @@ function DeliveryConfig(props){
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const navigate = useNavigate();
 
     /* 배송지 추가 관련 state 및 function */
     const [values, setValues] = useState({
@@ -43,7 +45,7 @@ function DeliveryConfig(props){
                 <h3 className="display-inline">배송정보 설정</h3>
                 <Button variant="outline-primary" className="float-right"
                     onClick={() => {
-                        setShow(!show);
+                        navigate("add");
                     }}>
                 추가하기</Button>
             </DeliveryHeaderWrapper>

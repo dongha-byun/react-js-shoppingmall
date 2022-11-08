@@ -26,6 +26,9 @@ import ProvideManagePage from './component/provide/ProvideManagePage';
 import DeliveryForm from './component/delivery/DeliveryForm';
 import ProvideProductList from './component/provide/ProvideProductList';
 import ProvideProductAddForm from './component/provide/ProvideProductAddForm';
+import BuyConfig from './component/page/user/config/BuyConfig';
+import ReviewWriteForm from './component/page/user/config/buy/ReviewWriteForm';
+import IncomeComponent from './component/provide/component/IncomeComponent';
 
 function App() {
   return (
@@ -40,21 +43,21 @@ function App() {
                 <Route path="/buy" element={<BuyInfoFormPage/>}></Route>
                 <Route path="/product-question" element={<ProductQuestionPage/>}></Route>
                 <Route path="/product-list/:categoryId" element={<ProductSearchListPage/>}></Route>
-                {/* <Route path="/basic-config" element={<UserBasicConfig/>}></Route>
-                <Route path="/delivery-config" element={<DeliveryConfig/>}></Route>
-                <Route path="/payment-config" element={<PaymentConfig/>}></Route> */}
                 <Route path="/my-page" element={<UserConfigPage/>}>
-                  <Route path="basic" element={<UserBasicConfig/>}></Route>
-                  <Route path="delivery" element={<DeliveryConfig/>}></Route>
-                  <Route path="delivery/add" element={<DeliveryForm />}></Route>
-                  <Route path="payment" element={<PaymentConfig/>}></Route>
+                  <Route path="basic" element={<UserBasicConfig />}/>
+                  <Route path="delivery" element={<DeliveryConfig />}/>
+                  <Route path="delivery/add" element={<DeliveryForm />}/>
+                  <Route path="payment" element={<PaymentConfig />}/>
+                  <Route path="buy" element={<BuyConfig />}/>
+                  <Route path="buy/review-write/:buyingId" element={<ReviewWriteForm/>}></Route>
                 </Route>
                 <Route path="/find-id" element={<FindId/>}></Route>
                 <Route path="/find-pw" element={<FindPw/>}></Route>
                 <Route path="/sign-up" element={<SignUp/>}></Route>
                 <Route path="/provide-manage" element={<ProvideManagePage/>}>
-                  <Route path=":categoryId" element={<ProvideProductList/>}></Route>
-                  <Route path="add" element={<ProvideProductAddForm/>}></Route>
+                  <Route path="product" element={<ProvideProductList/>}></Route>
+                  <Route path="product/add" element={<ProvideProductAddForm/>}></Route>
+                  <Route path="income" element={<IncomeComponent/>}></Route>
                 </Route>
             </Routes>
           </div>
