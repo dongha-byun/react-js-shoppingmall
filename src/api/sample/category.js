@@ -85,50 +85,174 @@ const categories = [
     },
     {
         id: 5,
-        name: "완구/취미"
+        name: "완구/취미",
+        subCategories: [
+            {
+                id : 51,
+                name: "보드게임",
+                subCategories: []
+            },
+            {
+                id : 52,
+                name: "실내대형완구",
+                subCategories: []
+            },
+            {
+                id : 53,
+                name: "인형",
+                subCategories: []
+            },
+            {
+                id : 54,
+                name: "프라모델",
+                subCategories: []
+            }
+        ]
     },
     {
         id: 6,
-        name: "반려동물용품"
+        name: "반려동물용품",
+        subCategories: [
+            {
+                id : 61,
+                name: "강아지사료",
+                subCategories: []
+            },
+            {
+                id : 62,
+                name: "강아지간식",
+                subCategories: []
+            },
+            {
+                id : 63,
+                name: "고양이사료",
+                subCategories: []
+            },
+            {
+                id : 64,
+                name: "고양이간식",
+                subCategories: []
+            },
+            {
+                id : 65,
+                name: "영양제",
+                subCategories: []
+            },
+            {
+                id : 66,
+                name: "기타용품",
+                subCategories: []
+            }
+        ]
     },
     {
         id: 7,
-        name: "도서/음반/DVD"
+        name: "도서/음반/DVD",
+        subCategories: [
+            {
+                id : 71,
+                name: "소설/에세이",
+                subCategories: []
+            },
+            {
+                id : 72,
+                name: "자기계발/외국어",
+                subCategories: []
+            },
+            {
+                id : 73,
+                name: "트로트/고전음악",
+                subCategories: []
+            },
+            {
+                id : 74,
+                name: "대중가요/K-POP",
+                subCategories: []
+            },
+            {
+                id : 75,
+                name: "기타",
+                subCategories: []
+            }
+        ]
     },
     {
         id: 8,
-        name: "뷰티"
+        name: "뷰티",
+        subCategories: [
+            {
+                id : 81,
+                name: "헤어용품",
+                subCategories: []
+            },
+            {
+                id : 82,
+                name: "피부미용",
+                subCategories: []
+            },
+            {
+                id : 83,
+                name: "화장품/영양제",
+                subCategories: []
+            },
+            {
+                id : 84,
+                name: "기타",
+                subCategories: []
+            }
+        ]
     },
     {
         id: 9,
-        name: "홈인테리어"
+        name: "홈인테리어",
+        subCategories: [
+            {
+                id : 91,
+                name: "가구",
+                subCategories: []
+            },
+            {
+                id : 92,
+                name: "침구",
+                subCategories: []
+            },
+            {
+                id : 93,
+                name: "욕실용품",
+                subCategories: []
+            },
+            {
+                id : 94,
+                name: "기타",
+                subCategories: []
+            }
+        ]
     },
     {
         id: 10,
-        name: "가전디지털"
-    },
-    {
-        id: 11,
-        name: "문구/오피스"
-    },
-    {
-        id: 12,
-        name: "여행"
-    }
-    ,
-    {
-        id: 13,
-        name: "패션/의류"
-    }
-    ,
-    {
-        id: 14,
-        name: "자동차용품"
-    }
-    ,
-    {
-        id: 15,
-        name: "생활용품"
+        name: "가전디지털",
+        subCategories: [
+            {
+                id : 101,
+                name: "핸드폰",
+                subCategories: []
+            },
+            {
+                id : 102,
+                name: "컴퓨터/노트북",
+                subCategories: []
+            },
+            {
+                id : 103,
+                name: "태블릿PC",
+                subCategories: []
+            },
+            {
+                id : 104,
+                name: "기타",
+                subCategories: []
+            }
+        ]
     }
 ]
 
