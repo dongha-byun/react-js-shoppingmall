@@ -1,28 +1,35 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
-import { Button, Table } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
-import { getCategory } from "../../api/sample/category";
+import { Button, Table, Form} from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import CategorySelect from "./select/CategorySelect";
 
 const StyledTableHeader = styled.div`
     margin-bottom: 25px;
 `;
 
+const StyledListWrapper = styled.div`
+    padding: 20px;
+`;
+
 function ProvideProductList(){
-    const {categoryId} = useParams();
-    const category = getCategory(categoryId);
+    
     const rows = [1,2,3,4,5];
     const navigate = useNavigate();
+    const [categoryId, setCategoryId] = useState();
+    const [subCategoryId, setSubCategoryId] = useState();
 
     return (
-        // <Tab.Pane key={category.id} eventKey={category.id}>
-        <div>
+        <StyledListWrapper>
             <StyledTableHeader>
-                <h4 className="display-inline">{category.name}</h4>
+                <h4 className="display-inline">상품 관리</h4>
                 <Button className="float-right" variant="outline-primary"
-                    onClick={()=>navigate("/provide-manage/add")}
+                    onClick={()=>navigate("/provide-manage/product/add/")}
                 >상품 등록</Button>
             </StyledTableHeader>
+            <Form>
+                <CategorySelect categoryId={categoryId} subCategoryId={subCategoryId} setCategoryId={setCategoryId} setSubCategoryId={setSubCategoryId}/>
+            </Form>
             <Table bordered hover size="sm">
                 <thead>
                     <tr>
@@ -43,7 +50,7 @@ function ProvideProductList(){
                                 <td className="text-center">
                                     <img src="/images/pot.jpeg" width={100} alt="" />
                                 </td>
-                                <td>냄비냄비 요가파이아</td>
+                                <td>냄비냄비 요가파이아 - {subCategoryId}</td>
                                 <td>11,111원</td>
                                 <td>주방 &gt; 냄비</td>
                                 <td>999 개</td>
@@ -53,8 +60,7 @@ function ProvideProductList(){
                     })}
                 </tbody>
             </Table>
-        {/* </Tab.Pane> */}
-        </div>
+        </StyledListWrapper>
     );
     
 }

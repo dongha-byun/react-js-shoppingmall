@@ -1,40 +1,40 @@
-import React, { useState } from "react";
-import { Tab, Row, Col, Nav } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Tabs,Tab } from "react-bootstrap";
 import styled from "styled-components";
 import { getCategories } from "../../api/sample/category";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
-const StyledManagePageWrapper = styled.div``;
+const StyledManagePageWrapper = styled.div`
+    padding: 20px;
+`;
 
 function ProvideManagePage(){
+    const [key, setKey] = useState("product");
+
+    useEffect(() => {
+        onSelect(key);
+    }, []);
     const categories = getCategories();
+    const navigate = useNavigate();
+
+    const onSelect = (eventKey) => {
+        setKey(eventKey);
+        navigate(eventKey);
+    }
 
     return(
         <StyledManagePageWrapper>
-            <h3>상품 관리</h3>
-            <Tab.Container id="left-tabs-example">
-                <Row className="mb-3">
-                    <Col>
-                        <Nav variant="pills" className="flex-row">
-                            {categories.map((category) => {
-                                return (
-                                    <Nav.Item key={category.id}>
-                                        {/* <Link className="nav-link" to={`${category.id}`}>{category.name}</Link> */}
-                                        <Nav.Link eventKey={`${category.id}`} href={`/provide-manage/${category.id}`}>{category.name}</Nav.Link>
-                                    </Nav.Item>
-                                );
-                            })}
-                        </Nav>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Tab.Content>
-                            <Outlet />
-                        </Tab.Content>
-                    </Col>
-                </Row>
-            </Tab.Container>
+            <Tabs
+                activeKey={key}
+                className="mb-3"
+                onSelect={onSelect}
+            >
+                <Tab eventKey="product" title="상품 관리" />
+                <Tab eventKey="income" title="매출 관리" />
+                <Tab eventKey="order" title="주문/배송" />
+                <Tab eventKey="qna" title="상품문의" />
+            </Tabs>
+            <Outlet />
         </StyledManagePageWrapper>
     );
 }

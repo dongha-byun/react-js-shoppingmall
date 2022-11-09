@@ -1,23 +1,22 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import { Form, Row, Col, Button } from "react-bootstrap";
-import { getCategories } from "../../api/sample/category";
+import { Form, Row, Col } from "react-bootstrap";
+import ProviderHeader from "./component/ProviderHeader";
+import CategorySelect from "./select/CategorySelect";
 
-const StyledHeader = styled.div`
-    margin-bottom: 25px;
+const StyledFormWrapper = styled.div`
+    padding: 20px;
 `;
 
 function ProvideProductAddForm(props){
-    const categories = getCategories();
-
+    const [categoryId, setCategoryId] = useState();
+    const [subCategoryId, setSubCategoryId] = useState();
     const [productAddForm, setProductAddForm] = useState({
         showImgFile: "",
         productName: "",
         detail:"",
         price: 0,
-        categoryId: "",
-        subCategoryId: "",
-        count: 0
+        count: 0,
     });
 
     const onChange = (event) => {
@@ -29,37 +28,20 @@ function ProvideProductAddForm(props){
 
     const confirm = () =>{
         console.log(productAddForm);
+        console.log(categoryId + " : " + subCategoryId);
         alert(123123);
     }
 
     return (
-        <>
-            <StyledHeader>
-                <h4 className="display-inline">상품 등록</h4>
-                <Button 
-                    className="float-right" 
-                    variant="outline-primary" 
-                    onClick={confirm}>상품 등록</Button>
-            </StyledHeader>
+        <StyledFormWrapper>
+            <ProviderHeader title="상품 등록" 
+                onClick={confirm} buttonMessage="상품 등록"
+            />
             <Form>
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="categoryId">
-                        <Form.Select defaultValue="Choose..." onChange={onChange}>
-                            <option value="">카테고리</option>
-                            {categories.map((category) => {
-                                return (
-                                    <option key={category.id} value={category.id}>{category.name}</option>
-                                );
-                            })}
-                        </Form.Select>
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="subCategoryId">
-                        <Form.Select defaultValue="Choose..." onChange={onChange}>
-                            <option value={""}>세부 카테고리</option>
-                            <option>...</option>
-                        </Form.Select>
-                    </Form.Group>
-                </Row>
+                <CategorySelect 
+                    categoryId={categoryId} subCategoryId={subCategoryId}
+                    setCategoryId={setCategoryId} setSubCategoryId={setSubCategoryId}
+                />
                 <Form.Group className="mb-3" controlId="productName">
                     <Form.Label>상품명</Form.Label>
                     <Form.Control onChange={onChange}/>
@@ -86,7 +68,7 @@ function ProvideProductAddForm(props){
                     <Form.Control as="textarea" rows={10} onChange={onChange}/>
                 </Form.Group>
             </Form>
-        </>
+        </StyledFormWrapper>
     );
 }
 
