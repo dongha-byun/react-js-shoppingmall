@@ -24,16 +24,16 @@ function ProductList(props){
             {sectionName && <h3>{sectionName}</h3>}
             <ProductSection>
                 {
-                    products.map( (product, index) => {
+                    products.map( (productId, index) => {
                         return(
                             <ProductItem 
                                 key={index}
-                                src='http://localhost:8080/image/pot.jpeg'
+                                src='http://localhost:10000/image/pot.jpeg'
                                 name='냄비를 빙자한 프라이팬을 닮은 냄비 초울트라세일판'
                                 score='4.7'
                                 scoreCnt='1150'
-                                onClick={(index) => {
-                                    navigate("/product-view");
+                                onClick={() => {
+                                    navigate("/product-view/"+productId);
                                 }}
                             />
                         )
