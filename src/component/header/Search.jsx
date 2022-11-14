@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styledComponents from "styled-components";
-import TextInput from "../ui/TextInput";
-import Button from "../ui/Button";
+import { Form, InputGroup, Button } from "react-bootstrap";
 
 const SearchWrapper = styledComponents.div`
     width: 100%;
@@ -16,19 +15,15 @@ function Search(props){
 
     return(
         <SearchWrapper>
-            <TextInput maxWidth="420px" type="text" 
-                onChange={(event)=>{
-                    setSearchValue(event.target.value);
-                }}
-            />
-            <Button 
-                imgSrc="/images/search.jpeg" 
-                onClick={()=> {
-                    alert(searchValue);
-                }}
-                width='35px'
-                height='35px'
-            />
+            <InputGroup>
+                <Form.Control 
+                    aria-describedby="searchBtn" 
+                    onChange={setSearchValue}
+                />
+                <Button variant="outline-secondary" id="searchBtn"
+                    onClick={()=>alert("검색")}
+                >검색</Button>
+            </InputGroup>
         </SearchWrapper>
     );
 }

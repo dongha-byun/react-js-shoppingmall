@@ -5,12 +5,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import categories from '../../sample-data/category-data.json';
 import Search from '../header/Search';
 import LoginComponent from '../page/login/LoginComponent';
 import { useNavigate } from 'react-router-dom';
+import { getCategories } from '../../api/sample/category';
 
 function CategorySideNavBar() {
+    const categories = getCategories();
     const navigate = useNavigate();
 
     return (

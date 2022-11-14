@@ -4,9 +4,9 @@ import TextButton from "../../ui/TextButton";
 import Login from "./form/Login";
 import { useNavigate } from "react-router-dom";
 import CommonModal from "../../modal/CommonModal";
+import { Button } from "react-bootstrap";
 
 const StyledLoginComponentWrapper = styled.div`
-
 `;
 
 function LoginComponent(){
@@ -36,24 +36,15 @@ function LoginComponent(){
 
     return(
         <StyledLoginComponentWrapper>
-            <TextButton
-                value="로그인"
-                onClick={() => {
-                    setOpen(!isOpen);
-                }}
-            />
-            <TextButton
-                value="마이페이지"
-                onClick={() => {
-                    navigate("/my-page");
-                }}
-            />
-            <TextButton
-                value="상품관리"
-                onClick={() => {
-                    navigate("/provide-manage");
-                }}
-            />
+            <Button variant="primary" onClick={()=>{
+                setOpen(!isOpen);
+            }} >로그인</Button>
+            <Button variant="outline-primary" onClick={()=>{
+                navigate("/my-page");
+            }}>마이페이지</Button>
+            <Button variant="outline-primary" onClick={()=>{
+                navigate("/provide-manage");
+            }}>상품관리</Button>
             <CommonModal show={isOpen} handleClose={handleClose} headerMessage={"로그인"}>
                 <Login menuClick={menuClick} login={login} onChange={loginInputChange}/>
             </CommonModal>

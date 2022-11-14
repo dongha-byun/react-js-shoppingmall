@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import data from "../../category-data.json"
+import data from "../../sample-data/category-data.json"
 import Button from "../ui/Button";
 import CategoryMenu from "./CategoryMenu";
 
@@ -21,8 +21,8 @@ function CategoryMenuButton(props){
             <Button
                 imgSrc="/images/more.png" 
                 onClick={()=> { changeStyle(); }}
-                width='100px'
-                height='100px'
+                width='85px'
+                height='85px'
             />
             <div style={displayStyle}>
                 <CategoryMenu 
