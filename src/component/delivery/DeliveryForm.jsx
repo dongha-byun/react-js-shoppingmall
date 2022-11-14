@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Form, Row, Col } from "react-bootstrap";
+import ProviderHeader from "../provide/component/ProviderHeader";
 
 const StyledHeader = styled.div`
     margin-bottom: 25px;
@@ -12,18 +13,44 @@ const StyledDeliveryFormWrapper = styled.div`
 
 function DeliveryForm(props){
     
-    const {onChangeForm} = props;
-
+    /* 배송지 추가 관련 state 및 function */
+    const [values, setValues] = useState({
+        alias: "",
+        zipCode : "",
+        address : "",
+        detailAddress : "",
+        requestMessage : ""
+    });
+    const onChangeForm = (event) => {
+        setValues({
+            ...values,
+            [event.target.id]: event.target.value
+        });
+    }
+    const addDelivery = () => {
+        console.log(values);
+        alert("배송지 추가");
+    }
+    
     return (
         <StyledDeliveryFormWrapper>
-            <StyledHeader>
-                <h4 className="display-inline">배송지 추가</h4>
-                <Button 
-                    className="float-right" 
-                    variant="outline-primary" 
-                    onClick={()=>alert("add delivery")}>배송지 등록</Button>
-            </StyledHeader>
+            <ProviderHeader 
+                title="배송지 추가"
+                onClick={addDelivery}
+                buttonMessage="배송지 등록"
+            />
             <Form>
+                <Row className="mb-3">
+                    <Col xs={8}>
+                        <Form.Group controlId="alias">
+                            <Form.Control
+                                type="text"
+                                placeholder="배송지 명칭"
+                                onChange={onChangeForm}
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
                 <Row className="mb-3">
                     <Col xs={8}>
                         <Form.Group controlId="zipCode">
@@ -74,7 +101,6 @@ function DeliveryForm(props){
             </Form>
         </StyledDeliveryFormWrapper>
     );
-    
 }
 
 export default DeliveryForm;
