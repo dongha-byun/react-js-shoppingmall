@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import filters from "../../../../search-filter.json";
+import filters from "../../../../sample-data/search-filter.json";
 import RadioFilter from "./RadioFilter";
 
 const SearchFilterWrapper = styled.div`
