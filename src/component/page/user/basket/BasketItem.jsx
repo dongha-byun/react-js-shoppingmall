@@ -1,14 +1,14 @@
 import React from "react";
 import styledComponents from "styled-components";
-import TextButton from "../../../ui/TextButton";
 import BasketItemInfo from "./BasketItemInfo";
+import { Button, Form } from "react-bootstrap";
 
 const BasketItemWrapper = styledComponents.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     padding: 10px 30px;
-    border: 1px solid black;
+    border-bottom: 1px solid #bbbbbb;
 `;
 
 const BasketButtonWrapper = styledComponents.div`
@@ -19,27 +19,20 @@ function BasketItem(props){
 
     return (
         <BasketItemWrapper>
-            <input type="checkbox"  />
+            <Form>
+                <Form.Check />
+            </Form>
             <BasketItemInfo />
             <BasketButtonWrapper>
-                <TextButton 
-                    value="주문수정"
-                    onClick={(e)=>{
-                        alert("주문수정");
-                    }}    
-                /><br/>
-                <TextButton 
-                    value="장바구니에서 제거"
-                    onClick={(e)=>{
-                        alert("장바구니에서 제거");
-                    }}    
-                /><br/>
-                <TextButton 
-                    value="주문하기"
-                    onClick={(e)=>{
-                        alert("주문하기");
-                }}    
-            />
+                <Button variant="outline-primary" onClick={()=>{
+                    alert("123");
+                }}>주문수정</Button>
+                <Button variant="outline-danger" onClick={()=>{
+                    alert("장바구니에서 제거");
+                }}>장바구니에서 제거</Button>
+                <Button variant="primary" onClick={()=>{
+                    alert("주문하기");
+                }}>주문하기</Button>
             </BasketButtonWrapper>
         </BasketItemWrapper>
     );
