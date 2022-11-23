@@ -1,11 +1,7 @@
-import axios from "axios"
-
-const api = axios.create({
-    baseURL: "http://localhost:10000/item"
-});
+import { api } from "../../axois";
 
 export function viewItem(itemId){
-    api.get("/"+itemId)
+    api.get("/item/"+itemId)
     .then((response) => {
         console.log(response)
         return response;
