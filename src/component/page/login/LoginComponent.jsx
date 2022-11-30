@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import TextButton from "../../ui/TextButton";
 import Login from "./form/Login";
 import { useNavigate } from "react-router-dom";
 import CommonModal from "../../modal/CommonModal";
-import { Button } from "react-bootstrap";
+import { loginApi } from "../../../api/component/login/login";
+import SessionOffComponent from "./SessionOffComponent";
+import SessionOnComponent from "./SessionOnComponent";
 
 const StyledLoginComponentWrapper = styled.div`
 `;
@@ -19,7 +20,7 @@ function LoginComponent(){
     });
 
     const login = () => {
-        console.log(loginValue);
+        loginApi(loginValue);
     }
 
     const loginInputChange = (event) => {
@@ -36,15 +37,17 @@ function LoginComponent(){
 
     return(
         <StyledLoginComponentWrapper>
-            <Button variant="primary" onClick={()=>{
-                setOpen(!isOpen);
-            }} >로그인</Button>
-            <Button variant="outline-primary" onClick={()=>{
-                navigate("/my-page");
-            }}>마이페이지</Button>
-            <Button variant="outline-primary" onClick={()=>{
-                navigate("/provide-manage");
-            }}>상품관리</Button>
+            {
+                localStorage.getItem("x-auth-token") == null &&
+                <SessionOffComponent
+                    setOpen={setOpen} isOpen={isOpen}
+                />
+            }
+            {
+                localStorage.getItem("x-auth-token") != null &&
+                <SessionOnComponent />
+            }
+            
             <CommonModal show={isOpen} handleClose={handleClose} headerMessage={"로그인"}>
                 <Login menuClick={menuClick} login={login} onChange={loginInputChange}/>
             </CommonModal>
