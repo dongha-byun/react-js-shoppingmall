@@ -1,10 +1,15 @@
-import { api } from "../../axois";
+import { api } from "../../axios";
 
 export function loginApi(loginValue){
     api.post("/login", loginValue)
     .then((response) => {
         if(response.data.token){
-            localStorage.setItem("x-auth-token", response.data.token);
+            localStorage.setItem("user",
+                JSON.stringify({
+                    "x-auth-token" : response.data.token,
+                    "expireDate" : response.data.expireDate
+                })
+            );
             window.location.replace("http://localhost:3000");
         }
     })
@@ -13,3 +18,15 @@ export function loginApi(loginValue){
         console.log(error);
     });
 }   
+
+export function getUserAttribute(name){
+    if(localStorage.getItem("user") == null || JSON.parse(localStorage.getItem("user")) == null){
+        return null;
+    }
+
+    return JSON.parse(localStorage.getItem("user"))[name];
+}
+
+export function isValidToken(){
+    return getUserAttribute("x-auth-token") != null;
+}

@@ -1,4 +1,4 @@
-import { api } from "../../axois";
+import { api } from "../../axios";
 
 export function viewItem(itemId){
     api.get("/item/"+itemId)

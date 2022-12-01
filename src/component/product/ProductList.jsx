@@ -2,6 +2,7 @@ import React from "react";
 import ProductItem from "./ProductItem";
 import styledComponents from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { webUrl } from "../../api/axios";
 
 const ProductListWrapper = styledComponents.div`
     padding: 0 10px;
@@ -28,7 +29,7 @@ function ProductList(props){
                         return(
                             <ProductItem 
                                 key={index}
-                                src='http://localhost:10000/image/pot.jpeg'
+                                src={webUrl + '/image/pot.jpeg'}
                                 name='냄비를 빙자한 프라이팬을 닮은 냄비 초울트라세일판'
                                 score='4.7'
                                 scoreCnt='1150'
