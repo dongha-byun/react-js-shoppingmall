@@ -19,6 +19,9 @@ function SessionOnComponent(){
                 navigate("/provide-manage");
             }}>상품관리</Button>
             <Button variant="outline-primary" onClick={()=>{
+                navigate("/admin");
+            }}>관리자</Button>
+            <Button variant="outline-primary" onClick={()=>{
                 logout();
             }}>로그아웃</Button>
         </>

@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect } from 'react';
 
 // == pages == //
 import Home from './component/page/Home';
@@ -31,8 +32,24 @@ import ReviewWriteForm from './component/page/user/config/buy/ReviewWriteForm';
 import IncomeComponent from './component/provide/component/IncomeComponent';
 import OrderComponent from './component/provide/component/OrderComponent';
 import QnaManageComponent from './component/provide/component/QnaManageComponent';
+import { getUserAttribute } from './api/component/login/login';
+import AdminPage from './component/admin/AdminPage';
+import CategoryManagePage from './component/admin/category/CategoryManagePage';
+import CustomServicePage from './component/admin/cs/CustomServicePage';
 
 function App() {
+
+  useEffect(()=>{
+    console.log(new Date());
+    console.log("client time : " + new Date().getTime());
+    console.log("server time : " + getUserAttribute("expireDate"));
+
+    console.log( new Date() > getUserAttribute("expireDate") );
+    if(new Date().getTime() > getUserAttribute("expireDate")){
+      localStorage.clear();
+    }
+  }, []);
+
   return (
       <BrowserRouter>
           <CategorySideNavBar />
@@ -62,6 +79,10 @@ function App() {
                   <Route path="income" element={<IncomeComponent/>}></Route>
                   <Route path="order" element={<OrderComponent/>}></Route>
                   <Route path="qna" element={<QnaManageComponent/>}></Route>
+                </Route>
+                <Route path="/admin" element={<AdminPage />}>
+                  <Route path="category" element={<CategoryManagePage/>}></Route>
+                  <Route path="cs" element={<CustomServicePage/>}></Route>
                 </Route>
             </Routes>
           </div>
