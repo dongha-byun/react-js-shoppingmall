@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Login from "./form/Login";
 import { useNavigate } from "react-router-dom";
 import CommonModal from "../../modal/CommonModal";
-import { loginApi } from "../../../api/component/login/login";
+import { isValidToken, loginApi } from "../../../api/component/login/login";
 import SessionOffComponent from "./SessionOffComponent";
 import SessionOnComponent from "./SessionOnComponent";
 
@@ -38,16 +38,15 @@ function LoginComponent(){
     return(
         <StyledLoginComponentWrapper>
             {
-                localStorage.getItem("x-auth-token") == null &&
+                !isValidToken() &&
                 <SessionOffComponent
                     setOpen={setOpen} isOpen={isOpen}
                 />
             }
             {
-                localStorage.getItem("x-auth-token") != null &&
+                isValidToken() &&
                 <SessionOnComponent />
             }
-            
             <CommonModal show={isOpen} handleClose={handleClose} headerMessage={"로그인"}>
                 <Login menuClick={menuClick} login={login} onChange={loginInputChange}/>
             </CommonModal>
