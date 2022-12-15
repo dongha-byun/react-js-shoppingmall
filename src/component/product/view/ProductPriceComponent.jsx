@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Form, Row, Col } from "react-bootstrap";
 
 const ProductPriceComponentWrapper = styled.div`
     margin-left: 10px;
@@ -36,8 +35,8 @@ const StyledBuyWrapper = styled.div`
 
 function ProductPriceComponent(props){
 
+    const {item} = props;
     const [price, setPrice] = useState(11111);
-    const navigate = useNavigate();
 
     const buyNow = () =>{
         alert("바로구매");
@@ -50,21 +49,31 @@ function ProductPriceComponent(props){
     return(
         <ProductPriceComponentWrapper>
             <ProductNameWrapper>
-                <h4>테스트 상품명</h4>
+                <h4>테스트 상품명 {item}</h4>
             </ProductNameWrapper>
             <StyledPriceWrapper>
                 <StyledPriceInfo>11111원</StyledPriceInfo>
             </StyledPriceWrapper>
             <StyledBuyWrapper>
-                <input type="number" min="1" onChange={(e)=>{
-                    setPrice(e.target.value * 11111);
-                }}/>
-                <Button variant="outline-primary" onClick={()=>{
-                    intoBasket();
-                }}>장바구니 추가</Button>
-                <Button onClick={()=>{
-                    buyNow();
-                }}>바로구매</Button>
+                <Form>
+                    <Row>
+                        <Col sm={6}>
+                            <Form.Group>
+                                <Form.Control type="number" onChange={(event)=>{
+                                    setPrice(event.target.value * 11111);
+                                }} />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Button variant="outline-primary" onClick={()=>{
+                                intoBasket();
+                            }}>장바구니 추가</Button>
+                            <Button className="mx-1" onClick={()=>{
+                                buyNow();
+                            }}>바로구매</Button>
+                        </Col>
+                    </Row>
+                </Form>
             </StyledBuyWrapper>
         </ProductPriceComponentWrapper>
     );
