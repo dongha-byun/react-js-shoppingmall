@@ -1,14 +1,27 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from 'react';
 import { Form, Row, Col } from "react-bootstrap";
-import { getCategories, getCategory } from "../../../api/sample/category";
+import CategoryService, { getCategory } from "../../../api/component/category/category";
 
 function CategorySelect(props){
     const {categoryId, subCategoryId, setCategoryId, setSubCategoryId} = props;
+    const [categories, setCategories] = useState([]);
 
-    const categories = getCategories();
+    useEffect(()=>{
+        CategoryService.getCategories().then(data => {
+            setCategories(data);
+        })
+    }, []);
+
     const changeCategory = (event) => {
         setCategoryId(event.target.value);
-        setSubCategoryId(getCategory(event.target.value).subCategories[0].id);
+        categories.map(category => {
+            if(event.target.value == category.id){
+                setSubCategoryId(category.subCategories[0].id);
+            }
+        })
+        
     }
 
     const changeSubCategory = (event) => {
@@ -30,7 +43,7 @@ function CategorySelect(props){
             <Form.Group as={Col} controlId="subCategoryId">
                 <Form.Select value={subCategoryId} onChange={changeSubCategory}>
                     <option value="">세부 카테고리</option>
-                    {categoryId && getCategory(categoryId).subCategories.map((sub)=>{
+                    {categoryId && getCategory(categories, categoryId).subCategories.map((sub)=>{
                         return (
                             <option key={sub.id} value={sub.id}>{sub.name}</option>
                         );

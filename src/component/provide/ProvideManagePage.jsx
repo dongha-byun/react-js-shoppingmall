@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Tabs,Tab } from "react-bootstrap";
 import styled from "styled-components";
-import { getCategories } from "../../api/sample/category";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const StyledManagePageWrapper = styled.div`
@@ -10,12 +9,11 @@ const StyledManagePageWrapper = styled.div`
 
 function ProvideManagePage(){
     const [key, setKey] = useState("product");
+    const navigate = useNavigate();
 
     useEffect(() => {
         onSelect(key);
     }, []);
-    const categories = getCategories();
-    const navigate = useNavigate();
 
     const onSelect = (eventKey) => {
         setKey(eventKey);

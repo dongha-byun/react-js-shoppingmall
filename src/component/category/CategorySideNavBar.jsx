@@ -7,12 +7,18 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Search from '../header/Search';
 import LoginComponent from '../page/login/LoginComponent';
-import { useNavigate } from 'react-router-dom';
-import { getCategories } from '../../api/sample/category';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import CategoryService from '../../api/component/category/category';
 
 function CategorySideNavBar() {
-    const categories = getCategories();
-    const navigate = useNavigate();
+    const [categories, setCategories] = useState([]);
+
+    useEffect(()=>{
+        CategoryService.getCategories().then(data => {
+            setCategories(data);
+        })
+    }, []);
 
     return (
         <Navbar bg="light" expand={false} className="mb-3">

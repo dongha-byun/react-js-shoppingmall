@@ -3,11 +3,11 @@ import { api } from "../../axios";
 export function loginApi(loginValue){
     api.post("/login", loginValue)
     .then((response) => {
-        if(response.data.token){
+        if(response.data.accessToken){
+            console.log(response.data.accessToken);
             localStorage.setItem("user",
                 JSON.stringify({
-                    "x-auth-token" : response.data.token,
-                    "expireDate" : response.data.expireDate
+                    "access-token" : response.data.accessToken
                 })
             );
             window.location.replace("http://localhost:3000");
@@ -28,5 +28,5 @@ export function getUserAttribute(name){
 }
 
 export function isValidToken(){
-    return getUserAttribute("x-auth-token") != null;
+    return getUserAttribute("access-token") != null;
 }

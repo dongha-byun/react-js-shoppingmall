@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Form, Row, Col } from "react-bootstrap";
 import ProviderHeader from "./component/ProviderHeader";
 import CategorySelect from "./select/CategorySelect";
+import { saveProduct } from "../../api/component/product/product";
 
 const StyledFormWrapper = styled.div`
     padding: 20px;
@@ -27,9 +28,16 @@ function ProvideProductAddForm(props){
     }
 
     const confirm = () =>{
-        console.log(productAddForm);
-        console.log(categoryId + " : " + subCategoryId);
-        alert(123123);
+        var params = {
+            showImgFile: productAddForm.showImgFile,
+            name: productAddForm.productName,
+            detail: productAddForm.detail,
+            price: productAddForm.price,
+            count: productAddForm.count,
+            categoryId: categoryId,
+            subCategoryId: subCategoryId
+        }
+        saveProduct(params);
     }
 
     return (
