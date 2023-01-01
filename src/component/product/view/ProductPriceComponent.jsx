@@ -71,7 +71,6 @@ function ProductPriceComponent(props){
                     <Row>
                         <Col sm={6}>
                             <Form.Group>
-                                <Number></Number>
                                 <Form.Control type="number" defaultValue={quantity} onChange={(event)=>{
                                     onChangeQuantity(event.target.value);
                                 }} onBlur={()=>{
