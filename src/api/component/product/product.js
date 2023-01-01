@@ -5,6 +5,10 @@ const ProductService = {
     getProducts: async (categoryId, subCategoryId) => {
         let response = await api.get("/products?categoryId="+categoryId+"&subCategoryId="+subCategoryId);
         return response.data;
+    },
+    getProduct: async (productId) => {
+        let response = await api.get("/products/"+productId);
+        return response.data;
     }
 }
 

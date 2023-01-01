@@ -5,9 +5,9 @@ import { Tabs, Tab } from "react-bootstrap";
 import ReviewComponent from "./component/ReviewComponent";
 import QnaComponent from "./component/QnaComponent";
 import DetailComponent from "./component/DetailComponent";
-import { viewItem } from "../../../api/component/item/itemApi";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ProductService from "../../../api/component/product/product";
 
 const ProductViewPageWrapper = styledComponents.div`
     width: 100%;
@@ -30,17 +30,13 @@ const ProductImageWrapper = styledComponents.div``;
 
 function ProductView(){
     const { productId } = useParams();
-    const [item, setItem] = useState();
+    const [product, setProduct] = useState({});
     const [tabName, setTabName] = useState("DETAIL");
 
     useEffect(()=>{
-        console.log(productId);
-        const fetchItem = async () => {
-            const result = viewItem(productId);
-            setItem(result);
-        } 
-        
-        fetchItem();
+        ProductService.getProduct(productId).then(data => {
+            setProduct(data);
+        })
     }, []);
 
     return(
@@ -49,7 +45,7 @@ function ProductView(){
                 <ProductImageWrapper>
                     <img src="/images/pot.jpeg" alt="" />
                 </ProductImageWrapper>
-                <ProductPriceComponent item={item} />
+                <ProductPriceComponent product = {product} />
             </ProductViewWrapper>
             <Tabs
                 id="controlled-tab-example"

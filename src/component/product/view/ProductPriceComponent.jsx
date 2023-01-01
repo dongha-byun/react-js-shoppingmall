@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
+import { useEffect } from "react";
 
 const ProductPriceComponentWrapper = styled.div`
     margin-left: 10px;
@@ -35,8 +36,14 @@ const StyledBuyWrapper = styled.div`
 
 function ProductPriceComponent(props){
 
-    const {item} = props;
-    const [price, setPrice] = useState(11111);
+    const {product} = props;
+    const [price, setPrice] = useState(product.price);
+    const [quantity, setQuantity] = useState(1);
+
+    useEffect(() => {
+        console.log("in useEffect by product");
+        setPrice(product.price);
+    }, [product]);
 
     const buyNow = () =>{
         alert("바로구매");
@@ -46,21 +53,29 @@ function ProductPriceComponent(props){
         alert("장바구니");
     }
 
+    const onChangeQuantity = (quantity) => {
+        setQuantity(quantity);
+        setPrice(quantity * product.price);
+    }
+
     return(
         <ProductPriceComponentWrapper>
             <ProductNameWrapper>
-                <h4>테스트 상품명 {item}</h4>
+                <h4>테스트 상품명 {product.name}</h4>
             </ProductNameWrapper>
             <StyledPriceWrapper>
-                <StyledPriceInfo>11111원</StyledPriceInfo>
+                <StyledPriceInfo>{price} 원</StyledPriceInfo>
             </StyledPriceWrapper>
             <StyledBuyWrapper>
                 <Form>
                     <Row>
                         <Col sm={6}>
                             <Form.Group>
-                                <Form.Control type="number" onChange={(event)=>{
-                                    setPrice(event.target.value * 11111);
+                                <Number></Number>
+                                <Form.Control type="number" defaultValue={quantity} onChange={(event)=>{
+                                    onChangeQuantity(event.target.value);
+                                }} onBlur={()=>{
+                                    onChangeQuantity(1);
                                 }} />
                             </Form.Group>
                         </Col>
