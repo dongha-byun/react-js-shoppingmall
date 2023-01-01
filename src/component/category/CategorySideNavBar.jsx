@@ -10,15 +10,21 @@ import LoginComponent from '../page/login/LoginComponent';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import CategoryService from '../../api/component/category/category';
+import { useNavigate } from 'react-router-dom';
 
 function CategorySideNavBar() {
     const [categories, setCategories] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(()=>{
         CategoryService.getCategories().then(data => {
             setCategories(data);
         })
     }, []);
+
+    const searchProducts = (categoryId, subCategoryId) => {
+        navigate("/products/"+categoryId+"/"+subCategoryId);
+    }
 
     return (
         <Navbar bg="light" expand={false} className="mb-3">
@@ -38,7 +44,7 @@ function CategorySideNavBar() {
                         </Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                        <Nav className="justify-content-end flex-grow-1 pe-3">
+                        <Nav className="justify-content-end flex-grow-1 pe-3" onSelect={searchProducts}>
                             {categories.map((category) => {
                                 return(
                                     <NavDropdown
@@ -48,7 +54,9 @@ function CategorySideNavBar() {
                                     >
                                         {category.subCategories && category.subCategories.map((sub) => {
                                             return (
-                                                <NavDropdown.Item key={sub.id} href={`/product-list/${sub.id}`}>
+                                                <NavDropdown.Item key={sub.id} onClick={() => {
+                                                    searchProducts(category.id, sub.id);
+                                                }}>
                                                     {sub.name}
                                                 </NavDropdown.Item>
                                             );    

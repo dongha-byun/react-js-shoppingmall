@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Button, Table, Form} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CategorySelect from "./select/CategorySelect";
+import { useEffect } from "react";
+import ProductService from "../../api/component/product/product";
 
 const StyledTableHeader = styled.div`
     margin-bottom: 25px;
@@ -13,11 +15,19 @@ const StyledListWrapper = styled.div`
 `;
 
 function ProvideProductList(){
-    
-    const rows = [1,2,3,4,5];
-    const navigate = useNavigate();
     const [categoryId, setCategoryId] = useState();
     const [subCategoryId, setSubCategoryId] = useState();
+    const [products, setProducts] = useState([]);
+    const navigate = useNavigate();
+    
+
+    useEffect(()=>{
+        if(categoryId && subCategoryId){
+            ProductService.getProducts(categoryId, subCategoryId).then(result => {
+                setProducts(result);
+            });    
+        }
+    }, [categoryId, subCategoryId]);
 
     return (
         <StyledListWrapper>
@@ -43,17 +53,17 @@ function ProvideProductList(){
                     </tr>
                 </thead>
                 <tbody>
-                    {rows.map((row, index) => {
+                    {products.map((product, index) => {
                         return (
-                            <tr key={index}>
-                                <td>{row}</td>
+                            <tr key={product.id}>
+                                <td>{index+1}</td>
                                 <td className="text-center">
                                     <img src="/images/pot.jpeg" width={100} alt="" />
                                 </td>
-                                <td>냄비냄비 요가파이아 - {subCategoryId}</td>
-                                <td>11,111원</td>
+                                <td>{product.name}</td>
+                                <td>{product.price}원</td>
                                 <td>주방 &gt; 냄비</td>
-                                <td>999 개</td>
+                                <td>{product.count} 개</td>
                                 <td>2건</td>
                             </tr>
                         );

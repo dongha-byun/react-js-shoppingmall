@@ -57,10 +57,10 @@ function App() {
             <Routes>
                 <Route index element={<Home/>}></Route>
                 <Route path="/intro" element={<Intro/>}></Route>
-                <Route path="/product-view/:productId" element={<ProductView/>}></Route>
+                <Route path="/product/:productId" element={<ProductView/>}></Route>
                 <Route path="/buy" element={<BuyInfoFormPage/>}></Route>
                 <Route path="/product-question" element={<ProductQuestionPage/>}></Route>
-                <Route path="/product-list/:categoryId" element={<ProductSearchListPage/>}></Route>
+                <Route path="/products/:categoryId/:subCategoryId" element={<ProductSearchListPage/>}></Route>
                 <Route path="/my-page" element={<UserConfigPage/>}>
                   <Route path="basic" element={<UserBasicConfig />}/>
                   <Route path="basket" element={<BasketListPage/>}></Route>

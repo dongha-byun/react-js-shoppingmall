@@ -11,21 +11,22 @@ const StyledSearchListWrapper = styled.div`
     gap: 10px 20px;
 `;
 
-function ProductSearchList(){
+function ProductSearchList(props){
     const navigate = useNavigate();
-    const products = [0,1,2,3,4,5,6,7,8,9];
+    const {products} = props;
+
     return (
         <StyledSearchListWrapper>
-            {products.map((product, index) => {
+            {products.map((product) => {
                 return (
                     <ProductItem 
-                        key={index}
+                        key={product.id}
                         src={webUrl + '/image/pot.jpeg'}
-                        name='냄비를 빙자한 프라이팬을 닮은 냄비 초울트라세일판'
-                        score='4.7'
-                        scoreCnt='1150'
+                        name={product.name}
+                        score={product.score}
+                        scoreCnt={product.scoreCnt}
                         onClick={() => {
-                            navigate("/product-view");
+                            navigate("/product/"+product.id);
                         }}
                         width='100%'
                     />

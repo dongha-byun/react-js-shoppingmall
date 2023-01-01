@@ -1,8 +1,8 @@
 import React from "react";
 import ProductItem from "./ProductItem";
 import styledComponents from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { webUrl } from "../../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const ProductListWrapper = styledComponents.div`
     padding: 0 10px;
@@ -20,6 +20,7 @@ function ProductList(props){
     const {sectionName} = props;
     const products = [0,1,2,3];
     const navigate = useNavigate();
+
     return(
         <ProductListWrapper>
             {sectionName && <h3>{sectionName}</h3>}
@@ -34,7 +35,7 @@ function ProductList(props){
                                 score='4.7'
                                 scoreCnt='1150'
                                 onClick={() => {
-                                    navigate("/product-view/"+productId);
+                                    navigate("/product/"+productId);
                                 }}
                             />
                         )
