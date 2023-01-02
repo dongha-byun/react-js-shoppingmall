@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import { useEffect } from "react";
+import BasketService from "../../../api/component/basket/basket";
+import { useNavigate } from "react-router-dom";
 
 const ProductPriceComponentWrapper = styled.div`
     margin-left: 10px;
@@ -39,9 +41,9 @@ function ProductPriceComponent(props){
     const {product} = props;
     const [price, setPrice] = useState(product.price);
     const [quantity, setQuantity] = useState(1);
-
+    const navigate = useNavigate();
+    
     useEffect(() => {
-        console.log("in useEffect by product");
         setPrice(product.price);
     }, [product]);
 
@@ -50,7 +52,14 @@ function ProductPriceComponent(props){
     }
 
     const intoBasket = () =>{
-        alert("장바구니");
+        let params = {
+            quantity: quantity,
+            productId: product.id
+        };
+        BasketService.saveBasket(params).then(result => {
+            alert("장바구니에 상품이 추가되었습니다.");
+            navigate("/my-page/basket");
+        })
     }
 
     const onChangeQuantity = (quantity) => {

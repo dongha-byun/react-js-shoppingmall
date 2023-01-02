@@ -15,7 +15,7 @@ function BasketListPage(props){
 
     return (
         <BasketListPageWrapper>
-            <BasketList></BasketList>
+            <BasketList />
             <StyledButtonWrapper>
                 <Button className="mx-1" variant="outline-primary" size="lg">계속 쇼핑하기</Button>
                 <Button className="mx-1" variant="primary" size="lg">구매하기</Button>
