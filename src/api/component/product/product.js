@@ -1,7 +1,12 @@
-import { api } from "../../axios";
+import axios from "axios";
+import ApiService, { api } from "../../axios";
+import { UNAUTHORIZED } from "../../constants";
+import { headers } from "../login/headers";
 import { getUserAttribute } from "../login/login";
 
+
 const ProductService = {
+    
     getProducts: async (categoryId, subCategoryId) => {
         let response = await api.get("/products?categoryId="+categoryId+"&subCategoryId="+subCategoryId);
         return response.data;
@@ -9,23 +14,13 @@ const ProductService = {
     getProduct: async (productId) => {
         let response = await api.get("/products/"+productId);
         return response.data;
+    },
+    saveProduct: async(params) => {
+        ApiService.post("/products", params, headers()).then(result => {
+            alert('상품등록이 완료 되었습니다.');
+            window.location.href = "/provide-manage/product";
+        });
     }
 }
 
 export default ProductService;
-
-export function saveProduct(params){
-    api.post("/products", params, {
-        headers: {
-            Authorization: "Bearer" + getUserAttribute("access-token")            
-        }
-    })
-    .then((response) => {
-        alert('상품등록이 완료 되었습니다.');
-        window.location.href = "/provide-manage/product";
-    })
-    .catch((error)=>{
-        alert('오류가 발생했습니다.');
-        console.log(error);
-    });
-}
