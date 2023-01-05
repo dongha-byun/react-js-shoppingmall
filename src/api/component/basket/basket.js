@@ -1,29 +1,17 @@
 import { api } from "../../axios";
-import { getUserAttribute } from "../login/login";
+import { headers } from "../login/headers";
 
 const BasketService = {
     getBaskets: async() => {
-        let response = await api.get("/baskets", {
-            headers:{
-                Authorization: "Bearer " + getUserAttribute("access-token")
-            }
-        });
+        let response = await api.get("/baskets", headers());
         return response.data;
     },
     saveBasket: async(params) => {
-        let response = await api.post("/baskets", params, {
-            headers: {
-                Authorization: "Bearer " + getUserAttribute("access-token")
-            }
-        });
+        let response = await api.post("/baskets", params, headers());
         return response.data;
     },
     removeBasket: async(basketId) => {
-        let response = await api.delete("/baskets/"+basketId, {
-            headers: {
-                Authorization: "Bearer " + getUserAttribute("access-token")
-            }
-        });
+        let response = await api.delete("/baskets/"+basketId, headers());
         return response.data;
     }
 }

@@ -59,7 +59,7 @@ function App() {
                 <Route path="/intro" element={<Intro/>}></Route>
                 <Route path="/product/:productId" element={<ProductView/>}></Route>
                 <Route path="/buy" element={<BuyInfoFormPage/>}></Route>
-                <Route path="/product-question" element={<ProductQuestionPage/>}></Route>
+                <Route path="/product-question/:productId" element={<ProductQuestionPage/>}></Route>
                 <Route path="/products/:categoryId/:subCategoryId" element={<ProductSearchListPage/>}></Route>
                 <Route path="/my-page" element={<UserConfigPage/>}>
                   <Route path="basic" element={<UserBasicConfig />}/>

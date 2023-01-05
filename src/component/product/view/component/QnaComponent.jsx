@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import ProductQnaService from "../../../../api/component/product/productQna";
 
 const ProductQuestionWrapper = styled.div`
     margin-top: 5px;
@@ -37,10 +38,16 @@ const QnaContent = styled.p`
     margin-top: 10px;
 `;
 
-function QnaComponent(){
+function QnaComponent(props){
+    const { productId } = props;
     const navigate = useNavigate();
-    const data = [1,2,3,4,5,6,7,8,9.10];
+    const [qnaList, setQnaList] = useState([]);
 
+    useEffect(()=>{
+        ProductQnaService.getQnaList(productId).then(result => {
+            setQnaList(result);
+        });
+    }, []);
 
     return (
         <ProductQuestionWrapper>
@@ -49,7 +56,7 @@ function QnaComponent(){
                     <QnaHeader>상품문의 유의사항</QnaHeader>
                     <Button className="float-right" variant="outline-primary"
                         onClick={()=>{
-                            navigate("/product-question");
+                            navigate("/product-question/"+productId);
                         }}
                     >문의하기</Button>
                 </div>
@@ -59,15 +66,15 @@ function QnaComponent(){
                     <QnaInformationLi>판매자는 게시글을 삭제할 수 없으니 참고바랍니다.</QnaInformationLi>
                 </QnaInformationUl>
             </QnaInfomationWrapper>
-            {data.map((index) => {
+            {qnaList.map((qna) => {
                 return (
-                    <QnaWrapper key={index}>
+                    <QnaWrapper key={qna.id}>
                         <div>
-                            <span>byunsw4</span>
-                            <QnaTimeWrapper>2022-11-01</QnaTimeWrapper>
+                            <span>{qna.writerName}</span>
+                            <QnaTimeWrapper>{qna.writeDate}</QnaTimeWrapper>
                         </div>
                         <QnaContent>
-                            문의사항 입니다. 문의사항 입니다. 문의사항 입니다. 문의사항 입니다. 문의사항 입니다. 
+                            {qna.content}
                         </QnaContent>
                     </QnaWrapper>
                 );

@@ -8,11 +8,12 @@ const ProductQuestionFormWrapper = styledComponents.div`
 `;
 
 function ProductQuestionForm(props){
+    const { setContent } = props;
 
     return (
         <ProductQuestionFormWrapper>
             <TextInput placeholder="제목을 입력하세요." />
-            <Textarea rows={10} placeholder="내용을 입력하세요."/>
+            <Textarea rows={10} placeholder="내용을 입력하세요." setContent={setContent}/>
         </ProductQuestionFormWrapper>
     );
 }

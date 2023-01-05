@@ -23,18 +23,18 @@ function UserBasicConfig(props){
                 <Form.Group className="mb-3" controlId="loginId">
                     <Form.Label>아이디</Form.Label>
                     <Form.Control 
-                        type="text" value="byunsw4" disabled readOnly
+                        type="text" defaultValue={"byunsw4"} disabled readOnly
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="username">
                     <Form.Label>이름</Form.Label>
-                    <Form.Control type="text" value="변동하" />
+                    <Form.Control type="text" defaultValue={"변동하"} />
                 </Form.Group>
                 <Form.Label>연락처</Form.Label> 
                 <Row>
                     <Col xs={8}>
                         <Form.Group className="mb-3" controlId="telNo">
-                            <Form.Control value="010-0000-0000" />
+                            <Form.Control defaultValue={"010-0000-0000"} />
                         </Form.Group>
                     </Col>
                     <Col>
