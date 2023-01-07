@@ -6,17 +6,12 @@ const StyledTextarea = styled.textarea`
 `;
 
 function Textarea(props){
-    const {rows, placeholder} = props;
-    const {content, setContent} = useState();
-
-    const changeContent = (content) => {
-        setContent(content);
-    }
+    const {rows, placeholder, setContent} = props;
 
     return (
         <StyledTextarea rows={rows} 
             onChange={(event)=>{
-                changeContent(event.target.value);
+                setContent(event.target.value);
             }}
             placeholder = {placeholder}
         />
