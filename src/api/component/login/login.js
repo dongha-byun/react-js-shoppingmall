@@ -4,10 +4,10 @@ export function loginApi(loginValue){
     api.post("/login", loginValue)
     .then((response) => {
         if(response.data.accessToken){
-            console.log(response.data.accessToken);
             localStorage.setItem("user",
                 JSON.stringify({
-                    "access-token" : response.data.accessToken
+                    "access-token" : response.data.accessToken,
+                    "refresh-token" : response.data.refreshToken
                 })
             );
             window.location.replace("http://localhost:3000");
@@ -18,6 +18,12 @@ export function loginApi(loginValue){
         console.log(error);
     });
 }   
+
+export function addUserAttribute(name, data) {
+    let originItems = JSON.parse(localStorage.getItem("user"));
+    originItems[name] = data;
+    localStorage.setItem("user", JSON.stringify(originItems));
+}
 
 export function getUserAttribute(name){
     if(localStorage.getItem("user") == null || JSON.parse(localStorage.getItem("user")) == null){

@@ -27,8 +27,8 @@ function Category(props){
     const {category, activeCategoryId, setActiveCategoryId, openCategoryId, setOpenCategoryId} = props;
     const navigate = useNavigate();
    
-    const searchByCategory = (categoryId) => {
-        navigate("/product-list/"+categoryId);
+    const searchByCategory = (categoryId, subCategoryId) => {
+        navigate("/products/"+categoryId + " / " + subCategoryId);
         setActiveCategoryId(categoryId);
     }
 
@@ -44,7 +44,7 @@ function Category(props){
                     <StyledCategorySubLi key={sub.id} id={sub.id} 
                         className={ category.id == openCategoryId ? "" : "display-none" }
                         onClick={()=>{
-                            searchByCategory(`${sub.id}`);
+                            searchByCategory(`${category.id}, ${sub.id}`);
                         }}
                     >
                         <StyledCategoryNameSpan className={sub.id == activeCategoryId && "active-menu"}>

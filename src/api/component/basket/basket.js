@@ -1,4 +1,4 @@
-import { api } from "../../axios";
+import ApiService, { api } from "../../axios";
 import { headers } from "../login/headers";
 
 const BasketService = {
@@ -7,8 +7,7 @@ const BasketService = {
         return response.data;
     },
     saveBasket: async(params) => {
-        let response = await api.post("/baskets", params, headers());
-        return response.data;
+        return ApiService.post("/baskets", params, headers());
     },
     removeBasket: async(basketId) => {
         let response = await api.delete("/baskets/"+basketId, headers());
