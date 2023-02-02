@@ -1,14 +1,11 @@
-import axios from "axios";
 import ApiService, { api } from "../../axios";
-import { UNAUTHORIZED } from "../../constants";
 import { headers } from "../login/headers";
-import { getUserAttribute } from "../login/login";
 
 
 const ProductService = {
     
-    getProducts: async (categoryId, subCategoryId) => {
-        let response = await api.get("/products?categoryId="+categoryId+"&subCategoryId="+subCategoryId);
+    getProducts: async (categoryId, subCategoryId, orderType) => {
+        let response = await api.get("/products?categoryId="+categoryId+"&subCategoryId="+subCategoryId+"&orderType="+orderType);
         return response.data;
     },
     getProduct: async (productId) => {

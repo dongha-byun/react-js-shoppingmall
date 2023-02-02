@@ -16,20 +16,21 @@ const StyledSearchHeaderDiv = styled.div`
 function ProductSearchListPage(){
     const {categoryId, subCategoryId} = useParams();
     const [products, setProducts] = useState([]);
+    const [orderType, setOrderType] = useState("SELL");
 
     useEffect(()=>{
-        ProductService.getProducts(categoryId, subCategoryId).then(result => {
+        ProductService.getProducts(categoryId, subCategoryId, orderType).then(result => {
             setProducts(result);
         });
-    }, []);
+    }, [orderType]);
 
     return (
         <StyledSearchListPageWrapper>
             <StyledSearchHeaderDiv >
-                <h3>categoryId : {categoryId} / subCategoryId : {subCategoryId}</h3>
+                <h3>categoryId : {categoryId} / subCategoryId : {subCategoryId} / orderType : {orderType}</h3>
             </StyledSearchHeaderDiv>
-            <SearchFilter />
-            <ProductSearchList products={products}/>
+            <SearchFilter setOrderType = {setOrderType}/>
+            <ProductSearchList products = {products}/>
         </StyledSearchListPageWrapper>
     );
 }

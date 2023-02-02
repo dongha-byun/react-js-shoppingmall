@@ -6,10 +6,11 @@ import RadioFilter from "./RadioFilter";
 const SearchFilterWrapper = styled.div`
 `;
 
-function SearchFilter(){
+function SearchFilter(props){
+    const {setOrderType} = props;
 
     const changeSearchFilter = (value) => {
-        alert(value);
+        setOrderType(value);
     }
 
     return (
