@@ -1,12 +1,14 @@
-import { api } from "../../axios";
+import ApiService, { api } from "../../axios";
 import { headers } from "../login/headers";
 
 const DeliveryService = {
-    getDeliveries: async() => {
-        let response = await api.get("/delivery", headers());
+    getDeliveries: () => {
+        let response = ApiService.get("/delivery", headers());
         return response.data;
+    },
+    saveDelivery: (params) => {
+        ApiService.post("/delivery")
     }
-
 }
 
 export default DeliveryService;
