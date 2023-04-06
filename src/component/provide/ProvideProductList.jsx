@@ -18,13 +18,15 @@ function ProvideProductList(){
     const [categoryId, setCategoryId] = useState();
     const [subCategoryId, setSubCategoryId] = useState();
     const [products, setProducts] = useState([]);
+    const [limit, setLimit] = useState(10);
+    const [offset, setOffset] = useState(0);
     const navigate = useNavigate();
     
 
     useEffect(()=>{
         if(categoryId && subCategoryId){
-            ProductService.getProducts(categoryId, subCategoryId).then(result => {
-                setProducts(result);
+            ProductService.getProducts(categoryId, subCategoryId, "RECENT", limit, offset).then(result => {
+                setProducts(result.data);
             });    
         }
     }, [categoryId, subCategoryId]);
@@ -70,6 +72,7 @@ function ProvideProductList(){
                     })}
                 </tbody>
             </Table>
+            
         </StyledListWrapper>
     );
     

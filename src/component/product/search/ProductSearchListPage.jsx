@@ -6,6 +6,7 @@ import SearchFilter from "./filter/SearchFilter";
 import { useState } from "react";
 import { useEffect } from "react";
 import ProductService from "../../../api/component/product/product";
+import { Button } from "react-bootstrap";
 
 const StyledSearchListPageWrapper = styled.div``;
 
@@ -17,20 +18,25 @@ function ProductSearchListPage(){
     const {categoryId, subCategoryId} = useParams();
     const [products, setProducts] = useState([]);
     const [orderType, setOrderType] = useState("SELL");
+    const [totalCount, setTotalCount] = useState(0);
+    const [limit, setLimit] = useState(10);
+    const [offset, setOffset] = useState(0);
 
     useEffect(()=>{
-        ProductService.getProducts(categoryId, subCategoryId, orderType).then(result => {
-            setProducts(result);
+        ProductService.getProducts(categoryId, subCategoryId, orderType, limit, offset).then(result => {
+            setProducts(result.data);
+            setTotalCount(result.totalCount);
         });
     }, [orderType]);
 
     return (
         <StyledSearchListPageWrapper>
             <StyledSearchHeaderDiv >
-                <h3>categoryId : {categoryId} / subCategoryId : {subCategoryId} / orderType : {orderType}</h3>
+                <h3>categoryId : {categoryId} / subCategoryId : {subCategoryId} / orderType : {orderType} / 총 {totalCount} 건</h3>
             </StyledSearchHeaderDiv>
-            <SearchFilter setOrderType = {setOrderType}/>
+            <SearchFilter orderType={orderType} setOrderType = {setOrderType}/>
             <ProductSearchList products = {products}/>
+            <Button>더보기</Button>
         </StyledSearchListPageWrapper>
     );
 }

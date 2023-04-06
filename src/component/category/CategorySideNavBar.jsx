@@ -18,7 +18,7 @@ function CategorySideNavBar() {
 
     useEffect(()=>{
         CategoryService.getCategories().then(data => {
-            setCategories(data.data);
+            setCategories(data);
         })
     }, []);
 

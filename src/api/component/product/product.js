@@ -4,8 +4,15 @@ import { headers } from "../login/headers";
 
 const ProductService = {
     
-    getProducts: async (categoryId, subCategoryId, orderType) => {
-        let response = await api.get("/products?categoryId="+categoryId+"&subCategoryId="+subCategoryId+"&orderType="+orderType);
+    getProducts: async (categoryId, subCategoryId, orderType, limit, offset) => {
+        let url = "/products?" + 
+                    "categoryId="+categoryId+
+                    "&subCategoryId="+subCategoryId+
+                    "&orderType="+orderType+
+                    "&limit="+limit+
+                    "&offset="+offset;
+
+        let response = await api.get(url);
         return response.data;
     },
     getProduct: async (productId) => {
