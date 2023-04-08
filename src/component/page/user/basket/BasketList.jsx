@@ -20,6 +20,7 @@ function BasketList(){
 
     useEffect(() => {
         BasketService.getBaskets().then(result => {
+            console.log(result);
             setBaskets(result);
         });
     }, []);
@@ -46,6 +47,7 @@ function BasketList(){
                     <th>전체선택</th>
                     <th>상품정보</th>
                     <th>상품금액</th>
+                    <th>수량</th>
                     <th>배송비</th>
                     <th></th>
                 </tr>
@@ -65,9 +67,10 @@ function BasketList(){
                             <img src="/images/pot.jpeg" width="120px" alt="이미지" />
                         </StyledTd>
                         <StyledTd>
-                            <BasketItemInfo product = {basket.product}/>
+                            <BasketItemInfo productName = {basket.productName}/>
                         </StyledTd>
-                        <StyledTd>{basket.product.price}원</StyledTd>
+                        <StyledTd>{basket.price}원</StyledTd>
+                        <StyledTd>{basket.quantity}</StyledTd>
                         <StyledTd>무료</StyledTd>
                         <StyledTd>
                             <Button variant="outline-danger" onClick={() => removeBasket(basket.id)}>삭제</Button>
