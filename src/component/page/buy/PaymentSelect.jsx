@@ -1,7 +1,10 @@
 import React from "react";
 import styledComponents from "styled-components";
 
-const PaymentSelectWrapper = styledComponents.div``;
+const PaymentSelectWrapper = styledComponents.div`
+    padding-botton: 10px;
+    border-bottom: 1px solid #cdcdcd;
+`;
 
 function PaymentSelect(props){
 

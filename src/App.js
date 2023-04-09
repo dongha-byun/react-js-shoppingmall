@@ -36,6 +36,7 @@ import { getUserAttribute } from './api/component/login/login';
 import AdminPage from './component/admin/AdminPage';
 import CategoryManagePage from './component/admin/category/CategoryManagePage';
 import CustomServicePage from './component/admin/cs/CustomServicePage';
+import OrderConfirmPage from './component/page/buy/OrderConfirmPage';
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
                 <Route path="/intro" element={<Intro/>}></Route>
                 <Route path="/product/:productId" element={<ProductView/>}></Route>
                 <Route path="/buy" element={<BuyInfoFormPage/>}></Route>
+                <Route path="/order" element={<OrderConfirmPage/>}></Route>
                 <Route path="/product-question/:productId" element={<ProductQuestionPage/>}></Route>
                 <Route path="/products/:categoryId/:subCategoryId" element={<ProductSearchListPage/>}></Route>
                 <Route path="/my-page" element={<UserConfigPage/>}>

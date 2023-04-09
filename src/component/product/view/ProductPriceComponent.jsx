@@ -48,7 +48,7 @@ function ProductPriceComponent(props){
     }, [product]);
 
     const buyNow = () =>{
-        alert("바로구매");
+        navigate("/buy");
     }
 
     const intoBasket = () =>{

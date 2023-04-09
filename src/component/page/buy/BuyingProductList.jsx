@@ -1,22 +1,28 @@
 import React from "react";
 import styledComponents from "styled-components";
 
-const BuyingProductListWrapper = styledComponents.div``;
+const BuyingProductListWrapper = styledComponents.div`
+    padding-botton: 10px;
+    border-bottom: 1px solid #cdcdcd;
+`;
+const BuyingTableTr = styledComponents.tr`
+    padding-bottom: 10px;
+`;
 
 function BuyingProductList(props){
 
-    const productListHeader = ["","상품명","판매자","수량","가격","배송비"];
+    const productListHeader = ["","상품정보","판매자","수량","가격","배송비"];
     const productList = [0,1,2,3];
 
     return (
         <BuyingProductListWrapper>
             <table>
                 <thead>
-                <tr>
-                    {productListHeader.map( (header, index) => {
-                       return (<th key={index}>{header}</th>) ;
-                    } )}
-                </tr>
+                    <tr>
+                        {productListHeader.map( (header, index) => {
+                            return (<th key={index}>{header}</th>) ;
+                        } )}
+                    </tr>
                 </thead>
                 {productList.map( (product, index) => {
                     return (
