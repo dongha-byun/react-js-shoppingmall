@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import styledComponents from "styled-components";
+import DeliveryService from "../../api/component/delivery/delivery";
+import { useNavigate } from "react-router-dom";
 
 const DeliveryViewWrapper = styledComponents.div`
     border: 1px solid black;
@@ -28,18 +30,30 @@ const StyledHeaderDiv = styledComponents.div`
 `;
 
 function DeliveryView(props){
-    const {delivery} = props;
+    const {delivery, afterDelete} = props;
+
+    const deleteDelivery = (deliveryId) => {
+        DeliveryService.deleteDelivery(deliveryId).then(result => {
+            alert("배송지 정보가 삭제되었습니다.");
+            afterDelete(deliveryId);
+        });
+    }
+
     return (
         <DeliveryViewWrapper>
-            <StyledHeaderDiv>배송지 {delivery.id}</StyledHeaderDiv>
+            <StyledHeaderDiv>{delivery.nickName}</StyledHeaderDiv>
             <StyledTable>
                 <tbody>
+                    <tr>
+                        <StyledTh>수령인</StyledTh>
+                        <StyledTd>{delivery.receiverName}</StyledTd>
+                    </tr>
                     <tr>
                         <StyledTh>우편번호</StyledTh>
                         <StyledTd>{delivery.zipCode}</StyledTd>
                         <StyledButtonTd rowSpan={3}>
                             <Button variant="danger" onClick={()=>{
-                                alert(`삭제 ${delivery.id}`);
+                                deleteDelivery(`${delivery.id}`);
                             }}>삭제</Button>
                         </StyledButtonTd>
                     </tr>

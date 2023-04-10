@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import ProviderHeader from "../provide/component/ProviderHeader";
+import DeliveryService from "../../api/component/delivery/delivery";
+import { useNavigate } from "react-router-dom";
 
 const StyledHeader = styled.div`
     margin-bottom: 25px;
@@ -12,10 +14,13 @@ const StyledDeliveryFormWrapper = styled.div`
 `;
 
 function DeliveryForm(props){
+
+    const navigate = useNavigate();
     
     /* 배송지 추가 관련 state 및 function */
     const [values, setValues] = useState({
-        alias: "",
+        nickName: "",
+        receiverName: "",
         zipCode : "",
         address : "",
         detailAddress : "",
@@ -28,8 +33,10 @@ function DeliveryForm(props){
         });
     }
     const addDelivery = () => {
-        console.log(values);
-        alert("배송지 추가");
+        DeliveryService.saveDelivery(values).then(result => {
+            alert("배송지 정보가 추가되었습니다.");
+            navigate("/my-page/delivery");
+        });
     }
     
     return (
@@ -42,10 +49,21 @@ function DeliveryForm(props){
             <Form>
                 <Row className="mb-3">
                     <Col xs={8}>
-                        <Form.Group controlId="alias">
+                        <Form.Group controlId="nickName">
                             <Form.Control
                                 type="text"
                                 placeholder="배송지 명칭"
+                                onChange={onChangeForm}
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row className="mb-3">
+                    <Col xs={8}>
+                        <Form.Group controlId="receiverName">
+                            <Form.Control
+                                type="text"
+                                placeholder="수령인"
                                 onChange={onChangeForm}
                             />
                         </Form.Group>

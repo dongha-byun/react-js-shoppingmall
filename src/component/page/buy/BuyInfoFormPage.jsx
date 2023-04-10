@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styledComponents from "styled-components";
 import TextButton from "../../ui/TextButton";
 import BuyingProductList from "./BuyingProductList";
 import DeliveryInfoForm from "./DeliveryInfoForm";
 import PaymentSelect from "./PaymentSelect";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const BuyInfoFormPageWrapper = styledComponents.div`
     padding: 20px;
@@ -22,22 +22,45 @@ const BuyHeaderWrapper = styledComponents.h2`
 function BuyInfoFormPage(props){
 
     const navigate = useNavigate();
+    const { state } = useLocation();
+    const [orderProductParam, setOrderProductParam] = useState({});
     const [orderParam, setOrderParam] = useState(
         {
             "productId": "1",
             "quantity" : 20,
             "delivery" : {
-                "zipcode" : "12345",
-                "address" : "리액트 state",
-                "detailAddress" : "navigate Test",
-                "receiverName" : "리액트 초보",
-                "requestMessage" : "조심히 오세용~"
+                "zipcode" : "",
+                "address" : "",
+                "detailAddress" : "",
+                "receiverName" : "",
+                "requestMessage" : ""
             },
             "payment" : {
                 "type" : "카카오페이~"
             }
         }
     );
+
+    useEffect(() => {
+        setOrderProductParam({
+            "productId": state.productId,
+            "productName": state.productName,
+            "imgUrl": state.imgUrl,
+            "providerName": state.providerName,
+            "quantity": state.quantity,
+            "price": state.price,
+            "deliveryFee": state.deliveryFee
+        });
+        setOrderParam({
+            ...orderParam,
+            ["productId"]: orderProductParam.productId,
+            ["quantity"]: orderProductParam.quantity
+        });
+    }, []);
+
+    const onChangeDelivery = (deliveryParam) => {
+        console.log(deliveryParam);
+    }
 
     const orderItem = () => {
         navigate("/order", {state : orderParam});
@@ -46,8 +69,8 @@ function BuyInfoFormPage(props){
     return (
         <BuyInfoFormPageWrapper>
             <BuyHeaderWrapper>주문하기</BuyHeaderWrapper>
-            <BuyingProductList/>
-            <DeliveryInfoForm />
+            <BuyingProductList orderProductParam={orderProductParam}/>
+            <DeliveryInfoForm onChangeDelivery={onChangeDelivery} />
             <PaymentSelect />
             <BuyInfoFormButtonWrapper>
                 <div class="float-left">

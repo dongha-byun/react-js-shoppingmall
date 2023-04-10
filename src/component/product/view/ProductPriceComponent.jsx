@@ -42,13 +42,25 @@ function ProductPriceComponent(props){
     const [price, setPrice] = useState(product.price);
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
+    const [orderProductParam, setOrderProductParam] = useState({});
     
     useEffect(() => {
         setPrice(product.price);
+        setOrderProductParam(
+            {
+                "productId" : product.id,
+                "productName" : product.name,
+                "imgUrl" : "/images/pot.jpeg",
+                "providerName" : "판매업체 이름",
+                "quantity" : quantity,
+                "price" : product.price,
+                "deliveryFee" : 0
+            }
+        );
     }, [product]);
 
     const buyNow = () =>{
-        navigate("/buy");
+        navigate("/buy", {state: orderProductParam});
     }
 
     const intoBasket = () =>{
@@ -65,12 +77,16 @@ function ProductPriceComponent(props){
     const onChangeQuantity = (quantity) => {
         setQuantity(quantity);
         setPrice(quantity * product.price);
+        setOrderProductParam({
+            ...orderProductParam,
+            ["quantity"]: quantity
+        });
     }
 
     return(
         <ProductPriceComponentWrapper>
             <ProductNameWrapper>
-                <h4>테스트 상품명 {product.name}</h4>
+                <h4>{product.name}</h4>
             </ProductNameWrapper>
             <StyledPriceWrapper>
                 <StyledPriceInfo>{price} 원</StyledPriceInfo>
@@ -83,7 +99,7 @@ function ProductPriceComponent(props){
                                 <Form.Control type="number" defaultValue={quantity} onChange={(event)=>{
                                     onChangeQuantity(event.target.value);
                                 }} onBlur={()=>{
-                                    onChangeQuantity(1);
+                                    onChangeQuantity(quantity);
                                 }} />
                             </Form.Group>
                         </Col>
