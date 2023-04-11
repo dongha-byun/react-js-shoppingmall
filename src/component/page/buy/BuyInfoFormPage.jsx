@@ -5,6 +5,7 @@ import BuyingProductList from "./BuyingProductList";
 import DeliveryInfoForm from "./DeliveryInfoForm";
 import PaymentSelect from "./PaymentSelect";
 import { useLocation, useNavigate } from "react-router-dom";
+import { numberCommaFormat } from "../../../util/NumberFormat";
 
 const BuyInfoFormPageWrapper = styledComponents.div`
     padding: 20px;
@@ -15,29 +16,29 @@ const BuyInfoFormButtonWrapper = styledComponents.div`
 `;
 
 const BuyHeaderWrapper = styledComponents.h2`
-    padding-bottom: 10px;
+    padding: 0;
     border-bottom: 1px solid #cdcdcd;
 `;
 
-function BuyInfoFormPage(props){
+function BuyInfoFormPage(){
 
     const navigate = useNavigate();
     const { state } = useLocation();
+    const [total, setTotal] = useState(0);
     const [orderProductParam, setOrderProductParam] = useState({});
     const [orderParam, setOrderParam] = useState(
         {
-            "productId": "1",
-            "quantity" : 20,
-            "delivery" : {
-                "zipcode" : "",
-                "address" : "",
-                "detailAddress" : "",
-                "receiverName" : "",
-                "requestMessage" : ""
-            },
-            "payment" : {
-                "type" : "카카오페이~"
-            }
+            "productId": "",
+            "imgUrl" : "",
+            "productName" : "",
+            "providerName" : "",
+            "quantity" : 0,
+            "receiverName" : "",
+            "zipCode" : "",
+            "address" : "",
+            "detailAddress" : "",
+            "requestMessage" : "",
+            "type" : ""
         }
     );
 
@@ -53,28 +54,62 @@ function BuyInfoFormPage(props){
         });
         setOrderParam({
             ...orderParam,
-            ["productId"]: orderProductParam.productId,
-            ["quantity"]: orderProductParam.quantity
+            ["productId"]: state.productId,
+            ["imgUrl"]: state.imgUrl,
+            ["productName"]: state.productName,
+            ["providerName"]: state.providerName,
+            ["quantity"]: state.quantity,
+            ["price"]: state.price,
+            ["deliveryFee"]: state.deliveryFee
         });
+        setTotal(
+            state.price * state.quantity + state.deliveryFee
+        );
     }, []);
 
-    const onChangeDelivery = (deliveryParam) => {
-        console.log(deliveryParam);
-    }
+    const onChangeDelivery = (event) => {
+        setOrderParam({
+            ...orderParam,
+            [event.target.id] : event.target.value
+        });
+    };
+
+    const onSelectDelivery = (delivery) => {
+        if(delivery.id) {
+            setOrderParam({
+                ...orderParam,
+                ["receiverName"] : delivery.receiverName,
+                ["zipCode"] : delivery.zipCode,
+                ["address"] : delivery.address,
+                ["detailAddress"] : delivery.detailAddress,
+                ["requestMessage"] : delivery.requestMessage
+            });
+        }else{
+            setOrderParam({
+                ...orderParam,
+                ["receiverName"] : "",
+                ["zipCode"] : "",
+                ["address"] : "",
+                ["detailAddress"] : "",
+                ["requestMessage"] : ""
+            });
+        }
+        
+    };
 
     const orderItem = () => {
         navigate("/order", {state : orderParam});
-    }
+    };
 
     return (
         <BuyInfoFormPageWrapper>
             <BuyHeaderWrapper>주문하기</BuyHeaderWrapper>
             <BuyingProductList orderProductParam={orderProductParam}/>
-            <DeliveryInfoForm onChangeDelivery={onChangeDelivery} />
+            <DeliveryInfoForm onChangeDelivery={onChangeDelivery} onSelectDelivery={onSelectDelivery}/>
             <PaymentSelect />
             <BuyInfoFormButtonWrapper>
                 <div class="float-left">
-                    총 가격 : 44,444원
+                    총 가격 : {numberCommaFormat(total)}원
                 </div>
                 <div class="float-right">
                     <TextButton value="주문하기" 

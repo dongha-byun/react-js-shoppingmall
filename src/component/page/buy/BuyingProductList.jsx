@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styledComponents from "styled-components";
+import { numberCommaFormat } from "../../../util/NumberFormat";
 
 const BuyingProductListWrapper = styledComponents.div`
-    padding-botton: 10px;
+    padding: 10px 0;
     border-bottom: 1px solid #cdcdcd;
 `;
 const BuyingTableTr = styledComponents.tr`
@@ -44,10 +45,10 @@ function BuyingProductList(props){
                         <td><img src={orderProductParam.imgUrl} width="150px" height="100px"/></td>
                         <td>{orderProductParam.productName}</td>
                         <td>{orderProductParam.providerName}</td>
-                        <td>{orderProductParam.quantity}</td>
-                        <td>{orderProductParam.price}원</td>
-                        <td>{orderProductParam.deliveryFee}원</td>
-                        <td>{total}원</td>
+                        <td>{numberCommaFormat(orderProductParam.quantity)}</td>
+                        <td>{numberCommaFormat(orderProductParam.price)}원</td>
+                        <td>{numberCommaFormat(orderProductParam.deliveryFee)}원</td>
+                        <td>{numberCommaFormat(total)}원</td>
                     </tr>
                 </tbody>
             </table>

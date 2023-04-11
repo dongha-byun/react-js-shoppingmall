@@ -24,7 +24,6 @@ import FindId from './component/page/login/form/FindId';
 import FindPw from './component/page/login/form/FindPw';
 import SignUp from './component/page/login/form/SignUp';
 import ProvideManagePage from './component/provide/ProvideManagePage';
-import DeliveryForm from './component/delivery/DeliveryForm';
 import ProvideProductList from './component/provide/ProvideProductList';
 import ProvideProductAddForm from './component/provide/ProvideProductAddForm';
 import BuyConfig from './component/page/user/config/BuyConfig';
@@ -37,6 +36,7 @@ import AdminPage from './component/admin/AdminPage';
 import CategoryManagePage from './component/admin/category/CategoryManagePage';
 import CustomServicePage from './component/admin/cs/CustomServicePage';
 import OrderConfirmPage from './component/page/buy/OrderConfirmPage';
+import DeliveryFormPage from './component/delivery/DeliveryFormPage';
 
 function App() {
 
@@ -67,7 +67,7 @@ function App() {
                   <Route path="basic" element={<UserBasicConfig />}/>
                   <Route path="basket" element={<BasketListPage/>}></Route>
                   <Route path="delivery" element={<DeliveryConfig />}/>
-                  <Route path="delivery/add" element={<DeliveryForm />}/>
+                  <Route path="delivery/add" element={<DeliveryFormPage />}/>
                   <Route path="payment" element={<PaymentConfig />}/>
                   <Route path="buy" element={<BuyConfig />}/>
                   <Route path="buy/review-write/:buyingId" element={<ReviewWriteForm/>}></Route>

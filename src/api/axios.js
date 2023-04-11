@@ -10,19 +10,13 @@ export const api = axios.create({
 
 const ApiService = {
     get : async(url, body, header) => {
-        let response = await api.get(url, body, header);
+        let response = await api.get(url, header);
         return response.data;
     },
     post : async(url, body, header) => {
         let response = await api.post(url, body, header);
         return response.data;
-    },
-    createAccessTokenByRefreshToken : async() => {
-        api.get("/login-refresh").then(result => {
-            addUserAttribute("access-token", result.data.accessToken);
-            addUserAttribute("refresh-token", result.data.refreshToken);
-        });
-    }
+    } 
 };
 
 api.interceptors.request.use(
@@ -44,13 +38,14 @@ api.interceptors.response.use((response) => {
     return response
 }, async function(error) {
     const originalRequest = error.config;
-    console.log(originalRequest);
-    if(error.response.data.error === UNAUTHORIZED){
-        ApiService.createAccessTokenByRefreshToken();
+    if(error.response.data.error == UNAUTHORIZED){
+        api.get("/login-refresh").then(result => {
+            addUserAttribute("access-token", result.data.accessToken);
+            addUserAttribute("refresh-token", result.data.refreshToken);
+        });
     }
 
     return api.request(originalRequest);
-
 });
 
 export default ApiService;
