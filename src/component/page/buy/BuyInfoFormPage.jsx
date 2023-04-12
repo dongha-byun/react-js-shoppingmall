@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styledComponents from "styled-components";
-import TextButton from "../../ui/TextButton";
 import BuyingProductList from "./BuyingProductList";
 import DeliveryInfoForm from "./DeliveryInfoForm";
-import PaymentSelect from "./PaymentSelect";
 import { useLocation, useNavigate } from "react-router-dom";
 import { numberCommaFormat } from "../../../util/NumberFormat";
+import { Button } from "react-bootstrap";
 
 const BuyInfoFormPageWrapper = styledComponents.div`
     padding: 20px;
 `;
 
 const BuyInfoFormButtonWrapper = styledComponents.div`
+    text-align: right;
     padding: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
 `;
 
 const BuyHeaderWrapper = styledComponents.h2`
@@ -33,6 +35,7 @@ function BuyInfoFormPage(){
             "productName" : "",
             "providerName" : "",
             "quantity" : 0,
+            "total" : 0,
             "receiverName" : "",
             "zipCode" : "",
             "address" : "",
@@ -106,19 +109,10 @@ function BuyInfoFormPage(){
             <BuyHeaderWrapper>주문하기</BuyHeaderWrapper>
             <BuyingProductList orderProductParam={orderProductParam}/>
             <DeliveryInfoForm onChangeDelivery={onChangeDelivery} onSelectDelivery={onSelectDelivery}/>
-            <PaymentSelect />
             <BuyInfoFormButtonWrapper>
-                <div class="float-left">
-                    총 가격 : {numberCommaFormat(total)}원
-                </div>
-                <div class="float-right">
-                    <TextButton value="주문하기" 
-                        onClick={()=>{
-                            orderItem();
-                        }} 
-                    />
-                </div>
+                총 가격 : {numberCommaFormat(total)}원
             </BuyInfoFormButtonWrapper>
+            <Button className="w-100" size="lg" onClick={() => orderItem()}>주문하기</Button>
         </BuyInfoFormPageWrapper>
     );
 
