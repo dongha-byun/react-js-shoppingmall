@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BuyingProductList from "./BuyingProductList";
 import OrderDeliveryInfo from "./OrderDeliveryInfo";
 import OrderPaymentInfo from "./OrderPaymentInfo";
-import CommonModal from "../../modal/CommonModal";
-import PayPopup from "./PayPopup";
 
 export default function OrderConfirmPage() {
+    const navigate = useNavigate();
     const {state} = useLocation();
     const [orderProductParam, setOrderProductParam] = useState({});
     const [deliveryParam, setDeliveryParam] = useState({});
-    
-    const [isOpen, setIsOpen] = useState(false);
-    const handleClose = () => setIsOpen(false);
+    const [payParam, setPayParam] = useState({});
 
     useEffect(() => {
         setOrderProductParam({
@@ -33,10 +30,16 @@ export default function OrderConfirmPage() {
             "detailAddress" : state.detailAddress,
             "requestMessage" : state.requestMessage,
         });
+
+        setPayParam({
+            "productName" : state.productName,
+            "quantity" : state.quantity,
+            "total" : state.quantity * state.price + state.deliveryFee
+        });
     }, []);
 
     const paying = () => {
-        setIsOpen(true);
+        navigate("/pay/ready", {state : payParam});
     }
 
     return (
@@ -48,10 +51,6 @@ export default function OrderConfirmPage() {
             <Button className="w-100" size="lg" onClick={() => {
                 paying();
             }}>결제하기</Button>
-
-            <CommonModal show={isOpen} handleClose={handleClose}>
-                <PayPopup/>
-            </CommonModal>
         </div>
     );
 }

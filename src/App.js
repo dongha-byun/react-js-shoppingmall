@@ -37,6 +37,8 @@ import CategoryManagePage from './component/admin/category/CategoryManagePage';
 import CustomServicePage from './component/admin/cs/CustomServicePage';
 import OrderConfirmPage from './component/page/buy/OrderConfirmPage';
 import DeliveryFormPage from './component/delivery/DeliveryFormPage';
+import PayReadyPage from './component/page/buy/PayReadyPage';
+import PayApprovePage from './component/page/buy/PayApprovePage';
 
 function App() {
 
@@ -72,6 +74,8 @@ function App() {
                   <Route path="buy" element={<BuyConfig />}/>
                   <Route path="buy/review-write/:buyingId" element={<ReviewWriteForm/>}></Route>
                 </Route>
+                <Route path="/pay/ready" element={<PayReadyPage/>}></Route>
+                <Route path="/pay/approve" element={<PayApprovePage/>}></Route>
                 <Route path="/find-id" element={<FindId/>}></Route>
                 <Route path="/find-pw" element={<FindPw/>}></Route>
                 <Route path="/sign-up" element={<SignUp/>}></Route>

@@ -33,7 +33,7 @@ export default function OrderPaymentInfo() {
             <StyledUl>
             {samplePayments.map((payment) => {
                 return (
-                    <StyledLi>
+                    <StyledLi key={payment}>
                         <Card>
                             <Card.Body>
                                 <Card.Title>
