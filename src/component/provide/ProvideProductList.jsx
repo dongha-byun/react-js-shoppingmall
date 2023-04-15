@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import { Button, Table, Form} from "react-bootstrap";
+import { Button, Table, Form, Pagination} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CategorySelect from "./select/CategorySelect";
 import { useEffect } from "react";
@@ -20,16 +20,35 @@ function ProvideProductList(){
     const [products, setProducts] = useState([]);
     const [limit, setLimit] = useState(10);
     const [offset, setOffset] = useState(0);
+    const [items, setItems] = useState([]);
+    const [active, setActive] = useState(1);
     const navigate = useNavigate();
-    
 
     useEffect(()=>{
         if(categoryId && subCategoryId){
             ProductService.getProducts(categoryId, subCategoryId, "RECENT", limit, offset).then(result => {
                 setProducts(result.data);
+                let pageItems = [];
+                setItems(pageItems);
+
+                for(let number = 1; number <= result.totalCount / limit; number++) {
+                    pageItems.push(
+                        <Pagination.Item key={number} active={number === active} onClick={() => {
+                            onSearch(number);
+                        }}>
+                            {number}
+                        </Pagination.Item>,
+                    );
+                }
+                setItems(pageItems);
             });    
         }
-    }, [categoryId, subCategoryId]);
+    }, [categoryId, subCategoryId, offset]);
+
+    const onSearch = (offset) => {
+        setOffset((offset-1) * limit);
+        setActive(offset);
+    }
 
     return (
         <StyledListWrapper>
@@ -43,9 +62,16 @@ function ProvideProductList(){
                 <CategorySelect categoryId={categoryId} subCategoryId={subCategoryId} setCategoryId={setCategoryId} setSubCategoryId={setSubCategoryId}/>
             </Form>
             <Table bordered hover size="sm">
+                <colgroup>
+                    <col width={200}></col>
+                    <col width={400}></col>
+                    <col width={150}></col>
+                    <col width={250}></col>
+                    <col width={100}></col>
+                    <col width={150}></col>
+                </colgroup>
                 <thead>
                     <tr>
-                        <th></th>
                         <th>상품 대표이미지</th>
                         <th>상품명</th>
                         <th>가격</th>
@@ -58,7 +84,6 @@ function ProvideProductList(){
                     {products.map((product, index) => {
                         return (
                             <tr key={product.id}>
-                                <td>{index+1}</td>
                                 <td className="text-center">
                                     <img src="/images/pot.jpeg" width={100} alt="" />
                                 </td>
@@ -72,6 +97,10 @@ function ProvideProductList(){
                     })}
                 </tbody>
             </Table>
+
+            <div className="text-center">
+                <Pagination>{items}</Pagination>
+            </div>
             
         </StyledListWrapper>
     );
