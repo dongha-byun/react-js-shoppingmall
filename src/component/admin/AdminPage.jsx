@@ -29,6 +29,7 @@ function AdminPage(){
             >
                 <Tab eventKey="category" title="카테고리 관리" />
                 <Tab eventKey="cs" title="1대1 문의내역" />
+                <Tab eventKey="approve" title="판매업체 관리" />
             </Tabs>
             <Outlet />
         </StyledAdminPageWrapper>

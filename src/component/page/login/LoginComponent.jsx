@@ -3,9 +3,10 @@ import styled from "styled-components";
 import Login from "./form/Login";
 import { useNavigate } from "react-router-dom";
 import CommonModal from "../../modal/CommonModal";
-import { isValidToken, loginApi } from "../../../api/component/login/login";
+import { isValidToken, loginApi, partnersLoginApi } from "../../../api/component/login/login";
 import SessionOffComponent from "./SessionOffComponent";
 import SessionOnComponent from "./SessionOnComponent";
+import PartnersLogin from "./form/PartnersLogin";
 
 const StyledLoginComponentWrapper = styled.div`
 `;
@@ -13,6 +14,10 @@ const StyledLoginComponentWrapper = styled.div`
 function LoginComponent(){
     const [isOpen, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
+    
+    const [isPartnersOpen, setPartnersOpen] = useState(false);
+    const handleClosePartners = () => setPartnersOpen(false);
+    
     const navigate = useNavigate();
     const [loginValue, setLoginValue] = useState({
         loginId: "",
@@ -21,6 +26,10 @@ function LoginComponent(){
 
     const login = () => {
         loginApi(loginValue);
+    }
+
+    const partnersLogin = () => {
+        partnersLoginApi(loginValue);
     }
 
     const loginInputChange = (event) => {
@@ -40,7 +49,7 @@ function LoginComponent(){
             {
                 !isValidToken() &&
                 <SessionOffComponent
-                    setOpen={setOpen} isOpen={isOpen}
+                    setOpen={setOpen} isOpen={isOpen} setPartnersOpen={setPartnersOpen} isPartnersOpen={isPartnersOpen}
                 />
             }
             {
@@ -49,6 +58,9 @@ function LoginComponent(){
             }
             <CommonModal show={isOpen} handleClose={handleClose} headerMessage={"로그인"}>
                 <Login menuClick={menuClick} login={login} onChange={loginInputChange}/>
+            </CommonModal>
+            <CommonModal show={isPartnersOpen} handleClose={handleClosePartners} headerMessage={"판매자 로그인"}>
+                <PartnersLogin menuClick={menuClick} login={partnersLogin} onChange={loginInputChange}/>
             </CommonModal>
         </StyledLoginComponentWrapper>
     );

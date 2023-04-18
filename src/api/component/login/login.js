@@ -17,7 +17,18 @@ export function loginApi(loginValue){
         alert("오류가 발생했습니다.");
         console.log(error);
     });
-}   
+}
+
+export function partnersLoginApi(loginValue){
+    api.post("/providers/login", loginValue)
+    .then(() => {
+        window.location.replace("http://localhost:3000/providers");
+    })
+    .catch((error) => {
+        alert("오류가 발생했습니다.");
+        console.log(error);
+    });
+}
 
 export function addUserAttribute(name, data) {
     let originItems = JSON.parse(localStorage.getItem("user"));
