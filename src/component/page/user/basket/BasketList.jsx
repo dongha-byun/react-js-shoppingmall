@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button, Form, Table } from "react-bootstrap";
 import BasketItemInfo from "./BasketItemInfo";
 import BasketService from "../../../../api/component/basket/basket";
+import { webThumbnailUrl } from "../../../../api/axios";
 
 const StyledCheckTh = styled.th`
     text-align: center;
@@ -64,10 +65,13 @@ function BasketList(){
                             </Form>
                         </StyledCheckTd>
                         <StyledTd>
-                            <img src="/images/pot.jpeg" width="120px" alt="이미지" />
+                            <img src={webThumbnailUrl+basket.storedImgFileName} width="120px" alt={"이미지 " + basket.storedImgFileName} />
                         </StyledTd>
                         <StyledTd>
-                            <BasketItemInfo productName = {basket.productName}/>
+                            <BasketItemInfo 
+                                productName = {basket.productName}
+                                partnerName = {basket.partnersName}
+                            />
                         </StyledTd>
                         <StyledTd>{basket.price}원</StyledTd>
                         <StyledTd>{basket.quantity}</StyledTd>

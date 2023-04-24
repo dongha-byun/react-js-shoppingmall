@@ -1,29 +1,40 @@
 import React from "react";
 import styled from "styled-components";
-import filters from "../../../../sample-data/search-filter.json";
-import RadioFilter from "./RadioFilter";
+import { Form } from "react-bootstrap";
 
 const SearchFilterWrapper = styled.div`
+    float: left;
 `;
 
 function SearchFilter(props){
     const {setOrderType} = props;
 
-    const changeSearchFilter = (value) => {
-        setOrderType(value);
+    const changeSearchFilter = (event) => {
+        setOrderType(event.target.value);
     }
 
     return (
         <SearchFilterWrapper className="display-row">
-            {filters.map((filter)=>{
-                return (
-                    <RadioFilter key={filter.id} filter={filter} name="filter" 
-                        onChange={(event)=>{
-                            changeSearchFilter(event.target.value);
-                        }}
-                    />
-                );
-            })}
+            <Form.Check 
+                type="radio" label="판매량순" name="filter" id="filter_SELL" value="SELL"
+                className="mx-3" defaultChecked
+                onChange={changeSearchFilter}
+            />
+            <Form.Check 
+                type="radio" label="평점높은순" name="filter" id="filter_SCORE" value="SCORE"
+                className="mx-3"
+                onChange={changeSearchFilter}
+            />
+            <Form.Check 
+                type="radio" label="낮은 가격순" name="filter" id="filter_PRICE" value="PRICE"
+                className="mx-3"
+                onChange={changeSearchFilter}
+            />
+            <Form.Check 
+                type="radio" label="최신순" name="filter" id="filter_RECENT" value="RECENT"
+                className="mx-3"
+                onChange={changeSearchFilter}
+            />
         </SearchFilterWrapper>
     );
 }

@@ -8,35 +8,68 @@ import { useEffect } from "react";
 import ProductService from "../../../api/component/product/product";
 import { Button } from "react-bootstrap";
 
-const StyledSearchListPageWrapper = styled.div``;
+const StyledSearchListPageWrapper = styled.div`
+    padding-bottom: 20px;
+`;
 
 const StyledSearchHeaderDiv = styled.div`
-    padding-left: 20px;
+    padding: 15px 0 15px 20px;
+    border-bottom: 1px solid #cdcdcd;
+    display: inline-block;
+    width: 100%;
+`;
+const StyledSectionDiv = styled.div`
+    padding: 10px 0;
+    border-bottom: 1px solid #cdcdcd;
+    display: inline-block;
+    width: 100%;
 `;
 
 function ProductSearchListPage(){
+    const listCount = 12;
     const {categoryId, subCategoryId} = useParams();
     const [products, setProducts] = useState([]);
     const [orderType, setOrderType] = useState("SELL");
     const [totalCount, setTotalCount] = useState(0);
-    const [limit, setLimit] = useState(10);
     const [offset, setOffset] = useState(0);
+    const [categoryName, setCategoryName] = useState();
+    const [subCategoryName, setSubCategoryName] = useState();
 
     useEffect(()=>{
-        ProductService.getProducts(categoryId, subCategoryId, orderType, limit, offset).then(result => {
+        ProductService.getProducts(categoryId, subCategoryId, orderType, listCount, 0)
+        .then(result => {
             setProducts(result.data);
             setTotalCount(result.totalCount);
+            setCategoryName(result.categoryName);
+            setSubCategoryName(result.subCategoryName);
+            setOffset(0);
         });
-    }, [orderType]);
+    }, [categoryId, subCategoryId, orderType]);
+
+    const more = () => {
+        ProductService.moreProducts(categoryId, subCategoryId, orderType, listCount, offset + listCount)
+        .then(result => {
+            let temp = products;
+            setProducts(temp.concat(result.data));
+            setOffset(offset + listCount);
+        });
+    }
 
     return (
         <StyledSearchListPageWrapper>
             <StyledSearchHeaderDiv >
-                <h3>categoryId : {categoryId} / subCategoryId : {subCategoryId} / orderType : {orderType} / 총 {totalCount} 건</h3>
+                <h3>{categoryName} / {subCategoryName}</h3>
             </StyledSearchHeaderDiv>
-            <SearchFilter orderType={orderType} setOrderType = {setOrderType}/>
+            <StyledSectionDiv>
+                <SearchFilter setOrderType = {setOrderType}/>
+                <div className="float-right">총 {totalCount} 건</div>
+            </StyledSectionDiv>
             <ProductSearchList products = {products}/>
-            <Button>더보기</Button>
+            <Button size="lg"
+                variant="outline-primary" 
+                className="w-100"
+                onClick={more}
+            >더보기</Button>
         </StyledSearchListPageWrapper>
     );
 }

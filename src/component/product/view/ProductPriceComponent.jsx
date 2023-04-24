@@ -94,22 +94,38 @@ function ProductPriceComponent(props){
             <StyledBuyWrapper>
                 <Form>
                     <Row>
-                        <Col sm={6}>
-                            <Form.Group>
-                                <Form.Control type="number" defaultValue={quantity} onChange={(event)=>{
-                                    onChangeQuantity(event.target.value);
-                                }} onBlur={()=>{
-                                    onChangeQuantity(quantity);
-                                }} />
+                        <Col>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm="2">구매수량</Form.Label>
+                                <Col sm="6">
+                                    <Form.Control type="number" 
+                                        size="sm"
+                                        defaultValue={quantity} 
+                                        onChange={(event)=>{
+                                            onChangeQuantity(event.target.value);
+                                        }} onBlur={()=>{
+                                            onChangeQuantity(quantity);
+                                        }} />
+                                </Col>
+                                <Form.Label column>(남은 수량 : {product.count}개)</Form.Label>
                             </Form.Group>
                         </Col>
+                    </Row>
+                    <Row>
                         <Col>
-                            <Button variant="outline-primary" onClick={()=>{
-                                intoBasket();
-                            }}>장바구니 추가</Button>
-                            <Button className="mx-1" onClick={()=>{
-                                buyNow();
-                            }}>바로구매</Button>
+                            <Button variant="outline-primary" 
+                                className="w-100 mt-1"
+                                onClick={()=>{
+                                    intoBasket();
+                                }}>장바구니 추가</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Button className="w-100 mt-1" size="lg"
+                                onClick={()=>{
+                                    buyNow();
+                                }}>바로구매</Button>
                         </Col>
                     </Row>
                 </Form>

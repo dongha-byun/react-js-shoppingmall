@@ -54,7 +54,7 @@ function ProductView(){
                 className="mb-3"
             >
                 <Tab eventKey="DETAIL" title="상품정보">
-                    <DetailComponent />
+                    <DetailComponent detail={product.detail}/>
                 </Tab>
                 <Tab eventKey="REVIEW" title="리뷰">
                     <ReviewComponent />

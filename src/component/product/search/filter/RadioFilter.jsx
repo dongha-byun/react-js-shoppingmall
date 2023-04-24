@@ -12,7 +12,11 @@ function RadioFilter(props){
     return (
         <StyledRadioWrapper>
             <label htmlFor={filter.id}>{filter.name}</label>
-            <input type="radio" id={filter.id} name={name} onChange={onChange} value={filter.value}/>
+            <input type="radio" 
+                id={filter.id} 
+                name={name} 
+                onChange={onChange} 
+                value={filter.value}/>
         </StyledRadioWrapper>
     );
 }

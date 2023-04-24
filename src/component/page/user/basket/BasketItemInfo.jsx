@@ -7,11 +7,11 @@ const CartProductNameWrapper = styled.h5`
 `;
 
 function BasketItemInfo(props){
-    const { productName } = props;
+    const { productName, partnerName } = props;
 
     return (
         <BasketItemInfoWrapper>
-            <div><span>냄비제작소(주)</span></div>
+            <div>{partnerName}</div>
             <CartProductNameWrapper>{ productName }</CartProductNameWrapper>
         </BasketItemInfoWrapper>
     );
