@@ -8,6 +8,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledUl = styled.ul`
+    margin-top: 15px;
     padding: 0;
     width: 100%;
     display: inline-block;
@@ -30,6 +31,10 @@ export default function OrderPaymentInfo() {
     return (
         <StyledWrapper>
             <h4>결제수단 선택</h4>
+            <Form.Select>
+                <option value="KAKAO_PAY">카카오페이</option>
+                <option value="CARD">신용/체크 카드</option>
+            </Form.Select>
             <StyledUl>
             {samplePayments.map((payment) => {
                 return (

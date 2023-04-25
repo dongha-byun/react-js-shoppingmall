@@ -13,8 +13,8 @@ export default function OrderDeliveryInfo(props) {
 
     return (
         <StyledWrapper>
-            <h4>배송지 정보</h4>
             <Card>
+                <Card.Header as="h5">배송지 정보</Card.Header>
                 <Card.Body>
                     <Card.Title>{deliveryParam.receiverName}</Card.Title>
                     <Card.Text>

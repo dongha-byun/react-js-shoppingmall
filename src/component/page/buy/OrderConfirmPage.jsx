@@ -33,12 +33,19 @@ export default function OrderConfirmPage() {
 
         setPayParam({
             "productName" : state.productName,
+            "productPrice" : state.quantity * state.price,
+            "deliveryFee" : state.deliveryFee,
             "quantity" : state.quantity,
             "total" : state.quantity * state.price + state.deliveryFee
         });
     }, []);
 
     const paying = () => {
+        sessionStorage.setItem("orderParam", JSON.stringify({
+            "orderProductParam" : orderProductParam,
+            "deliveryParam": deliveryParam,
+            "payParam" : payParam
+        }));
         navigate("/pay/ready", {state : payParam});
     }
 
