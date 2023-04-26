@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BuyListComponent from "./buy/BuyListComponent";
-import { getBuys } from "../../../../api/sample/buyList";
 import { Form, Row, Col } from "react-bootstrap";
 import { format } from "date-fns";
 import OrderService from "../../../../api/component/order/order";
@@ -12,23 +11,19 @@ const BuyWrapper = styled.div`
 `;
 
 function BuyConfig(){
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
+    const [startDate, setStartDate] = useState(format(new Date(new Date().getTime() - 3 * aMonthTime), "yyy-MM-dd"));
+    const [endDate, setEndDate] = useState(format(new Date(), "yyy-MM-dd"));
     const [orderHistories, setOrderHistories] = useState([]);
 
     useEffect(() => {
-        const dateFormat = "yyy-MM-dd";
-        const initStartDate = format(new Date(new Date().getTime() - 3 * aMonthTime), dateFormat);
-        const initEndDate = format(new Date(), dateFormat);
-        
-        setStartDate(initStartDate);
-        setEndDate(initEndDate);
+        onSearch(startDate, endDate);
+    }, []);
 
-        OrderService.getOrderHistory(initStartDate, initEndDate).then(result => {
+    const onSearch = (startDateParam, endDateParam) => {
+        OrderService.getOrderHistory(startDateParam, endDateParam).then(result => {
             setOrderHistories(result);
         });
-
-    }, []);
+    }
 
     return(
         <BuyWrapper>
@@ -42,6 +37,7 @@ function BuyConfig(){
                             <Form.Control type="date" value={startDate} 
                                 onChange={(event) => {
                                     setStartDate(event.target.value);
+                                    onSearch(event.target.value, endDate);
                                 }}
                             />
                         </Form.Group>
@@ -51,6 +47,7 @@ function BuyConfig(){
                             <Form.Control type="date" value={endDate} 
                                 onChange={(event) => {
                                     setEndDate(event.target.value);
+                                    onSearch(startDate, event.target.value);
                                 }}
                             />
                         </Form.Group>

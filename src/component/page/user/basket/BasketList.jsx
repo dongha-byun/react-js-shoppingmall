@@ -4,6 +4,7 @@ import { Button, Form, Table } from "react-bootstrap";
 import BasketItemInfo from "./BasketItemInfo";
 import BasketService from "../../../../api/component/basket/basket";
 import { webThumbnailUrl } from "../../../../api/axios";
+import { numberCommaFormat } from "../../../../util/NumberFormat";
 
 const StyledCheckTh = styled.th`
     text-align: center;
@@ -16,15 +17,21 @@ const StyledTd = styled.td`
     vertical-align: middle;
 `;
 
-function BasketList(){
+function BasketList(props){
+    const {setSelectedCart} = props;
     const [baskets, setBaskets] = useState([]);
 
     useEffect(() => {
         BasketService.getBaskets().then(result => {
-            console.log(result);
             setBaskets(result);
         });
     }, []);
+
+    const onChange = (event) => {
+        let selectedId = event.target.value;
+        let selectedBasket = baskets.find(basket => basket.id == selectedId);
+        setSelectedCart(selectedBasket);
+    }
 
     const removeBasket = (basketId) => {
         BasketService.removeBasket(basketId).then(result => {
@@ -38,14 +45,8 @@ function BasketList(){
         <Table>
             <thead>
                 <tr>
-                    <StyledCheckTh>
-                        <Form>
-                            <Form.Group controlId={`checkAll`}>
-                                <Form.Check/>
-                            </Form.Group>
-                        </Form>
-                    </StyledCheckTh>
-                    <th>전체선택</th>
+                    <th></th>
+                    <th>상품이미지</th>
                     <th>상품정보</th>
                     <th>상품금액</th>
                     <th>수량</th>
@@ -58,11 +59,9 @@ function BasketList(){
                 return (
                     <tr key={basket.id}>
                         <StyledCheckTd>
-                            <Form>
-                                <Form.Group controlId={`check${basket.id}`}>
-                                    <Form.Check/>
-                                </Form.Group>
-                            </Form>
+                            <Form.Check type="radio" value={basket.id} name="basketCheck" id={`basketCheck_${basket.id}`}
+                                onChange={onChange}
+                            />
                         </StyledCheckTd>
                         <StyledTd>
                             <img src={webThumbnailUrl+basket.storedImgFileName} width="120px" alt={"이미지 " + basket.storedImgFileName} />
@@ -73,8 +72,8 @@ function BasketList(){
                                 partnerName = {basket.partnersName}
                             />
                         </StyledTd>
-                        <StyledTd>{basket.price}원</StyledTd>
-                        <StyledTd>{basket.quantity}</StyledTd>
+                        <StyledTd>{ numberCommaFormat(basket.price)}원</StyledTd>
+                        <StyledTd>{ numberCommaFormat(basket.quantity)}</StyledTd>
                         <StyledTd>무료</StyledTd>
                         <StyledTd>
                             <Button variant="outline-danger" onClick={() => removeBasket(basket.id)}>삭제</Button>
