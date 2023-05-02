@@ -6,14 +6,18 @@ const ProductDetailWrapper = styled.div`
     height: 500px;
 `;
 
+const DetailWrapper = styled.div`
+    white-space: pre-wrap;
+`;
+
 function DetailComponent(props){
+    const { detail } = props;
 
     return(
         <ProductDetailWrapper>
-            <div>
-                아래 내용은 상품정보를 소개한 글 입니다.
-                텍스트로 할지 이미지 한장으로 할지는 고민입니다.
-            </div>
+            <DetailWrapper >
+                {detail}
+            </DetailWrapper>
         </ProductDetailWrapper>
     );
 }

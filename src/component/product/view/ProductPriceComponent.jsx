@@ -50,8 +50,8 @@ function ProductPriceComponent(props){
             {
                 "productId" : product.id,
                 "productName" : product.name,
-                "imgUrl" : "/images/pot.jpeg",
-                "providerName" : "판매업체 이름",
+                "imgUrl" : product.thumbnail,
+                "providerName" : product.partnersName,
                 "quantity" : quantity,
                 "price" : product.price,
                 "deliveryFee" : 0
@@ -87,6 +87,7 @@ function ProductPriceComponent(props){
         <ProductPriceComponentWrapper>
             <ProductNameWrapper>
                 <h4>{product.name}</h4>
+                <h6>{product.partnersName}</h6>
             </ProductNameWrapper>
             <StyledPriceWrapper>
                 <StyledPriceInfo>{price} 원</StyledPriceInfo>

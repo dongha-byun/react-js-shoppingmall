@@ -60,7 +60,7 @@ function ProductView(){
                     <ReviewComponent />
                 </Tab>
                 <Tab eventKey="QNA" title="상품문의">
-                    <QnaComponent productId = {productId}/>
+                    <QnaComponent productId = {productId} />
                 </Tab>
             </Tabs>
         </ProductViewPageWrapper>

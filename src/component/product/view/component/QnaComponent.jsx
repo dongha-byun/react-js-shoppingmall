@@ -35,7 +35,18 @@ const QnaTimeWrapper = styled.span`
 `;
 
 const QnaContent = styled.p`
+    white-space: pre-wrap;    
     margin-top: 10px;
+`;
+
+const QnaAnswerContentDiv = styled.div`
+    background-color: #eeeeee;
+    margin-bottom: 20px;
+    padding: 15px;
+`;
+
+const QnaAnswerContent = styled.p`
+    white-space: pre-wrap;
 `;
 
 function QnaComponent(props){
@@ -72,10 +83,17 @@ function QnaComponent(props){
                         <div>
                             <span>{qna.writerName}</span>
                             <QnaTimeWrapper>{qna.writeDate}</QnaTimeWrapper>
+                            <QnaContent>
+                                {qna.content}
+                            </QnaContent>
                         </div>
-                        <QnaContent>
-                            {qna.content}
-                        </QnaContent>
+                        {
+                            qna.answer.id && 
+                            <QnaAnswerContentDiv>
+                                <span className="float-right">{qna.answer.answerDate}</span>
+                                <QnaAnswerContent>{qna.answer.answer}</QnaAnswerContent>
+                            </QnaAnswerContentDiv>
+                        }
                     </QnaWrapper>
                 );
             })}
