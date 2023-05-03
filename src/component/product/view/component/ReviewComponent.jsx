@@ -26,30 +26,32 @@ const ReviewImageWrapper = styled.div`
     margin: 10px 0;
 `;
 const ReviewContentWrapper = styled.p`
-
+    white-space: pre-wrap;
 `;
 
 const ReviewBottomWrapper = styled.div``;
 
 function ReviewComponent(props){
+    const {reviews, productName} = props;
     const data = [1,2,3,4,5];
+
     return(
         <ProductReviewComponentWrapper>
-            {data.map((index) => {
+            {reviews.map((review) => {
                 return (
-                    <ProductReviewWrapper key={index}>
+                    <ProductReviewWrapper key={review.id}>
                         <ReviewWriteInfoWrapper>
-                            <div>변**</div>
-                            <div>평점 : 5<ReviewWriteDateWrapper>2022-11-02</ReviewWriteDateWrapper></div>
+                            <div>{review.writerName}</div>
+                            <div>평점 : {review.score}<ReviewWriteDateWrapper>{review.writeName}</ReviewWriteDateWrapper></div>
                         </ReviewWriteInfoWrapper>
                         <ProductNameWrapper>
-                            냄비냄비 냄비파이아! 완전좋아 레알좋아
+                            {productName}
                         </ProductNameWrapper>
                         <ReviewImageWrapper>
                             <img src="/images/pot.jpeg" width={100} />
                         </ReviewImageWrapper>
                         <ReviewContentWrapper>
-                            냄비가 너무 튼튼하고 열전도율도 좋고 라면이든 냉면이든 국수든 찌개든 탕이든 끓이기만하면 JMT에요. 세상에 마상에
+                            {review.content}
                         </ReviewContentWrapper>
                         <ReviewBottomWrapper>
                             

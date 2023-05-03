@@ -7,6 +7,7 @@ import { numberCommaFormat } from "../../../../../util/NumberFormat";
 import CommonModal from "../../../../modal/CommonModal";
 import OrderCancelPop from "./pop/OrderCancelPop";
 import OrderService from "../../../../../api/component/order/order";
+import DeliveryEndButton from "./DeliveryEndButton";
 
 const StyledBuyListComponent = styled.div`
     border: 1px solid black;
@@ -38,10 +39,6 @@ function BuyListComponent(props){
         });
     }
 
-    const writeReview = () => {
-        navigate("review-write/"+orderHistory.orderId);
-    }
-
     return(
         <StyledBuyListComponent>
             <StyledTable>
@@ -54,28 +51,29 @@ function BuyListComponent(props){
                 </colgroup>
                 <tbody>
                     <tr>
-                        <StyledTh rowSpan={2}>
+                        <StyledTh rowSpan={3}>
                             {toDateFormat(new Date(orderHistory.orderDate), "yyyy-MM-dd HH:mm:ss")}
                         </StyledTh>
-                        <StyledTh rowSpan={2} className={`buy ${orderHistory.orderStatus} text-center`}>
+                        <StyledTh rowSpan={3} className={`buy ${orderHistory.orderStatus} text-center`}>
                             {orderHistory.orderStatusName}
                         </StyledTh>
-                        <td rowSpan={2} className="text-center">
+                        <td rowSpan={3} className="text-center">
                             <img src="/images/pot.jpeg" width={120}/>
                         </td>
-                        <td>{orderHistory.productName}</td>
-                        <td rowSpan={2} className="text-center">
+                        <td>{orderHistory.partnerName}</td>
+                        <td rowSpan={3} className="text-center">
                             { orderHistory.orderStatus == 'READY' && 
                                 <Button variant="outline-danger" onClick={showOrderCancelPop}>
                                     주문취소
                                 </Button>
                             }
-                            { orderHistory.orderStatus == 'END' && 
-                                <Button variant="outline-primary" onClick={writeReview}>
-                                    리뷰작성
-                                </Button>
+                            { orderHistory.orderStatus == 'DELIVERY_END' && 
+                                <DeliveryEndButton orderId={orderHistory.orderId} productId={orderHistory.productId} />
                             }
                         </td>
+                    </tr>
+                    <tr>
+                        <td>{orderHistory.productName}</td>
                     </tr>
                     <tr>
                         <td>{numberCommaFormat(orderHistory.orderPrice)}원</td>

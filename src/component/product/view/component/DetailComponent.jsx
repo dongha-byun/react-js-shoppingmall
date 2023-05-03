@@ -7,6 +7,7 @@ const ProductDetailWrapper = styled.div`
 `;
 
 const DetailWrapper = styled.div`
+    padding: 20px;
     white-space: pre-wrap;
 `;
 

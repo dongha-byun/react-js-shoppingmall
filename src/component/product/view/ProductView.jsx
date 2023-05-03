@@ -32,6 +32,16 @@ function ProductView(){
     const { productId } = useParams();
     const [product, setProduct] = useState({});
     const [tabName, setTabName] = useState("DETAIL");
+    const [tempReviews, setTempReviews] = useState([
+        {
+            "id": 1,
+            "writeDate": "2023-05-03 11:05:11",
+            "score": 4,
+            "imgFileName": "",
+            "content": "아주 좋습니다.\n많은분들께 강추 드립니다.!\n재구매 의사 100% 입니다.",
+            "writerName": "덩라"
+        }
+    ]);
 
     useEffect(()=>{
         ProductService.getProduct(productId).then(data => {
@@ -57,7 +67,7 @@ function ProductView(){
                     <DetailComponent detail={product.detail}/>
                 </Tab>
                 <Tab eventKey="REVIEW" title="리뷰">
-                    <ReviewComponent />
+                    <ReviewComponent reviews={tempReviews} productName={product.name}/>
                 </Tab>
                 <Tab eventKey="QNA" title="상품문의">
                     <QnaComponent productId = {productId} />

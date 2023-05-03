@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
+import { format } from 'date-fns';
 
 // == pages == //
 import Home from './component/page/Home';
@@ -74,8 +75,10 @@ function App() {
                   <Route path="delivery" element={<DeliveryConfig />}/>
                   <Route path="delivery/add" element={<DeliveryFormPage />}/>
                   <Route path="payment" element={<PaymentConfig />}/>
+                  
                   <Route path="buy" element={<BuyConfig />}/>
-                  <Route path="buy/review-write/:buyingId" element={<ReviewWriteForm/>}></Route>
+                  <Route path="buy/review-write" element={<ReviewWriteForm/>}></Route>
+                  
                 </Route>
 
                 <Route path="/pay/ready" element={<PayReadyPage/>}></Route>
@@ -98,7 +101,7 @@ function App() {
                 <Route path="/admin" element={<AdminPage />}>
                   <Route path="category" element={<CategoryManagePage/>}></Route>
                   <Route path="cs" element={<CustomServicePage/>}></Route>
-                  <Route path="approve" element={<PartnersListPage/>}></Route>
+                  <Route path="partners" element={<PartnersListPage/>}></Route>
                 </Route>
             </Routes>
           </div>

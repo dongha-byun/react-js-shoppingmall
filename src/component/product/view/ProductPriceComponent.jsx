@@ -5,6 +5,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import { useEffect } from "react";
 import BasketService from "../../../api/component/basket/basket";
 import { useNavigate } from "react-router-dom";
+import { numberCommaFormat } from "../../../util/NumberFormat";
 
 const ProductPriceComponentWrapper = styled.div`
     margin-left: 10px;
@@ -71,7 +72,7 @@ function ProductPriceComponent(props){
         BasketService.saveBasket(params).then(result => {
             alert("장바구니에 상품이 추가되었습니다.");
             navigate("/my-page/basket");
-        })
+        });
     }
 
     const onChangeQuantity = (quantity) => {
@@ -90,7 +91,7 @@ function ProductPriceComponent(props){
                 <h6>{product.partnersName}</h6>
             </ProductNameWrapper>
             <StyledPriceWrapper>
-                <StyledPriceInfo>{price} 원</StyledPriceInfo>
+                <StyledPriceInfo>{numberCommaFormat(price)} 원</StyledPriceInfo>
             </StyledPriceWrapper>
             <StyledBuyWrapper>
                 <Form>

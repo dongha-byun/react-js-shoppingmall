@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Form, Button } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
+import ProductReviewService from "../../../../../api/component/product/productReview";
+import CommonModal from "../../../../modal/CommonModal";
+import ProductReviewConfirmPop from "./pop/ProductReviewConfirmPop";
 
 const StyledHeader = styled.div`
     margin-bottom: 25px;
@@ -10,8 +14,10 @@ const StyledReviewWrapper = styled.div`
     padding: 20px;
 `;
 
-function ReviewWriteForm(props){
-
+function ReviewWriteForm(){
+    const [isOpen, setIsOpen] = useState(false);
+    const handleClose = () => setIsOpen(false);
+    const {state} = useLocation();
     const [reviewValue, setReviewValue] = useState({
         score: 0,
         content: ""
@@ -25,8 +31,13 @@ function ReviewWriteForm(props){
     }
 
     const writeReview = () => {
-        console.log(reviewValue);
-        alert(123);
+        let orderId = state.orderId;
+        let productId = state.productId;
+        ProductReviewService.saveReview(orderId, productId, reviewValue).then(result => {
+            alert("리뷰 등록이 완료되었습니다.");
+        }).catch(error => {
+            alert("리뷰 등록에 실패하였습니다.");
+        });
     }
 
     return (
@@ -36,7 +47,7 @@ function ReviewWriteForm(props){
                 <Button 
                     className="float-right" 
                     variant="outline-primary" 
-                    onClick={writeReview}>리뷰 등록</Button>
+                    onClick={() => setIsOpen(true)}>리뷰 등록</Button>
             </StyledHeader>
             <Form>
                 <Form.Group className="mb-3" controlId="score">
@@ -49,6 +60,9 @@ function ReviewWriteForm(props){
                     <Form.Control as="textarea" onChange={onChangeValue} rows={5}/>
                 </Form.Group>
             </Form>
+            <CommonModal show={isOpen} handleClose={handleClose} headerMessage={"주문 취소"} footerEvent={writeReview} footerMessage={"리뷰 등록"} >
+                <ProductReviewConfirmPop />
+            </CommonModal>
         </StyledReviewWrapper>  
     );
 }
