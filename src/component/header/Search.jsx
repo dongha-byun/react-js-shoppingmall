@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styledComponents from "styled-components";
 import { Form, InputGroup, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const SearchWrapper = styledComponents.div`
     width: 100%;
@@ -9,19 +10,28 @@ const SearchWrapper = styledComponents.div`
     text-align: center;
 `;
 
-function Search(props){
-
+function Search(){
+    const navigate = useNavigate();
     const [searchValue, setSearchValue] = useState();
+
+    const onSearch = () => {
+        let searchParam = {
+            "searchKeyword" : searchValue
+        };
+        navigate("/search-products", {state: searchParam});
+    }
 
     return(
         <SearchWrapper>
             <InputGroup>
                 <Form.Control 
                     aria-describedby="searchBtn" 
-                    onChange={setSearchValue}
+                    onChange={(event) => {
+                        setSearchValue(event.target.value);
+                    }}
                 />
                 <Button variant="outline-secondary" id="searchBtn"
-                    onClick={()=>alert("검색")}
+                    onClick={onSearch}
                 >검색</Button>
             </InputGroup>
         </SearchWrapper>

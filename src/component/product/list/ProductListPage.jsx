@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import ProductSearchList from "./ProductSearchList";
-import SearchFilter from "./filter/SearchFilter";
 import ProductService from "../../../api/component/product/product";
+import ProductList from "./ProductList";
+import SearchFilter from "../search/filter/SearchFilter";
 import { Button } from "react-bootstrap";
 
 const StyledSearchListPageWrapper = styled.div`
@@ -24,27 +24,29 @@ const StyledSectionDiv = styled.div`
     width: 100%;
 `;
 
-function ProductSearchListPage(){
+export default function ProductListPage() {
     const listCount = 12;
-    const {state} = useLocation();
+    const {categoryId, subCategoryId} = useParams();
     const [products, setProducts] = useState([]);
     const [orderType, setOrderType] = useState("SELL");
     const [totalCount, setTotalCount] = useState(0);
     const [offset, setOffset] = useState(0);
+    const [categoryName, setCategoryName] = useState();
+    const [subCategoryName, setSubCategoryName] = useState();
 
     useEffect(()=>{
-        let searchKeyword = state.searchKeyword;
-        ProductService.searchProducts(searchKeyword, "SCORE", listCount, 0)
+        ProductService.getProducts(categoryId, subCategoryId, orderType, listCount, 0)
         .then(result => {
             setProducts(result.data);
             setTotalCount(result.totalCount);
+            setCategoryName(result.categoryName);
+            setSubCategoryName(result.subCategoryName);
             setOffset(0);
         });
-    }, [orderType]);
+    }, [categoryId, subCategoryId, orderType]);
 
     const more = () => {
-        let searchKeyword = state.searchKeyword;
-        ProductService.searchMoreProducts(searchKeyword, orderType, listCount, offset + listCount)
+        ProductService.moreProducts(categoryId, subCategoryId, orderType, listCount, offset + listCount)
         .then(result => {
             let temp = products;
             setProducts(temp.concat(result.data));
@@ -54,14 +56,14 @@ function ProductSearchListPage(){
 
     return (
         <StyledSearchListPageWrapper>
-            <StyledSearchHeaderDiv >
-                <h3>검색어 : {state.searchKeyword}</h3>
+            <StyledSearchHeaderDiv>
+                <h3>카테고리 : {categoryName} / {subCategoryName}</h3>
             </StyledSearchHeaderDiv>
             <StyledSectionDiv>
                 <SearchFilter setOrderType = {setOrderType}/>
                 <div className="float-right">총 {totalCount} 건</div>
             </StyledSectionDiv>
-            <ProductSearchList products = {products}/>
+            <ProductList products = {products}/>
             <Button size="lg"
                 variant="outline-primary" 
                 className="w-100"
@@ -70,5 +72,3 @@ function ProductSearchListPage(){
         </StyledSearchListPageWrapper>
     );
 }
-
-export default ProductSearchListPage;

@@ -11,7 +11,7 @@ export const api = axios.create({
 });
 
 const ApiService = {
-    get : async(url, body, header) => {
+    get : async(url, header) => {
         let response = await api.get(url, header);
         return response.data;
     },

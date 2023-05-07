@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
-import { format } from 'date-fns';
 
 // == pages == //
 import Home from './component/page/Home';
@@ -15,7 +14,6 @@ import ProductView from './component/product/view/ProductView';
 import BasketListPage from './component/page/user/basket/BaskListPage';
 import BuyInfoFormPage from './component/page/buy/BuyInfoFormPage';
 import ProductQuestionPage from './component/product/question/ProductQuestionPage';
-import ProductSearchListPage from './component/product/search/ProductSearchListPage';
 import DeliveryConfig from './component/page/user/config/DeliveryConfig';
 import UserBasicConfig from './component/page/user/config/UserBasicConfig';
 import PaymentConfig from './component/page/user/config/PaymentConfig';
@@ -43,6 +41,8 @@ import PayApprovePage from './component/page/buy/PayApprovePage';
 import PaySuccessPage from './component/page/buy/PaySuccessPage';
 import PartnersSignup from './component/provide/login/PartnersSignup';
 import PartnersListPage from './component/admin/approve/PartnersListPage';
+import ProductListPage from './component/product/list/ProductListPage';
+import ProductSearchListPage from './component/product/search/ProductSearchListPage';
 
 function App() {
 
@@ -68,7 +68,8 @@ function App() {
                 <Route path="/buy" element={<BuyInfoFormPage/>}></Route>
                 <Route path="/order" element={<OrderConfirmPage/>}></Route>
                 <Route path="/product-question/:productId" element={<ProductQuestionPage/>}></Route>
-                <Route path="/products/:categoryId/:subCategoryId" element={<ProductSearchListPage/>}></Route>
+                <Route path="/products/:categoryId/:subCategoryId" element={<ProductListPage/>}></Route>
+                <Route path="/search-products" element={<ProductSearchListPage/>}></Route>
                 <Route path="/my-page" element={<UserConfigPage/>}>
                   <Route path="basic" element={<UserBasicConfig />}/>
                   <Route path="basket" element={<BasketListPage/>}></Route>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { webThumbnailUrl } from "../../../api/axios";
+import { webThumbnailUrl, webUrl } from "../../../api/axios";
 import ProductItem from "../ProductItem";
 
 const StyledSearchListWrapper = styled.div`
@@ -11,7 +11,7 @@ const StyledSearchListWrapper = styled.div`
     gap: 10px 20px;
 `;
 
-function ProductSearchList(props){
+export default function ProductList(props){
     const navigate = useNavigate();
     const {products} = props;
 
@@ -36,5 +36,3 @@ function ProductSearchList(props){
         </StyledSearchListWrapper>
     );
 }
-
-export default ProductSearchList;

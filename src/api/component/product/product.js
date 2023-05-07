@@ -3,7 +3,6 @@ import { partnerHeaders } from "../login/headers";
 
 
 const ProductService = {
-    
     getProducts: async (categoryId, subCategoryId, orderType, limit, offset) => {
         let url = "/products?" + 
                     "categoryId="+categoryId+
@@ -11,7 +10,6 @@ const ProductService = {
                     "&orderType="+orderType+
                     "&limit="+limit+
                     "&offset="+offset;
-
         let response = await api.get(url);
         return response.data;
     },
@@ -22,7 +20,6 @@ const ProductService = {
                 "&orderType="+orderType+
                 "&limit="+limit+
                 "&offset="+offset;
-
         let response = await api.get(url);
         return response.data;
     },
@@ -30,11 +27,23 @@ const ProductService = {
         let response = await api.get("/products/"+productId);
         return response.data;
     },
-    saveProduct: async(params) => {
-        ApiService.post("/products", params, partnerHeaders()).then(result => {
-            alert('상품등록이 완료 되었습니다.');
-            window.location.href = "/provide-manage/product";
-        });
+    searchProducts: async(searchKeyword, orderType, limit, offset) => {
+        let url = "/search-products" + 
+                    "?searchKeyword=" + searchKeyword +
+                    "&orderType=" + orderType +
+                    "&limit=" + limit +
+                    "&offset=" + offset;
+        let response = await api.get(url);
+        return response.data;
+    },
+    searchMoreProducts: async(searchKeyword, orderType, limit, offset) => {
+        let url = "/search-products-more" + 
+                    "?searchKeyword=" + searchKeyword +
+                    "&orderType=" + orderType +
+                    "&limit=" + limit +
+                    "&offset=" + offset;
+        let response = await api.get(url);
+        return response.data;
     }
 }
 

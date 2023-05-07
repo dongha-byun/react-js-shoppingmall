@@ -1,10 +1,11 @@
-import { api } from "../../axios";
+import ApiService, { api } from "../../axios";
 import { UNAUTHORIZED } from "../../constants";
+import { headers } from "./headers";
 import { getUserAttribute } from "./login";
 
 
 export function logout(){
-    api.post("/logout", {})
+    ApiService.post("/logout", {}, headers)
     .then((response) => {
         console.log(response);
     })
