@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const BasketItemInfoWrapper = styled.div``;
@@ -7,12 +8,17 @@ const CartProductNameWrapper = styled.h5`
 `;
 
 function BasketItemInfo(props){
-    const { productName, partnerName } = props;
+    const navigate = useNavigate();
+    const { productId, productName, partnerName } = props;
 
     return (
         <BasketItemInfoWrapper>
             <div>{partnerName}</div>
-            <CartProductNameWrapper>{ productName }</CartProductNameWrapper>
+            <CartProductNameWrapper onClick={() => {
+                navigate("/product/"+productId);
+            }}>
+                { productName }
+            </CartProductNameWrapper>
         </BasketItemInfoWrapper>
     );
 }

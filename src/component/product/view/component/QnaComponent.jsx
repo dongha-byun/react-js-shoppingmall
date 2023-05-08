@@ -81,7 +81,7 @@ function QnaComponent(props){
                 return (
                     <QnaWrapper key={qna.id}>
                         <div>
-                            <span>{qna.writerName}</span>
+                            <span>{qna.writerLoginId}</span>
                             <QnaTimeWrapper>{qna.writeDate}</QnaTimeWrapper>
                             <QnaContent>
                                 {qna.content}

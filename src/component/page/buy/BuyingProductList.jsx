@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styledComponents from "styled-components";
 import { numberCommaFormat } from "../../../util/NumberFormat";
+import { webThumbnailUrl } from "../../../api/axios";
 
 const BuyingProductListWrapper = styledComponents.div`
     padding: 10px 0;
     border-bottom: 1px solid #cdcdcd;
-`;
-const BuyingTableTr = styledComponents.tr`
-    padding-bottom: 10px;
 `;
 
 function BuyingProductList(props){
@@ -42,7 +40,7 @@ function BuyingProductList(props){
                 </thead>
                 <tbody>
                     <tr>
-                        <td><img src={orderProductParam.imgUrl} width="150px" height="100px"/></td>
+                        <td><img src={webThumbnailUrl+orderProductParam.imgUrl} width="150px" height="100px"/></td>
                         <td>{orderProductParam.productName}</td>
                         <td>{orderProductParam.providerName}</td>
                         <td>{numberCommaFormat(orderProductParam.quantity)}</td>

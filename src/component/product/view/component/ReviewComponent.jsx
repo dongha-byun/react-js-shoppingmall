@@ -41,7 +41,7 @@ function ReviewComponent(props){
                 return (
                     <ProductReviewWrapper key={review.id}>
                         <ReviewWriteInfoWrapper>
-                            <div>{review.writerName}</div>
+                            <div>{review.writerLoginId}</div>
                             <div>평점 : {review.score}<ReviewWriteDateWrapper>{review.writeName}</ReviewWriteDateWrapper></div>
                         </ReviewWriteInfoWrapper>
                         <ProductNameWrapper>

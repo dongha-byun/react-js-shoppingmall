@@ -39,7 +39,7 @@ function ProductView(){
             "score": 4,
             "imgFileName": "",
             "content": "아주 좋습니다.\n많은분들께 강추 드립니다.!\n재구매 의사 100% 입니다.",
-            "writerName": "덩라"
+            "writerLoginId": "user1"
         }
     ]);
 

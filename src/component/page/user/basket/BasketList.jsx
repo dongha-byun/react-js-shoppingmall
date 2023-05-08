@@ -68,6 +68,7 @@ function BasketList(props){
                         </StyledTd>
                         <StyledTd>
                             <BasketItemInfo 
+                                productId = {basket.productId}
                                 productName = {basket.productName}
                                 partnerName = {basket.partnersName}
                             />
