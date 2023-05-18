@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
-import PayService from "../../../api/component/pay/pay";
+import React, { useEffect } from "react";
+import PayService, { TEST_PAY_CID, TYPE_KAKAO_PAY } from "../../../api/component/pay/pay";
 import { frontUrl } from "../../../api/axios";
 import { useLocation } from "react-router-dom";
 
 export default function PayReadyPage() {
-
     const {state} = useLocation();
-    const [cid, setCid] = useState("TC0ONETIME");
 
     useEffect(() => {
         let param = {
-            "type": "kakaoPay",
+            "type": TYPE_KAKAO_PAY,
             "data": {
-                "cid": cid,
+                "cid": TEST_PAY_CID,
                 "partner_order_id": "dongha_shopping_mall_order",
                 "partner_user_id": "TuserId",
                 "item_name": state.productName,
@@ -28,7 +26,7 @@ export default function PayReadyPage() {
 
         PayService.readyPay(param).then(result => {         
             localStorage.setItem("pay_param", JSON.stringify({
-                "cid": cid,
+                "cid": TEST_PAY_CID,
                 "tid": result.tid,
                 "partner_order_id": "dongha_shopping_mall_order",
                 "partner_user_id": "TuserId",

@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import styled from "styled-components";
+import { numberCommaFormat } from "../../../util/NumberFormat";
 
 const StyledPayResultWrapper = styled.div`
     margin-top: 15px;
@@ -25,7 +26,7 @@ export default function OrderPaymentResult(props) {
                     <ListGroup variant="flush">
                         <ListGroup.Item className="border-0">
                             <StyledLeftDiv>상품 가격</StyledLeftDiv>
-                            <StyledRightDiv>{payParam.productPrice}원</StyledRightDiv>
+                            <StyledRightDiv>{ numberCommaFormat(payParam.productPrice)}원</StyledRightDiv>
                         </ListGroup.Item>
                         <ListGroup.Item className="border-0">
                             <StyledLeftDiv>할인 금액</StyledLeftDiv>
@@ -33,16 +34,16 @@ export default function OrderPaymentResult(props) {
                         </ListGroup.Item>
                         <ListGroup.Item className="border-0">
                             <StyledLeftDiv>배송비</StyledLeftDiv>
-                            <StyledRightDiv>{payParam.deliveryFee}원</StyledRightDiv>
+                            <StyledRightDiv>{ numberCommaFormat(payParam.deliveryFee)}원</StyledRightDiv>
                         </ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
                         <ListGroup.Item className="border-0">
                             <StyledLeftDiv>카카오페이</StyledLeftDiv>
-                            <StyledRightDiv>{payParam.total}원</StyledRightDiv>
+                            <StyledRightDiv>{ numberCommaFormat(payParam.total)}원</StyledRightDiv>
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <StyledLeftDiv>총 결제금액</StyledLeftDiv>
-                            <StyledRightDiv>{payParam.total}원</StyledRightDiv>
+                            <StyledRightDiv>{ numberCommaFormat(payParam.total)}원</StyledRightDiv>
                         </ListGroup.Item>
                     </ListGroup>
                 </Card.Body>

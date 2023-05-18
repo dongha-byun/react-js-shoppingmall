@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import PayService from "../../../api/component/pay/pay";
 import { Spinner } from "react-bootstrap";
@@ -23,11 +23,11 @@ export default function PayApprovePage() {
         };
 
         PayService.approvePay(param).then(result => {
-            order();
+            order(payParam.tid);
         });
     });
 
-    const order = () => {
+    const order = (tid) => {
         // 여기서 Order api call
         let orderParam = JSON.parse(sessionStorage.getItem("orderParam"));
         
@@ -36,6 +36,7 @@ export default function PayApprovePage() {
         let payParam = orderParam.payParam;
 
         let param = {
+            "tid": tid,
             "productId": orderProductParam.productId,
             "quantity": orderProductParam.quantity,
             "deliveryFee": orderProductParam.deliveryFee,
@@ -50,6 +51,9 @@ export default function PayApprovePage() {
         // 여기서 Order Api Call
         OrderService.order(param).then(result => {
             navigate("/pay/success");
+        }).catch(() => {
+            alert("오류로 인해 주문에 실패하였습니다. 다시 시도해주세요.");
+            navigate("/");
         });
     }
 

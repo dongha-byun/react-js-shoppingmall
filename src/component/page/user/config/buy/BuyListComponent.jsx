@@ -8,6 +8,7 @@ import CommonModal from "../../../../modal/CommonModal";
 import OrderCancelPop from "./pop/OrderCancelPop";
 import OrderService from "../../../../../api/component/order/order";
 import DeliveryEndButton from "./DeliveryEndButton";
+import PayService, { TEST_PAY_CID, TYPE_KAKAO_PAY } from "../../../../../api/component/pay/pay";
 
 const StyledBuyListComponent = styled.div`
     border: 1px solid black;
@@ -24,6 +25,7 @@ const StyledTh=styled.th`
 
 function BuyListComponent(props){
     const {orderHistory} = props;
+    const [cancelReason, setCancelReason] = useState();
     const [isOpen, setIsOpen] = useState(false);
     const handleClose = () => setIsOpen(false);
 
@@ -32,8 +34,31 @@ function BuyListComponent(props){
     const showOrderCancelPop = () => {
         setIsOpen(true);
     }
+    const onChangeCancelContent = (event) => {
+        setCancelReason(event.target.value);
+    }
+
+    const cancelPay = () => {
+        let params = {
+            "type": TYPE_KAKAO_PAY,
+            "data": {
+                "cid": TEST_PAY_CID,
+                "tid": orderHistory.tid,
+                "cancel_amount": orderHistory.orderPrice,
+                "cancel_tax_free_amount": 0
+            }
+        };
+
+        PayService.cancelPay(params).then(result => {
+            cancelOrder();
+        }).catch(() => {
+            console.log("결제 도중 오류가 발생했습니다.");
+        });
+    }
+
     const cancelOrder = () => {
-        OrderService.cancel(orderHistory.orderId).then(result => {
+        OrderService.cancel(orderHistory.orderId, cancelReason).then(result => {
+            alert("주문이 취소되었습니다.");
             handleClose();
             navigate("/my-page/buy");
         });
@@ -80,8 +105,8 @@ function BuyListComponent(props){
                     </tr>
                 </tbody>
             </StyledTable>
-            <CommonModal show={isOpen} handleClose={handleClose} headerMessage={"주문 취소"}>
-                <OrderCancelPop cancel={cancelOrder} />
+            <CommonModal show={isOpen} handleClose={handleClose} headerMessage={"주문 취소"} footerMessage={"주문 취소"} footerEvent={cancelPay}>
+                <OrderCancelPop onChangeValue={onChangeCancelContent}/>
             </CommonModal>
         </StyledBuyListComponent>
     );
