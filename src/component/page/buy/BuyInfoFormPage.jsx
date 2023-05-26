@@ -23,18 +23,12 @@ const BuyHeaderWrapper = styledComponents.h2`
 `;
 
 function BuyInfoFormPage(){
-
     const navigate = useNavigate();
     const { state } = useLocation();
-    const [total, setTotal] = useState(0);
-    const [orderProductParam, setOrderProductParam] = useState({});
+    const [total, setTotal] = useState(0);;
     const [orderParam, setOrderParam] = useState(
         {
-            "productId": "",
-            "imgUrl" : "",
-            "productName" : "",
-            "providerName" : "",
-            "quantity" : 0,
+            "items": [],
             "total" : 0,
             "receiverName" : "",
             "zipCode" : "",
@@ -46,28 +40,19 @@ function BuyInfoFormPage(){
     );
 
     useEffect(() => {
-        setOrderProductParam({
-            "productId": state.productId,
-            "productName": state.productName,
-            "imgUrl": state.imgUrl,
-            "providerName": state.providerName,
-            "quantity": state.quantity,
-            "price": state.price,
-            "deliveryFee": state.deliveryFee
+        let items = state.items;
+        let totalPrice = 0;
+        items.forEach(element => {
+            totalPrice += element.price * element.quantity
         });
+
         setOrderParam({
             ...orderParam,
-            ["productId"]: state.productId,
-            ["imgUrl"]: state.imgUrl,
-            ["productName"]: state.productName,
-            ["providerName"]: state.providerName,
-            ["quantity"]: state.quantity,
-            ["price"]: state.price,
-            ["deliveryFee"]: state.deliveryFee
+            "items": items,
+            "total": totalPrice,
+            "deliveryFee": 0
         });
-        setTotal(
-            state.price * state.quantity + state.deliveryFee
-        );
+        setTotal(totalPrice);
     }, []);
 
     const onChangeDelivery = (event) => {
@@ -101,13 +86,14 @@ function BuyInfoFormPage(){
     };
 
     const orderItem = () => {
-        navigate("/order", {state : orderParam});
+        console.log(orderParam);
+        navigate("/order/confirm", {state : orderParam});
     };
 
     return (
         <BuyInfoFormPageWrapper>
             <BuyHeaderWrapper>주문하기</BuyHeaderWrapper>
-            <BuyingProductList orderProductParam={orderProductParam}/>
+            <BuyingProductList items={state.items} />
             <DeliveryInfoForm onChangeDelivery={onChangeDelivery} onSelectDelivery={onSelectDelivery}/>
             <BuyInfoFormButtonWrapper>
                 총 가격 : {numberCommaFormat(total)}원

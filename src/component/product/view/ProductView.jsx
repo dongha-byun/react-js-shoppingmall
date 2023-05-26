@@ -8,6 +8,7 @@ import DetailComponent from "./component/DetailComponent";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProductService from "../../../api/component/product/product";
+import { webThumbnailUrl } from "../../../api/axios";
 
 const ProductViewPageWrapper = styledComponents.div`
     width: 100%;
@@ -53,7 +54,7 @@ function ProductView(){
         <ProductViewPageWrapper>
             <ProductViewWrapper>
                 <ProductImageWrapper>
-                    <img src="/images/pot.jpeg" alt="" />
+                    <img src={webThumbnailUrl + (product.thumbnail || "pot.jpeg")} alt="" width={500}/>
                 </ProductImageWrapper>
                 <ProductPriceComponent product = {product} />
             </ProductViewWrapper>

@@ -4,24 +4,23 @@ import { useLocation, useNavigate } from "react-router-dom";
 import BuyingProductList from "./BuyingProductList";
 import OrderDeliveryInfo from "./OrderDeliveryInfo";
 import OrderPaymentInfo from "./OrderPaymentInfo";
+import styled from "styled-components";
+
+const StyledOrderConfirmPageWrapper = styled.div`
+    margin-bottom: 20px
+`;
 
 export default function OrderConfirmPage() {
     const navigate = useNavigate();
     const {state} = useLocation();
-    const [orderProductParam, setOrderProductParam] = useState({});
+    const [orderProductParam, setOrderProductParam] = useState([]);
     const [deliveryParam, setDeliveryParam] = useState({});
     const [payParam, setPayParam] = useState({});
 
     useEffect(() => {
-        setOrderProductParam({
-            "productId": state.productId,
-            "productName": state.productName,
-            "imgUrl": state.imgUrl,
-            "providerName": state.providerName,
-            "quantity": state.quantity,
-            "price": state.price,
-            "deliveryFee": state.deliveryFee
-        });
+        setOrderProductParam(
+            state.items
+        );
 
         setDeliveryParam({
             "receiverName" : state.receiverName,
@@ -32,11 +31,9 @@ export default function OrderConfirmPage() {
         });
 
         setPayParam({
-            "productName" : state.productName,
-            "productPrice" : state.quantity * state.price,
+            "productName" : state.items[0].productName,
             "deliveryFee" : state.deliveryFee,
-            "quantity" : state.quantity,
-            "total" : state.quantity * state.price + state.deliveryFee
+            "total" : state.total
         });
     }, []);
 
@@ -46,18 +43,18 @@ export default function OrderConfirmPage() {
             "deliveryParam": deliveryParam,
             "payParam" : payParam
         }));
-        navigate("/pay/ready", {state : payParam});
+        //navigate("/pay/ready", {state : payParam});
     }
 
     return (
-        <div>
+        <StyledOrderConfirmPageWrapper>
             <h2>주문정보 확인</h2>
-            <BuyingProductList orderProductParam={orderProductParam}/>
+            <BuyingProductList items={state.items}/>
             <OrderDeliveryInfo deliveryParam={deliveryParam} />
             <OrderPaymentInfo />
             <Button className="w-100" size="lg" onClick={() => {
                 paying();
-            }}>결제하기</Button>
-        </div>
+            }}><b>{payParam.total}원</b> 결제하기</Button>
+        </StyledOrderConfirmPageWrapper>
     );
 }

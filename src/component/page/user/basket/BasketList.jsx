@@ -18,25 +18,30 @@ const StyledTd = styled.td`
 `;
 
 function BasketList(props){
-    const {setSelectedCart} = props;
-    const [baskets, setBaskets] = useState([]);
+    const {addCartList, removeCartList} = props;
+    const [carts, setCarts] = useState([]);
 
     useEffect(() => {
         BasketService.getBaskets().then(result => {
-            setBaskets(result);
+            setCarts(result);
         });
     }, []);
 
     const onChange = (event) => {
         let selectedId = event.target.value;
-        let selectedBasket = baskets.find(basket => basket.id == selectedId);
-        setSelectedCart(selectedBasket);
+
+        if(event.target.checked) {
+            let selectedCart = carts.find(cart => cart.id == selectedId);
+            addCartList(selectedCart);
+        }else{
+            removeCartList(selectedId);
+        }
     }
 
-    const removeBasket = (basketId) => {
-        BasketService.removeBasket(basketId).then(result => {
-            setBaskets(
-                baskets.filter(basket => basket.id != basketId)
+    const removeCart = (cartId) => {
+        BasketService.removeBasket(cartId).then(result => {
+            setCarts(
+                carts.filter(cart => cart.id != cartId)
             );
         });
     }
@@ -55,29 +60,30 @@ function BasketList(props){
                 </tr>
             </thead>
             <tbody>
-            {baskets.map((basket) => {
+            {carts.map((cart) => {
                 return (
-                    <tr key={basket.id}>
+                    <tr key={cart.id}>
                         <StyledCheckTd>
-                            <Form.Check type="radio" value={basket.id} name="basketCheck" id={`basketCheck_${basket.id}`}
+                            <Form.Check type="checkbox" value={cart.id} name="cartCheck" 
+                                id={`cartCheck_${cart.id}`}
                                 onChange={onChange}
                             />
                         </StyledCheckTd>
                         <StyledTd>
-                            <img src={webThumbnailUrl+basket.storedImgFileName} width="120px" alt={"이미지 " + basket.storedImgFileName} />
+                            <img src={webThumbnailUrl+cart.storedImgFileName} width="120px" alt={"이미지 " + cart.storedImgFileName} />
                         </StyledTd>
                         <StyledTd>
                             <BasketItemInfo 
-                                productId = {basket.productId}
-                                productName = {basket.productName}
-                                partnerName = {basket.partnersName}
+                                productId = {cart.productId}
+                                productName = {cart.productName}
+                                partnerName = {cart.partnersName}
                             />
                         </StyledTd>
-                        <StyledTd>{ numberCommaFormat(basket.price)}원</StyledTd>
-                        <StyledTd>{ numberCommaFormat(basket.quantity)}</StyledTd>
+                        <StyledTd>{ numberCommaFormat(cart.price)}원</StyledTd>
+                        <StyledTd>{ numberCommaFormat(cart.quantity)}</StyledTd>
                         <StyledTd>무료</StyledTd>
                         <StyledTd>
-                            <Button variant="outline-danger" onClick={() => removeBasket(basket.id)}>삭제</Button>
+                            <Button variant="outline-danger" onClick={() => removeCart(cart.id)}>삭제</Button>
                         </StyledTd>
                     </tr>
                 ); 

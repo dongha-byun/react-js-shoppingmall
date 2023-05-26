@@ -65,21 +65,20 @@ function App() {
                 <Route index element={<Home/>}></Route>
                 <Route path="/intro" element={<Intro/>}></Route>
                 <Route path="/product/:productId" element={<ProductView/>}></Route>
-                <Route path="/buy" element={<BuyInfoFormPage/>}></Route>
-                <Route path="/order" element={<OrderConfirmPage/>}></Route>
+                <Route path="/order" element={<BuyInfoFormPage/>}></Route>
+                <Route path="/order/confirm" element={<OrderConfirmPage/>}></Route>
                 <Route path="/product-question/:productId" element={<ProductQuestionPage/>}></Route>
                 <Route path="/products/:categoryId/:subCategoryId" element={<ProductListPage/>}></Route>
                 <Route path="/search-products" element={<ProductSearchListPage/>}></Route>
+
                 <Route path="/my-page" element={<UserConfigPage/>}>
                   <Route path="basic" element={<UserBasicConfig />}/>
                   <Route path="basket" element={<BasketListPage/>}></Route>
                   <Route path="delivery" element={<DeliveryConfig />}/>
                   <Route path="delivery/add" element={<DeliveryFormPage />}/>
                   <Route path="payment" element={<PaymentConfig />}/>
-                  
                   <Route path="buy" element={<BuyConfig />}/>
                   <Route path="buy/review-write" element={<ReviewWriteForm/>}></Route>
-                  
                 </Route>
 
                 <Route path="/pay/ready" element={<PayReadyPage/>}></Route>

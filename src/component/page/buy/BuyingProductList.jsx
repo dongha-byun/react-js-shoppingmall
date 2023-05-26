@@ -9,15 +9,8 @@ const BuyingProductListWrapper = styledComponents.div`
 `;
 
 function BuyingProductList(props){
-    const {orderProductParam} = props;
-    const [total, setTotal] = useState(0);
+    const {items} = props;
     const productListHeader = ["","상품정보","판매자","수량","가격","배송비","합계"];
-
-    useEffect(() => {
-        setTotal(
-            orderProductParam.price * orderProductParam.quantity + orderProductParam.deliveryFee
-        );
-    });
 
     return (
         <BuyingProductListWrapper>
@@ -39,15 +32,19 @@ function BuyingProductList(props){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><img src={webThumbnailUrl+orderProductParam.imgUrl} width="150px" height="100px"/></td>
-                        <td>{orderProductParam.productName}</td>
-                        <td>{orderProductParam.providerName}</td>
-                        <td>{numberCommaFormat(orderProductParam.quantity)}</td>
-                        <td>{numberCommaFormat(orderProductParam.price)}원</td>
-                        <td>{numberCommaFormat(orderProductParam.deliveryFee)}원</td>
-                        <td>{numberCommaFormat(total)}원</td>
-                    </tr>
+                    {items.map((item) => {
+                        return (
+                            <tr key={item.id}>
+                                <td><img src={webThumbnailUrl+item.imgUrl} width="150px" height="100px"/></td>
+                                <td>{item.productName}</td>
+                                <td>{item.partnersName}</td>
+                                <td>{numberCommaFormat(item.quantity)}</td>
+                                <td>{numberCommaFormat(item.price)}원</td>
+                                <td>{numberCommaFormat(0)}원</td>
+                                <td>{numberCommaFormat(item.quantity * item.price + 0)}원</td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </BuyingProductListWrapper>
