@@ -1,7 +1,6 @@
-import ApiService, { api } from "../../axios";
+import ApiService from "../../axios";
 import { UNAUTHORIZED } from "../../constants";
 import { headers } from "./headers";
-import { getUserAttribute } from "./login";
 
 
 export function logout(){
@@ -15,7 +14,7 @@ export function logout(){
         }
     })
     .finally(() => {
-        localStorage.clear();
+        sessionStorage.removeItem("user");
         window.location.replace("/");
     });
 }
