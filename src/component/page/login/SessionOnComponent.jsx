@@ -8,13 +8,13 @@ function SessionOnComponent(){
 
     return (
         <>
-            <Button variant="outline-primary" onClick={()=>{
+            <Button className="mx-1" variant="outline-primary" onClick={()=>{
                 navigate("/my-page");
             }}>마이페이지</Button>
-            <Button variant="outline-primary" onClick={()=>{
+            <Button className="mx-1" variant="outline-primary" onClick={()=>{
                 navigate("/admin");
             }}>관리자</Button>
-            <Button variant="outline-primary" onClick={()=>{
+            <Button className="mx-1" variant="outline-primary" onClick={()=>{
                 logout();
             }}>로그아웃</Button>
         </>

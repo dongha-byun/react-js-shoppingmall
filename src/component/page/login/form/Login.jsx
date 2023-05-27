@@ -3,7 +3,7 @@ import { Button, Form, Nav } from "react-bootstrap";
 
 
 function Login(props){
-    const { onChange, login} = props;
+    const { onChange, login } = props;
 
     return (
         <>
@@ -20,6 +20,11 @@ function Login(props){
                         type="password"
                         placeholder="비밀번호"
                         onChange={onChange}
+                        onKeyDown={(event) => {
+                            if(event.code === "Enter") {
+                                login();
+                            }
+                        }}
                     />
                 </Form.Group>
                 <div className="d-grid mb-3">
