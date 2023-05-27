@@ -39,7 +39,6 @@ import DeliveryFormPage from './component/delivery/DeliveryFormPage';
 import PayReadyPage from './component/page/buy/PayReadyPage';
 import PayApprovePage from './component/page/buy/PayApprovePage';
 import PaySuccessPage from './component/page/buy/PaySuccessPage';
-import PartnersSignup from './component/provide/login/PartnersSignup';
 import PartnersListPage from './component/admin/approve/PartnersListPage';
 import ProductListPage from './component/product/list/ProductListPage';
 import ProductSearchListPage from './component/product/search/ProductSearchListPage';
@@ -95,8 +94,6 @@ function App() {
                   <Route path="order" element={<OrderComponent/>}></Route>
                   <Route path="qna" element={<QnaManageComponent/>}></Route>
                 </Route>
-
-                <Route path="/partners/sign-up" element={<PartnersSignup />}></Route>
 
                 <Route path="/admin" element={<AdminPage />}>
                   <Route path="category" element={<CategoryManagePage/>}></Route>
