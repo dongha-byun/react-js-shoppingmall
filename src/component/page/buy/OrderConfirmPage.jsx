@@ -18,9 +18,20 @@ export default function OrderConfirmPage() {
     const [payParam, setPayParam] = useState({});
 
     useEffect(() => {
-        setOrderProductParam(
-            state.items
-        );
+        let items = state.items;
+        
+        let totalQuantity = 0;
+        items.forEach(item => {
+            totalQuantity += item.quantity
+        });
+
+        let payProductName = items[0].productName;
+        if(items.length > 1) {
+            let otherProductCount = items.length-1;
+            payProductName += " 외 " + otherProductCount + "건";
+        }
+
+        setOrderProductParam(items);
 
         setDeliveryParam({
             "receiverName" : state.receiverName,
@@ -31,7 +42,8 @@ export default function OrderConfirmPage() {
         });
 
         setPayParam({
-            "productName" : state.items[0].productName,
+            "productName" : payProductName,
+            "quantity": totalQuantity,
             "deliveryFee" : state.deliveryFee,
             "total" : state.total
         });
@@ -43,7 +55,7 @@ export default function OrderConfirmPage() {
             "deliveryParam": deliveryParam,
             "payParam" : payParam
         }));
-        //navigate("/pay/ready", {state : payParam});
+        navigate("/pay/ready", {state : payParam});
     }
 
     return (

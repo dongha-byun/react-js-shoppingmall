@@ -12,7 +12,7 @@ const StyledSuccessWrapper = styled.div`
 
 export default function PaySuccessPage() {
     const navigate = useNavigate();
-    const [orderProductParam, setOrderProductParam] = useState({});
+    const [orderProductParam, setOrderProductParam] = useState([]);
     const [deliveryParam, setDeliveryParam] = useState({});
     const [payParam, setPayParam] = useState({});
 
@@ -22,14 +22,14 @@ export default function PaySuccessPage() {
             setOrderProductParam(orderParam.orderProductParam);
             setDeliveryParam(orderParam.deliveryParam);
             setPayParam(orderParam.payParam);
-            //sessionStorage.removeItem("orderParam");
+            sessionStorage.removeItem("orderParam");
         }
     }, []);
 
     return (
         <StyledSuccessWrapper>
             <h2>주문내역 확인</h2>
-            <BuyingProductList orderProductParam={orderProductParam}/>
+            <BuyingProductList items={orderProductParam}/>
             <OrderPaymentResult payParam={payParam} />
             <OrderDeliveryInfo deliveryParam={deliveryParam} />
             <Button className="w-100" size="lg" 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import PayService from "../../../api/component/pay/pay";
+import PayService, { TYPE_KAKAO_PAY } from "../../../api/component/pay/pay";
 import { Spinner } from "react-bootstrap";
 import OrderService from "../../../api/component/order/order";
 
@@ -12,7 +12,7 @@ export default function PayApprovePage() {
         let searchParams = new URLSearchParams(location.search);
         let payParam = JSON.parse(localStorage.getItem("pay_param"));
         let param = {
-            "type": "kakaoPay",
+            "type": TYPE_KAKAO_PAY,
             "data": {
                 "cid": payParam.cid,
                 "tid": payParam.tid,
@@ -37,9 +37,11 @@ export default function PayApprovePage() {
 
         let param = {
             "tid": tid,
-            "productId": orderProductParam.productId,
-            "quantity": orderProductParam.quantity,
-            "deliveryFee": orderProductParam.deliveryFee,
+            "payType": TYPE_KAKAO_PAY,
+
+            "items": orderProductParam,
+            
+            "deliveryFee": payParam.deliveryFee,
             "receiverName" : deliveryParam.receiverName,
             "zipCode" : deliveryParam.zipCode,
             "address" : deliveryParam.address,
@@ -47,6 +49,8 @@ export default function PayApprovePage() {
             "requestMessage" : deliveryParam.requestMessage,
             "totalPrice" : payParam.total
         }
+
+        console.log(param);
 
         // 여기서 Order Api Call
         OrderService.order(param).then(result => {
