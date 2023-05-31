@@ -26,6 +26,10 @@ const StyledButtonTd = styledComponents.td`
 `;
 const StyledHeaderDiv = styledComponents.div`
     font-weight: bold;
+    float: left;
+`;
+const StyledButtonDiv = styledComponents.div`
+    float: right;
 `;
 
 function DeliveryView(props){
@@ -41,6 +45,11 @@ function DeliveryView(props){
     return (
         <DeliveryViewWrapper>
             <StyledHeaderDiv>{delivery.nickName}</StyledHeaderDiv>
+            <StyledButtonDiv>
+                <Button variant="danger" size="sm" onClick={()=>{
+                    deleteDelivery(`${delivery.id}`);
+                }}>삭제</Button>
+            </StyledButtonDiv>
             <StyledTable>
                 <tbody>
                     <tr>
@@ -48,17 +57,12 @@ function DeliveryView(props){
                         <StyledTd>{delivery.receiverName}</StyledTd>
                     </tr>
                     <tr>
-                        <StyledTh>우편번호</StyledTh>
-                        <StyledTd>{delivery.zipCode}</StyledTd>
-                        <StyledButtonTd rowSpan={3}>
-                            <Button variant="danger" onClick={()=>{
-                                deleteDelivery(`${delivery.id}`);
-                            }}>삭제</Button>
-                        </StyledButtonTd>
+                        <StyledTh>수령인 연락처</StyledTh>
+                        <StyledTd>{delivery.receiverPhoneNumber}</StyledTd>
                     </tr>
                     <tr>
                         <StyledTh>주소</StyledTh>
-                        <StyledTd>{delivery.address} / {delivery.detailAddress}</StyledTd>
+                        <StyledTd>{delivery.address} / {delivery.detailAddress} ({delivery.zipCode})</StyledTd>
                     </tr>
                     <tr>
                         <StyledTh>배송 요청사항</StyledTh>

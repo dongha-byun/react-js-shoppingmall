@@ -39,6 +39,19 @@ function DeliveryForm(props){
             </Row>
             <Row className="mb-3">
                 <Col xs={8}>
+                    <Form.Group controlId="receiverPhoneNumber">
+                        <Form.Control
+                            type="text"
+                            placeholder="수령인 연락처"
+                            onChange={onChangeForm}
+                            defaultValue={isWritable ? selectedDelivery.receiverPhoneNumber : ""}
+                            disabled={isWritable}
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
+            <Row className="mb-3">
+                <Col xs={8}>
                     <Form.Group controlId="zipCode">
                         <Form.Control
                             type="text"

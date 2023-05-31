@@ -17,6 +17,7 @@ function DeliveryFormPage() {
     const [values, setValues] = useState({
         nickName: "",
         receiverName: "",
+        receiverPhoneNumber: "",
         zipCode : "",
         address : "",
         detailAddress : "",
