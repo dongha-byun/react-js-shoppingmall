@@ -1,6 +1,4 @@
-import ApiService, { api } from "../../axios";
-import { partnerHeaders } from "../login/headers";
-
+import { api } from "../../axios";
 
 const ProductService = {
     getProducts: async (categoryId, subCategoryId, orderType, limit, offset) => {
@@ -34,6 +32,7 @@ const ProductService = {
                     "&limit=" + limit +
                     "&offset=" + offset;
         let response = await api.get(url);
+        console.log(response);
         return response.data;
     },
     searchMoreProducts: async(searchKeyword, orderType, limit, offset) => {

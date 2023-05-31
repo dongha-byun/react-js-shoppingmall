@@ -25,7 +25,7 @@ function ProductSearchList(props){
                         src={webThumbnailUrl + thumbnail}
                         name={product.name}
                         score={product.score}
-                        scoreCnt={product.scoreCnt}
+                        salesVolume={product.salesVolume}
                         onClick={() => {
                             navigate("/product/"+product.id);
                         }}

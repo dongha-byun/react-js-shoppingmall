@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { webThumbnailUrl, webUrl } from "../../../api/axios";
+import { webThumbnailUrl } from "../../../api/axios";
 import ProductItem from "../ProductItem";
 
 const StyledSearchListWrapper = styled.div`
@@ -25,7 +25,7 @@ export default function ProductList(props){
                         src={webThumbnailUrl + thumbnail}
                         name={product.name}
                         score={product.score}
-                        scoreCnt={product.scoreCnt}
+                        salesVolume={product.salesVolume}
                         onClick={() => {
                             navigate("/product/"+product.id);
                         }}

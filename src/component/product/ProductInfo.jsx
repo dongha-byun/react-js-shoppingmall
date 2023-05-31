@@ -16,13 +16,12 @@ const ProductScore = styledComponents.div`
 `;
 
 function ProductInfo(props){
-
-    const {name, score, scoreCnt} = props;
+    const {name, score, salesVolume} = props;
 
     return(
         <ProductInfoWrapper>
             <ProductName>{name}</ProductName>
-            <ProductScore>{score}({scoreCnt})</ProductScore>
+            <ProductScore>평점:{score}({salesVolume})</ProductScore>
         </ProductInfoWrapper>
     );
 }
