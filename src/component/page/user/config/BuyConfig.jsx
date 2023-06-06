@@ -56,7 +56,7 @@ function BuyConfig(){
             </Form>
             {orderHistories.map((orderHistory)=>{
                 return(
-                    <BuyListComponent key={orderHistory.orderId} orderHistory={orderHistory} />
+                    <BuyListComponent key={orderHistory.orderItemId} orderHistory={orderHistory} />
                 );
             })}
         </BuyWrapper>

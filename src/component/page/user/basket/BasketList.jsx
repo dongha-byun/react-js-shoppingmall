@@ -70,7 +70,7 @@ function BasketList(props){
                             />
                         </StyledCheckTd>
                         <StyledTd>
-                            <img src={webThumbnailUrl+cart.storedImgFileName} width="120px" alt={"이미지 " + cart.storedImgFileName} />
+                            <img src={cart.storedImgFileName ? webThumbnailUrl+cart.storedImgFileName  : '/images/pot.jpeg'} width="120px" alt={"이미지 " + cart.storedImgFileName} />
                         </StyledTd>
                         <StyledTd>
                             <BasketItemInfo 

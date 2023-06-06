@@ -9,11 +9,11 @@ const OrderService = {
         let response = await api.get("/user/orders?startDate="+startDate+"&endDate="+endDate, headers());
         return response.data;
     },
-    cancel: async(orderId, cancelReason) => {
+    cancel: async(orderId, orderItemId, cancelReason) => {
         let param = {
             "cancelReason" : cancelReason
         };
-        let response = await api.put("/orders/"+orderId+"/cancel", param, headers());
+        let response = await api.put("/orders/"+orderId+"/"+orderItemId+"/cancel", param, headers());
         return response.data;
     }
 

@@ -35,7 +35,7 @@ function BuyingProductList(props){
                     {items.map((item) => {
                         return (
                             <tr key={item.id}>
-                                <td><img src={webThumbnailUrl+item.imgUrl} width="150px" height="100px"/></td>
+                                <td><img src={item.storedImgFileName ? webThumbnailUrl+item.storedImgFileName : '/images/pot.jpeg'} width="150px" height="100px"/></td>
                                 <td>{item.productName}</td>
                                 <td>{item.partnersName}</td>
                                 <td>{numberCommaFormat(item.quantity)}</td>

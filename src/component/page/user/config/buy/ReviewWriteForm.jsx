@@ -32,10 +32,11 @@ function ReviewWriteForm(){
 
     const writeReview = () => {
         let orderId = state.orderId;
+        let orderItemId = state.orderItemId;
         let productId = state.productId;
-        ProductReviewService.saveReview(orderId, productId, reviewValue).then(result => {
+        ProductReviewService.saveReview(orderId, orderItemId, productId, reviewValue).then(() => {
             alert("리뷰 등록이 완료되었습니다.");
-        }).catch(error => {
+        }).catch((error) => {
             alert("리뷰 등록에 실패하였습니다.");
         });
     }

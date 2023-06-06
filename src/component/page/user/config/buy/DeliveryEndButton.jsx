@@ -3,12 +3,13 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 export default function DeliveryEndButton(props) {
-    const {orderId, productId} = props;
+    const {orderId, orderItemId, productId} = props;
     const navigate = useNavigate();
 
     const writeReview = () => {
         let reviewWriteParam = {
             "orderId": orderId,
+            "orderItemId": orderItemId,
             "productId": productId
         }
         navigate("review-write", {state: reviewWriteParam});
