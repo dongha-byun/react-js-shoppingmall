@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styledComponents from "styled-components";
 import { Tabs, Tab } from "react-bootstrap";
 import { Outlet, useNavigate } from "react-router-dom";
+import UserGrade from "./UserGrade";
 
 const UserConfigPageWrapper = styledComponents.div`
     padding: 20px;
@@ -10,10 +11,11 @@ const UserConfigPageWrapper = styledComponents.div`
 function UserConfigPage(){
     const navigate = useNavigate();
     const [key, setKey] = useState("basic");
+
     const onSelect = (eventKey) => {
         setKey(eventKey);
         navigate(eventKey);
-    }
+    };
     
     useEffect(() => {
         onSelect(key);
@@ -21,6 +23,7 @@ function UserConfigPage(){
 
     return (
         <UserConfigPageWrapper>
+            <UserGrade />
             <Tabs
                 activeKey={key}
                 className="mb-3"

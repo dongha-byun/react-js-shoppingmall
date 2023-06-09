@@ -86,7 +86,6 @@ function BuyInfoFormPage(){
     };
 
     const orderItem = () => {
-        console.log(orderParam);
         navigate("/order/confirm", {state : orderParam});
     };
 

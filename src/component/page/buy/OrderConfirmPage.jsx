@@ -5,6 +5,8 @@ import BuyingProductList from "./BuyingProductList";
 import OrderDeliveryInfo from "./OrderDeliveryInfo";
 import OrderPaymentInfo from "./OrderPaymentInfo";
 import styled from "styled-components";
+import OrderDiscountForm from "./OrderDiscountForm";
+import { numberCommaFormat } from "../../../util/NumberFormat";
 
 const StyledOrderConfirmPageWrapper = styled.div`
     margin-bottom: 20px
@@ -45,9 +47,18 @@ export default function OrderConfirmPage() {
             "productName" : payProductName,
             "quantity": totalQuantity,
             "deliveryFee" : state.deliveryFee,
+            "discountAmount" : 0,
             "total" : state.total
         });
     }, []);
+
+    const calculateTotalAmounts = (discountAmount) => {
+        setPayParam({
+            ...payParam,
+            "discountAmount" : discountAmount,
+            "total" : state.total - discountAmount
+        });
+    }
 
     const paying = () => {
         sessionStorage.setItem("orderParam", JSON.stringify({
@@ -63,10 +74,11 @@ export default function OrderConfirmPage() {
             <h2>주문정보 확인</h2>
             <BuyingProductList items={state.items}/>
             <OrderDeliveryInfo deliveryParam={deliveryParam} />
+            <OrderDiscountForm calculateTotalAmounts={calculateTotalAmounts} totalAmounts={state.total}/>
             <OrderPaymentInfo />
             <Button className="w-100" size="lg" onClick={() => {
                 paying();
-            }}><b>{payParam.total}원</b> 결제하기</Button>
+            }}><b>{numberCommaFormat(payParam.total)}원</b> 결제하기</Button>
         </StyledOrderConfirmPageWrapper>
     );
 }

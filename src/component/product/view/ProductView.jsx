@@ -32,21 +32,13 @@ const ProductImageWrapper = styledComponents.div``;
 function ProductView(){
     const { productId } = useParams();
     const [product, setProduct] = useState({});
+    const [reviews, setReviews] = useState([]);
     const [tabName, setTabName] = useState("DETAIL");
-    const [tempReviews, setTempReviews] = useState([
-        {
-            "id": 1,
-            "writeDate": "2023-05-03 11:05:11",
-            "score": 4,
-            "imgFileName": "",
-            "content": "아주 좋습니다.\n많은분들께 강추 드립니다.!\n재구매 의사 100% 입니다.",
-            "writerLoginId": "user1"
-        }
-    ]);
 
     useEffect(()=>{
         ProductService.getProduct(productId).then(data => {
             setProduct(data);
+            setReviews(data.reviews);
         })
     }, []);
 
@@ -68,7 +60,7 @@ function ProductView(){
                     <DetailComponent detail={product.detail}/>
                 </Tab>
                 <Tab eventKey="REVIEW" title="리뷰">
-                    <ReviewComponent reviews={tempReviews} productName={product.name}/>
+                    <ReviewComponent reviews={reviews} productName={product.name}/>
                 </Tab>
                 <Tab eventKey="QNA" title="상품문의">
                     <QnaComponent productId = {productId} />

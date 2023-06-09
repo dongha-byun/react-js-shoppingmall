@@ -33,7 +33,6 @@ const ReviewBottomWrapper = styled.div``;
 
 function ReviewComponent(props){
     const {reviews, productName} = props;
-    const data = [1,2,3,4,5];
 
     return(
         <ProductReviewComponentWrapper>
@@ -42,7 +41,7 @@ function ReviewComponent(props){
                     <ProductReviewWrapper key={review.id}>
                         <ReviewWriteInfoWrapper>
                             <div>{review.writerLoginId}</div>
-                            <div>평점 : {review.score}<ReviewWriteDateWrapper>{review.writeName}</ReviewWriteDateWrapper></div>
+                            <div>평점 : {review.score}<ReviewWriteDateWrapper>{review.writeDate}</ReviewWriteDateWrapper></div>
                         </ReviewWriteInfoWrapper>
                         <ProductNameWrapper>
                             {productName}
@@ -59,6 +58,10 @@ function ReviewComponent(props){
                     </ProductReviewWrapper>
                 );
             })}
+            {
+                reviews.length == 0 &&
+                <div>등록된 리뷰가 없습니다.</div>
+            }
         </ProductReviewComponentWrapper>
     );
         

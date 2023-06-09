@@ -52,12 +52,12 @@ function BuyListComponent(props){
         PayService.cancelPay(params).then(result => {
             cancelOrder();
         }).catch(() => {
-            console.log("결제 도중 오류가 발생했습니다.");
+            alert("결제 도중 오류가 발생했습니다.");
         });
     }
 
     const cancelOrder = () => {
-        OrderService.cancel(orderHistory.orderId, cancelReason).then(result => {
+        OrderService.cancel(orderHistory.orderId, orderHistory.orderItemId, cancelReason).then(result => {
             alert("주문이 취소되었습니다.");
             handleClose();
             navigate("/my-page/buy");
@@ -93,7 +93,11 @@ function BuyListComponent(props){
                                 </Button>
                             }
                             { orderHistory.orderStatus == 'DELIVERY_END' && 
-                                <DeliveryEndButton orderId={orderHistory.orderId} productId={orderHistory.productId} />
+                                <DeliveryEndButton 
+                                    orderId={orderHistory.orderId} 
+                                    orderItemId={orderHistory.orderItemId}
+                                    productId={orderHistory.productId} 
+                                />
                             }
                         </td>
                     </tr>
