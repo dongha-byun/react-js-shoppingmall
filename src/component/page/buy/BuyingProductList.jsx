@@ -34,7 +34,7 @@ function BuyingProductList(props){
                 <tbody>
                     {items.map((item) => {
                         return (
-                            <tr key={item.id}>
+                            <tr key={item.productId}>
                                 <td><img src={item.storedImgFileName ? webThumbnailUrl+item.storedImgFileName : '/images/pot.jpeg'} width="150px" height="100px"/></td>
                                 <td>{item.productName}</td>
                                 <td>{item.partnersName}</td>

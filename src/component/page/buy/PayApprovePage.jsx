@@ -12,7 +12,7 @@ export default function PayApprovePage() {
         let searchParams = new URLSearchParams(location.search);
         let payParam = JSON.parse(localStorage.getItem("pay_param"));
         let param = {
-            "type": TYPE_KAKAO_PAY,
+            "type": payParam.type,
             "data": {
                 "cid": payParam.cid,
                 "tid": payParam.tid,
@@ -37,7 +37,7 @@ export default function PayApprovePage() {
 
         let param = {
             "tid": tid,
-            "payType": TYPE_KAKAO_PAY,
+            "payType": payParam.type,
 
             "items": orderProductParam,
             
@@ -49,8 +49,6 @@ export default function PayApprovePage() {
             "requestMessage" : deliveryParam.requestMessage,
             "totalPrice" : payParam.total
         }
-
-        console.log(param);
 
         // 여기서 Order Api Call
         OrderService.order(param).then(result => {

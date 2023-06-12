@@ -20,6 +20,7 @@ export default function OrderConfirmPage() {
     const [payParam, setPayParam] = useState({});
 
     useEffect(() => {
+        console.log(state);
         let items = state.items;
         
         let totalQuantity = 0;
@@ -44,6 +45,7 @@ export default function OrderConfirmPage() {
         });
 
         setPayParam({
+            "payType" : "",
             "productName" : payProductName,
             "quantity": totalQuantity,
             "deliveryFee" : state.deliveryFee,
@@ -69,13 +71,20 @@ export default function OrderConfirmPage() {
         navigate("/pay/ready", {state : payParam});
     }
 
+    const changePayType = (type) => {
+        setPayParam({
+            ...payParam,
+            "payType" : type
+        });
+    }
+
     return (
         <StyledOrderConfirmPageWrapper>
             <h2>주문정보 확인</h2>
             <BuyingProductList items={state.items}/>
             <OrderDeliveryInfo deliveryParam={deliveryParam} />
             <OrderDiscountForm calculateTotalAmounts={calculateTotalAmounts} totalAmounts={state.total}/>
-            <OrderPaymentInfo />
+            <OrderPaymentInfo changePayType={changePayType} />
             <Button className="w-100" size="lg" onClick={() => {
                 paying();
             }}><b>{numberCommaFormat(payParam.total)}원</b> 결제하기</Button>

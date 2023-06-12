@@ -19,7 +19,8 @@ const StyledLi = styled.li`
     float: left;
 `;
 
-export default function OrderPaymentInfo() {
+export default function OrderPaymentInfo(props) {
+    const { changePayType } = props;
 
     const samplePayments = ['신한카드','국민카드'];
     const [index, setIndex] = useState(0);
@@ -28,10 +29,14 @@ export default function OrderPaymentInfo() {
         setIndex(selectedIndex);
     }
 
+    const onChangeType = (event) => {
+        changePayType(event.target.value);
+    }
+
     return (
         <StyledWrapper>
             <h4>결제수단 선택</h4>
-            <Form.Select>
+            <Form.Select onChange={onChangeType}>
                 <option value="KAKAO_PAY">카카오페이</option>
                 <option value="CARD">신용/체크 카드</option>
             </Form.Select>
