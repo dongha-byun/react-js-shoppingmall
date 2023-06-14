@@ -40,28 +40,29 @@ const StyledBuyWrapper = styled.div`
 function ProductPriceComponent(props){
 
     const {product} = props;
-    const [price, setPrice] = useState(product.price);
+    const [price, setPrice] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
     const [orderProductParam, setOrderProductParam] = useState({});
     
-    useEffect(() => {
+    useEffect(() => {   
         setPrice(product.price);
-        setOrderProductParam(
-            {
-                "productId" : product.id,
-                "productName" : product.name,
-                "imgUrl" : product.thumbnail,
-                "providerName" : product.partnersName,
-                "quantity" : quantity,
-                "price" : product.price,
-                "deliveryFee" : 0
-            }
-        );
+        setOrderProductParam({
+            "items": [
+                {
+                    "productId" : product.id,
+                    "quantity" : quantity,
+                    "price" : product.price,
+                    "storedImgFileName" : product.thumbnail,
+                    "productName" : product.name,
+                    "partnersName" : product.partnersName,
+                }
+            ]
+        });
     }, [product]);
 
     const buyNow = () =>{
-        navigate("/buy", {state: orderProductParam});
+        navigate("/order", {state: orderProductParam});
     }
 
     const intoBasket = () =>{
@@ -75,12 +76,15 @@ function ProductPriceComponent(props){
         });
     }
 
-    const onChangeQuantity = (quantity) => {
-        setQuantity(quantity);
-        setPrice(quantity * product.price);
+    const onChangeQuantity = (changeQuantity) => {
+        let tempItems = orderProductParam.items.map((tempItem) => {
+            return {...tempItem, quantity: changeQuantity};
+        });
+
+        setQuantity(changeQuantity);
+        setPrice(changeQuantity * product.price);
         setOrderProductParam({
-            ...orderProductParam,
-            ["quantity"]: quantity
+            "items": tempItems
         });
     }
 

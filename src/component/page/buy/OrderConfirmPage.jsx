@@ -7,6 +7,8 @@ import OrderPaymentInfo from "./OrderPaymentInfo";
 import styled from "styled-components";
 import OrderDiscountForm from "./OrderDiscountForm";
 import { numberCommaFormat } from "../../../util/NumberFormat";
+import { TYPE_KAKAO_PAY } from "../../../api/component/pay/pay";
+import TotalAmountsCalculatePane from "./TotalAmountsCalculatePane";
 
 const StyledOrderConfirmPageWrapper = styled.div`
     margin-bottom: 20px
@@ -20,12 +22,13 @@ export default function OrderConfirmPage() {
     const [payParam, setPayParam] = useState({});
 
     useEffect(() => {
-        console.log(state);
         let items = state.items;
         
         let totalQuantity = 0;
+        let totalProductPrice = 0;
         items.forEach(item => {
             totalQuantity += item.quantity
+            totalProductPrice += item.quantity * item.price;
         });
 
         let payProductName = items[0].productName;
@@ -45,22 +48,15 @@ export default function OrderConfirmPage() {
         });
 
         setPayParam({
-            "payType" : "",
+            "payType" : TYPE_KAKAO_PAY,
             "productName" : payProductName,
+            "productPrice" : totalProductPrice,
             "quantity": totalQuantity,
             "deliveryFee" : state.deliveryFee,
             "discountAmount" : 0,
             "total" : state.total
         });
     }, []);
-
-    const calculateTotalAmounts = (discountAmount) => {
-        setPayParam({
-            ...payParam,
-            "discountAmount" : discountAmount,
-            "total" : state.total - discountAmount
-        });
-    }
 
     const paying = () => {
         sessionStorage.setItem("orderParam", JSON.stringify({
@@ -83,7 +79,8 @@ export default function OrderConfirmPage() {
             <h2>주문정보 확인</h2>
             <BuyingProductList items={state.items}/>
             <OrderDeliveryInfo deliveryParam={deliveryParam} />
-            <OrderDiscountForm calculateTotalAmounts={calculateTotalAmounts} totalAmounts={state.total}/>
+            <OrderDiscountForm items={state.items}/>
+            <TotalAmountsCalculatePane orderProductParam={orderProductParam}/>
             <OrderPaymentInfo changePayType={changePayType} />
             <Button className="w-100" size="lg" onClick={() => {
                 paying();

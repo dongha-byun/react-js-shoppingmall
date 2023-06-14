@@ -1,78 +1,45 @@
-import React, { useState } from "react";
-import { Card, Form, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Form } from "react-bootstrap";
 import styled from "styled-components";
+import { TYPE_CARD, TYPE_KAKAO_PAY } from "../../../api/component/pay/pay";
+import CardPayTypeSelectForm from "./CardPayTypeSelectForm";
 
 const StyledWrapper = styled.div`
     margin-bottom: 15px;
     border-bottom: 1px solid #cdcdcd;
-`;
-
-const StyledUl = styled.ul`
-    margin-top: 15px;
-    padding: 0;
-    width: 100%;
-    display: inline-block;
-`;
-
-const StyledLi = styled.li`
-    width: 20%;
-    float: left;
+    padding: 10px 0;
 `;
 
 export default function OrderPaymentInfo(props) {
     const { changePayType } = props;
-
-    const samplePayments = ['신한카드','국민카드'];
-    const [index, setIndex] = useState(0);
-
-    const handleSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
-    }
-
+    const [payType, setPayType] = useState(TYPE_CARD);
+    const cardList = [
+        {
+            "id" : 10,
+            "cardCompanyName" : "신한카드",
+            "cardNo" : "2244-XXXX-XXXX-XX23"
+        },
+        {
+            "id" : 11,
+            "cardCompanyName" : "국민카드",
+            "cardNo" : "9092-XXXX-XXXX-XX01"
+        }
+    ];
+    
     const onChangeType = (event) => {
-        changePayType(event.target.value);
+        let selectPayType = event.target.value;
+        setPayType(selectPayType)
+        changePayType(selectPayType);
     }
 
     return (
         <StyledWrapper>
             <h4>결제수단 선택</h4>
             <Form.Select onChange={onChangeType}>
-                <option value="KAKAO_PAY">카카오페이</option>
-                <option value="CARD">신용/체크 카드</option>
+                <option value={TYPE_KAKAO_PAY}>카카오페이</option>
+                <option value={TYPE_CARD} selected>신용/체크 카드</option>
             </Form.Select>
-            <StyledUl>
-            {samplePayments.map((payment) => {
-                return (
-                    <StyledLi key={payment}>
-                        <Card>
-                            <Card.Body>
-                                <Card.Title>
-                                    <Form.Check 
-                                        type="radio" 
-                                        label={payment} 
-                                        name="payment_type" 
-                                        id={payment}
-                                    />
-                                </Card.Title>
-                                <Card.Text>
-                                    xxxx-tttt-aaaa-dddd
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </StyledLi>
-                );
-            })}
-                <StyledLi>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title></Card.Title>
-                            <Card.Text className="text-center">
-                                <Button variant="outline-primary">추가하기</Button>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </StyledLi>
-            </StyledUl>
+            { payType == TYPE_CARD && <CardPayTypeSelectForm cardList={cardList} /> }
         </StyledWrapper>
     );
 }

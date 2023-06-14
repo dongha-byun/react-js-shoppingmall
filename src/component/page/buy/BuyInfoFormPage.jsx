@@ -5,6 +5,7 @@ import DeliveryInfoForm from "./DeliveryInfoForm";
 import { useLocation, useNavigate } from "react-router-dom";
 import { numberCommaFormat } from "../../../util/NumberFormat";
 import { Button } from "react-bootstrap";
+import UserService from "../../../api/component/user/user";
 
 const BuyInfoFormPageWrapper = styledComponents.div`
     padding: 20px;
@@ -40,19 +41,23 @@ function BuyInfoFormPage(){
     );
 
     useEffect(() => {
-        let items = state.items;
-        let totalPrice = 0;
-        items.forEach(element => {
-            totalPrice += element.price * element.quantity
+        UserService.getGradeInfo().then((result) => {
+            let totalPrice = 0;
+            let items = state.items.map((element) => {
+                let productPrice = element.price * element.quantity;
+                let gradeDiscountAmount = Math.round(productPrice * result.gradeDiscountRate / 100);
+                totalPrice += productPrice - gradeDiscountAmount;
+                return {...element, ["productPrice"]: productPrice , ["gradeDiscountAmount"]: gradeDiscountAmount}
+            });
+    
+            setOrderParam({
+                ...orderParam,
+                "items": items,
+                "total": totalPrice,
+                "deliveryFee": 0
+            });
+            setTotal(totalPrice);
         });
-
-        setOrderParam({
-            ...orderParam,
-            "items": items,
-            "total": totalPrice,
-            "deliveryFee": 0
-        });
-        setTotal(totalPrice);
     }, []);
 
     const onChangeDelivery = (event) => {
@@ -92,7 +97,7 @@ function BuyInfoFormPage(){
     return (
         <BuyInfoFormPageWrapper>
             <BuyHeaderWrapper>주문하기</BuyHeaderWrapper>
-            <BuyingProductList items={state.items} />
+            <BuyingProductList items={orderParam.items} />
             <DeliveryInfoForm onChangeDelivery={onChangeDelivery} onSelectDelivery={onSelectDelivery}/>
             <BuyInfoFormButtonWrapper>
                 총 가격 : {numberCommaFormat(total)}원

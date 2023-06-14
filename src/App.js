@@ -42,6 +42,7 @@ import PaySuccessPage from './component/page/buy/PaySuccessPage';
 import PartnersListPage from './component/admin/approve/PartnersListPage';
 import ProductListPage from './component/product/list/ProductListPage';
 import ProductSearchListPage from './component/product/search/ProductSearchListPage';
+import InternalPayPage from './component/page/buy/pay/internal/InternalPayPage';
 
 function App() {
 
@@ -83,6 +84,7 @@ function App() {
                 <Route path="/pay/ready" element={<PayReadyPage/>}></Route>
                 <Route path="/pay/approve" element={<PayApprovePage/>}></Route>
                 <Route path="/pay/success" element={<PaySuccessPage/>}></Route>
+                <Route path="/pay/internal/approve" element={<InternalPayPage/>}></Route>
 
                 <Route path="/find-id" element={<FindId/>}></Route>
                 <Route path="/find-pw" element={<FindPw/>}></Route>

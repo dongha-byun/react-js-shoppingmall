@@ -10,7 +10,7 @@ const BuyingProductListWrapper = styledComponents.div`
 
 function BuyingProductList(props){
     const {items} = props;
-    const productListHeader = ["","상품정보","판매자","수량","가격","배송비","합계"];
+    const productListHeader = ["","상품정보","가격","수량","상품 총 가격","회원할인","배송비","합계"];
 
     return (
         <BuyingProductListWrapper>
@@ -18,9 +18,10 @@ function BuyingProductList(props){
                 <colgroup>
                     <col></col>
                     <col width={300}></col>
-                    <col width={300}></col>
+                    <col width={200}></col>
                     <col width={100}></col>
-                    <col width={300}></col>
+                    <col width={200}></col>
+                    <col width={150}></col>
                     <col width={150}></col>
                     <col width={200}></col>
                 </colgroup>
@@ -35,13 +36,14 @@ function BuyingProductList(props){
                     {items.map((item) => {
                         return (
                             <tr key={item.productId}>
-                                <td><img src={item.storedImgFileName ? webThumbnailUrl+item.storedImgFileName : '/images/pot.jpeg'} width="150px" height="100px"/></td>
-                                <td>{item.productName}</td>
-                                <td>{item.partnersName}</td>
-                                <td>{numberCommaFormat(item.quantity)}</td>
+                                <td><img src={item.storedImgFileName ? webThumbnailUrl+item.storedImgFileName : '/images/pot.jpeg'} width="100px"/></td>
+                                <td> [{item.partnersName}] {item.productName}</td>
                                 <td>{numberCommaFormat(item.price)}원</td>
+                                <td>{numberCommaFormat(item.quantity)}</td>
+                                <td>{numberCommaFormat(item.productPrice)}원</td>
+                                <td>{numberCommaFormat(item.gradeDiscountAmount)}원</td>
                                 <td>{numberCommaFormat(0)}원</td>
-                                <td>{numberCommaFormat(item.quantity * item.price + 0)}원</td>
+                                <td>{numberCommaFormat(item.productPrice - item.gradeDiscountAmount + 0)}원</td>
                             </tr>
                         );
                     })}

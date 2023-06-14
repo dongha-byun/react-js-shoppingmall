@@ -8,7 +8,7 @@ export default function PayReadyPage() {
 
     useEffect(() => {
         let param = {
-            "type": state.type,
+            "type": state.payType,
             "data": {
                 "cid": TEST_PAY_CID,
                 "partner_order_id": "dongha_shopping_mall_order",
@@ -28,7 +28,7 @@ export default function PayReadyPage() {
             localStorage.setItem("pay_param", JSON.stringify({
                 "cid": TEST_PAY_CID,
                 "tid": result.tid,
-                "type" : state.type,
+                "type" : state.payType,
                 "partner_order_id": "dongha_shopping_mall_order",
                 "partner_user_id": "TuserId",
                 "pg_token": ""
