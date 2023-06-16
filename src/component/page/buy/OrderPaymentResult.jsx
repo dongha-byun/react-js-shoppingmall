@@ -30,7 +30,7 @@ export default function OrderPaymentResult(props) {
                         </ListGroup.Item>
                         <ListGroup.Item className="border-0">
                             <StyledLeftDiv>할인 금액</StyledLeftDiv>
-                            <StyledRightDiv>{numberCommaFormat(payParam.discountAmount)}원</StyledRightDiv>
+                            <StyledRightDiv>- {numberCommaFormat(payParam.totalDiscountAmounts)}원</StyledRightDiv>
                         </ListGroup.Item>
                         <ListGroup.Item className="border-0">
                             <StyledLeftDiv>배송비</StyledLeftDiv>

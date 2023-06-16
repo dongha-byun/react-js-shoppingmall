@@ -32,6 +32,7 @@ function BuyInfoFormPage(){
             "items": [],
             "total" : 0,
             "receiverName" : "",
+            "receiverPhoneNumber" : "",
             "zipCode" : "",
             "address" : "",
             "detailAddress" : "",
@@ -43,9 +44,12 @@ function BuyInfoFormPage(){
     useEffect(() => {
         UserService.getGradeInfo().then((result) => {
             let totalPrice = 0;
+            let totalDiscountAmounts = 0;
             let items = state.items.map((element) => {
                 let productPrice = element.price * element.quantity;
                 let gradeDiscountAmount = Math.round(productPrice * result.gradeDiscountRate / 100);
+
+                totalDiscountAmounts += gradeDiscountAmount;
                 totalPrice += productPrice - gradeDiscountAmount;
                 return {...element, ["productPrice"]: productPrice , ["gradeDiscountAmount"]: gradeDiscountAmount}
             });
@@ -72,6 +76,7 @@ function BuyInfoFormPage(){
             setOrderParam({
                 ...orderParam,
                 ["receiverName"] : delivery.receiverName,
+                ["receiverPhoneNumber"] : delivery.receiverPhoneNumber,
                 ["zipCode"] : delivery.zipCode,
                 ["address"] : delivery.address,
                 ["detailAddress"] : delivery.detailAddress,
@@ -81,6 +86,7 @@ function BuyInfoFormPage(){
             setOrderParam({
                 ...orderParam,
                 ["receiverName"] : "",
+                ["receiverPhoneNumber"] : "",
                 ["zipCode"] : "",
                 ["address"] : "",
                 ["detailAddress"] : "",

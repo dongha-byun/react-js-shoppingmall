@@ -18,11 +18,10 @@ export default function OrderDeliveryInfo(props) {
                 <Card.Body>
                     <Card.Title>{deliveryParam.receiverName}</Card.Title>
                     <Card.Text>
-                        ({deliveryParam.zipCode}) {deliveryParam.address} {deliveryParam.detailAddress}
-                    </Card.Text>
-                    <Card.Footer>
+                        연락처 : {deliveryParam.receiverPhoneNumber} <br/>
+                        받는주소 : {deliveryParam.address} {deliveryParam.detailAddress} ({deliveryParam.zipCode}) <br/>
                         요청사항 : {deliveryParam.requestMessage}
-                    </Card.Footer>
+                    </Card.Text>
                 </Card.Body>
             </Card>
         </StyledWrapper>

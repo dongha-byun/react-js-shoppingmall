@@ -38,15 +38,16 @@ export default function PayApprovePage() {
         let param = {
             "tid": tid,
             "payType": payParam.type,
-
-            "items": orderProductParam,
-            
+            "items": orderProductParam,            
             "deliveryFee": payParam.deliveryFee,
-            "receiverName" : deliveryParam.receiverName,
-            "zipCode" : deliveryParam.zipCode,
-            "address" : deliveryParam.address,
-            "detailAddress" : deliveryParam.detailAddress,
-            "requestMessage" : deliveryParam.requestMessage,
+            "deliveryInfo" : {
+                "receiverName" : deliveryParam.receiverName,
+                "receiverPhoneNumber" : deliveryParam.receiverPhoneNumber,
+                "zipCode" : deliveryParam.zipCode,
+                "address" : deliveryParam.address,
+                "detailAddress" : deliveryParam.detailAddress,
+                "requestMessage" : deliveryParam.requestMessage
+            },
             "totalPrice" : payParam.total
         }
 

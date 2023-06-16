@@ -26,9 +26,11 @@ export default function OrderConfirmPage() {
         
         let totalQuantity = 0;
         let totalProductPrice = 0;
+        let totalDiscountAmounts = 0;
         items.forEach(item => {
             totalQuantity += item.quantity
             totalProductPrice += item.quantity * item.price;
+            totalDiscountAmounts += item.gradeDiscountAmount;
         });
 
         let payProductName = items[0].productName;
@@ -41,6 +43,7 @@ export default function OrderConfirmPage() {
 
         setDeliveryParam({
             "receiverName" : state.receiverName,
+            "receiverPhoneNumber" : state.receiverPhoneNumber,
             "zipCode" : state.zipCode,
             "address" : state.address,
             "detailAddress" : state.detailAddress,
@@ -53,8 +56,8 @@ export default function OrderConfirmPage() {
             "productPrice" : totalProductPrice,
             "quantity": totalQuantity,
             "deliveryFee" : state.deliveryFee,
-            "discountAmount" : 0,
-            "total" : state.total
+            "total" : state.total,
+            "totalDiscountAmounts" : totalDiscountAmounts
         });
     }, []);
 
