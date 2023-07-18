@@ -2,7 +2,7 @@ import ApiService from "../../axios";
 import { headers } from "../login/headers";
 
 const UserService = {
-    getGradeInfo: async() => {
+    getGradeInfo: () => {
         return ApiService.get("/user/grade-info", headers());
     }
 }

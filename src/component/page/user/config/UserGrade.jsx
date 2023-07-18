@@ -37,21 +37,13 @@ const RightDiv = styledComponents.div`
 `;
 
 export default function UserGrade() {
-    const [userInfo, setUserInfo] = useState({
-        "userId" : "1",
-        "userName" : "변동하",
-        "enterDate" : "2017-10-10",
-        "currentUserGrade" : "일반회원",
-        "nextUserGrade" : "단골회원",
-        "remainedOrderCountForNextGrade" : 10,  
-        "remainedAmountsForNextGrade" : 50000
-    });
+    const [userInfo, setUserInfo] = useState({});
 
     useEffect(() => {
         UserService.getGradeInfo().then(result => {
             setUserInfo(result);
         });
-    });
+    }, []);
 
     return(
         <StyledUserGradeWrapper>
@@ -63,7 +55,7 @@ export default function UserGrade() {
                     <LeftDiv>
                         <h4>반갑습니다! {userInfo.userName} 님!</h4>
                     </LeftDiv>
-                    <RightDiv>(가입일: {userInfo.enterDate})</RightDiv>
+                    <RightDiv>(가입일: {userInfo.signUpDate})</RightDiv>
                 </StyledTableRowDiv>
                 <StyledTableRowDiv>
                     {userInfo.userName} 님의 현재 등급은 <b>{userInfo.currentUserGrade}</b> 입니다.
