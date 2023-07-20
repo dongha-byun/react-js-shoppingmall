@@ -25,6 +25,10 @@ export default function OrderDiscountForm(props) {
         setGradeDiscountTotalAmount(initGradeDiscountTotalAmount);
     }, []);
 
+    const openCouponPop = () => {
+        window.open("/order/coupon", "usableCouponPop", "popup=yes,width=900,height=500");
+    }
+
     return (
         <StyledWrapper>
             <h4>할인</h4>
@@ -45,7 +49,7 @@ export default function OrderDiscountForm(props) {
                         <div className="ms-2 me-auto">
                             <div>
                                 <span className="fw-bold">쿠폰할인</span> : 
-                                <Button variant="link" size="sm">적용하기</Button>
+                                <Button variant="link" size="sm" onClick={openCouponPop}>적용하기</Button>
                             </div>
                         </div>
                     </ListGroup.Item>

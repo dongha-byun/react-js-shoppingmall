@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styledComponents from "styled-components";
 import { numberCommaFormat } from "../../../util/NumberFormat";
 import { webThumbnailUrl } from "../../../api/axios";

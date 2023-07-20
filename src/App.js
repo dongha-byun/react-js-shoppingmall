@@ -2,7 +2,8 @@ import './App.css';
 import {
   BrowserRouter,
   Routes,
-  Route
+  Route,
+  Outlet
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
@@ -43,6 +44,7 @@ import PartnersListPage from './component/admin/approve/PartnersListPage';
 import ProductListPage from './component/product/list/ProductListPage';
 import ProductSearchListPage from './component/product/search/ProductSearchListPage';
 import InternalPayPage from './component/page/buy/pay/internal/InternalPayPage';
+import OrderCouponPop from './component/page/buy/pop/OrderCouponPop';
 
 function App() {
 
@@ -59,51 +61,61 @@ function App() {
 
   return (
       <BrowserRouter>
-          <CategorySideNavBar />
-          <div className='main-content'>
-            <Routes>
-                <Route index element={<Home/>}></Route>
-                <Route path="/intro" element={<Intro/>}></Route>
-                <Route path="/product/:productId" element={<ProductView/>}></Route>
-                <Route path="/order" element={<BuyInfoFormPage/>}></Route>
-                <Route path="/order/confirm" element={<OrderConfirmPage/>}></Route>
-                <Route path="/product-question/:productId" element={<ProductQuestionPage/>}></Route>
-                <Route path="/products/:categoryId/:subCategoryId" element={<ProductListPage/>}></Route>
-                <Route path="/search-products" element={<ProductSearchListPage/>}></Route>
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <>
+                  <CategorySideNavBar />
+                  <div className='main-content'>
+                    <Outlet />
+                  </div>
+                </>
+            } >
+              <Route index element={<Home/>}></Route>
+              <Route path="/intro" element={<Intro/>}></Route>
+              <Route path="/product/:productId" element={<ProductView/>}></Route>
+              <Route path="/product-question/:productId" element={<ProductQuestionPage/>}></Route>
+              <Route path="/products/:categoryId/:subCategoryId" element={<ProductListPage/>}></Route>
+              <Route path="/search-products" element={<ProductSearchListPage/>}></Route>
 
-                <Route path="/my-page" element={<UserConfigPage/>}>
-                  <Route path="basic" element={<UserBasicConfig />}/>
-                  <Route path="basket" element={<BasketListPage/>}></Route>
-                  <Route path="delivery" element={<DeliveryConfig />}/>
-                  <Route path="delivery/add" element={<DeliveryFormPage />}/>
-                  <Route path="payment" element={<PaymentConfig />}/>
-                  <Route path="buy" element={<BuyConfig />}/>
-                  <Route path="buy/review-write" element={<ReviewWriteForm/>}></Route>
-                </Route>
+              <Route path="/order" element={<BuyInfoFormPage/>}></Route>
+              <Route path="/order/confirm" element={<OrderConfirmPage/>}></Route>
 
-                <Route path="/pay/ready" element={<PayReadyPage/>}></Route>
-                <Route path="/pay/approve" element={<PayApprovePage/>}></Route>
-                <Route path="/pay/success" element={<PaySuccessPage/>}></Route>
-                <Route path="/pay/internal/approve" element={<InternalPayPage/>}></Route>
+              <Route path="/my-page" element={<UserConfigPage/>}>
+                <Route path="basic" element={<UserBasicConfig />}/>
+                <Route path="basket" element={<BasketListPage/>}></Route>
+                <Route path="delivery" element={<DeliveryConfig />}/>
+                <Route path="delivery/add" element={<DeliveryFormPage />}/>
+                <Route path="payment" element={<PaymentConfig />}/>
+                <Route path="buy" element={<BuyConfig />}/>
+                <Route path="buy/review-write" element={<ReviewWriteForm/>}></Route>
+              </Route>
 
-                <Route path="/find-id" element={<FindId/>}></Route>
-                <Route path="/find-pw" element={<FindPw/>}></Route>
-                <Route path="/sign-up" element={<SignUp/>}></Route>
-                <Route path="/provide-manage" element={<ProvideManagePage/>}>
-                  <Route path="product" element={<ProvideProductList/>}></Route>
-                  <Route path="product/add" element={<ProvideProductAddForm/>}></Route>
-                  <Route path="income" element={<IncomeComponent/>}></Route>
-                  <Route path="order" element={<OrderComponent/>}></Route>
-                  <Route path="qna" element={<QnaManageComponent/>}></Route>
-                </Route>
+              <Route path="/pay/ready" element={<PayReadyPage/>}></Route>
+              <Route path="/pay/approve" element={<PayApprovePage/>}></Route>
+              <Route path="/pay/success" element={<PaySuccessPage/>}></Route>
+              <Route path="/pay/internal/approve" element={<InternalPayPage/>}></Route>
 
-                <Route path="/admin" element={<AdminPage />}>
-                  <Route path="category" element={<CategoryManagePage/>}></Route>
-                  <Route path="cs" element={<CustomServicePage/>}></Route>
-                  <Route path="partners" element={<PartnersListPage/>}></Route>
-                </Route>
-            </Routes>
-          </div>
+              <Route path="/find-id" element={<FindId/>}></Route>
+              <Route path="/find-pw" element={<FindPw/>}></Route>
+              <Route path="/sign-up" element={<SignUp/>}></Route>
+              <Route path="/provide-manage" element={<ProvideManagePage/>}>
+                <Route path="product" element={<ProvideProductList/>}></Route>
+                <Route path="product/add" element={<ProvideProductAddForm/>}></Route>
+                <Route path="income" element={<IncomeComponent/>}></Route>
+                <Route path="order" element={<OrderComponent/>}></Route>
+                <Route path="qna" element={<QnaManageComponent/>}></Route>
+              </Route>
+
+              <Route path="/admin" element={<AdminPage />}>
+                <Route path="category" element={<CategoryManagePage/>}></Route>
+                <Route path="cs" element={<CustomServicePage/>}></Route>
+                <Route path="partners" element={<PartnersListPage/>}></Route>
+              </Route>
+            </Route>
+            <Route path="/order/coupon" element={<OrderCouponPop/>}></Route>
+          </Routes>
       </BrowserRouter>
   );
 }
