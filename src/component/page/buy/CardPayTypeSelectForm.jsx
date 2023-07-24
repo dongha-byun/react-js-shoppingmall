@@ -12,6 +12,7 @@ const StyledUl = styled.ul`
 const StyledLi = styled.li`
     width: 20%;
     float: left;
+    margin: 0 0.25em;
 `;
 
 export default function CardPayTypeSelectForm(props) {

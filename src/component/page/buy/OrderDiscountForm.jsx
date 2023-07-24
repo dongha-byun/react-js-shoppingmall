@@ -26,7 +26,10 @@ export default function OrderDiscountForm(props) {
     }, []);
 
     const openCouponPop = () => {
-        window.open("/order/coupon", "usableCouponPop", "popup=yes,width=900,height=500");
+        let itemsString = JSON.stringify(items);
+        let param = encodeURIComponent(itemsString);
+        let url = "/order/coupon?data="+param;
+        window.open(url, "usableCouponPop", "popup=yes,width=900,height=500");
     }
 
     return (
