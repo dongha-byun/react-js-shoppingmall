@@ -39,7 +39,12 @@ export default function OrderConfirmPage() {
             payProductName += " 외 " + otherProductCount + "건";
         }
 
-        setOrderProductParam(items);
+        setOrderProductParam(items.map((item) => ({
+            ...item,
+            "usedCoupon" : {
+                "discountAmount": 0
+            }
+        }) ));
 
         setDeliveryParam({
             "receiverName" : state.receiverName,
@@ -82,7 +87,7 @@ export default function OrderConfirmPage() {
             <h2>주문정보 확인</h2>
             <BuyingProductList items={state.items}/>
             <OrderDeliveryInfo deliveryParam={deliveryParam} />
-            <OrderDiscountForm items={state.items}/>
+            <OrderDiscountForm items={orderProductParam}/>
             <TotalAmountsCalculatePane orderProductParam={orderProductParam}/>
             <OrderPaymentInfo changePayType={changePayType} />
             <Button className="w-100" size="lg" onClick={() => {

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import styled from "styled-components";
 import { numberCommaFormat } from "../../../../util/NumberFormat";
+import UsableCouponList from "./UsableCouponList";
+import CommonModal from "../../../modal/CommonModal";
 
 const StyledPopWrapper = styled.div`
     padding: 20px;
@@ -12,22 +14,50 @@ const StyledButtonDiv = styled.div`
 `;
 
 export default function OrderCouponPop() {
+    const [isCouponModalShow, setCouponModalShow] = useState(false);
+    const [couponModalData, setCouponModalData] = useState({
+        "partnersId" : "",
+        "productPrice" : 0
+    });
+    const couponModalCloseHandle = () => setCouponModalShow(false);
+    const couponModalOpen = () => setCouponModalShow(true);
+
     const [items, setItems] = useState([]);
     
     useEffect(() => {
         let urlParams = new URLSearchParams(window.location.search);
         let rawData = urlParams.get('data');
         let items = JSON.parse(decodeURIComponent(rawData));
-        console.log(items);
 
         setItems(items);
     }, []);
 
-    const openCouponModal = (partnersId) => {
-        alert(partnersId);
+    const selectCoupon = (itemId, coupon) => {
+        setItems(items.map((item) => {
+            if(item.id === itemId){
+                return {...item, "usedCoupon": coupon};
+            }
+            return item;
+        }))
+    }
+
+    const openCouponModal = (itemId, partnersId, productPrice) => {
+        setCouponModalData({
+            "itemId" : itemId,
+            "partnersId" : partnersId,
+            "productPrice" : productPrice
+        });
+        couponModalOpen();
+    }
+
+    const onConfirm = () => {
+        console.log(items);
     }
 
     const onClose = () => {
+        if(isCouponModalShow) {
+            couponModalCloseHandle();
+        }
         window.close();
     }
     
@@ -41,7 +71,7 @@ export default function OrderCouponPop() {
                         <th>주문금액</th>
                         <th>쿠폰선택</th>
                         <th>할인금액</th>
-                        <th>총 금액</th>
+                        <th>할인 적용 금액</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,13 +85,12 @@ export default function OrderCouponPop() {
                                         size="sm" 
                                         variant="outline-dark" 
                                         onClick={() => {
-                                            // 여기 판매처 ID 정보가 필요함... ㅠㅠ
-                                            openCouponModal(item.id);
+                                            openCouponModal(item.id, item.partnersId, item.price);
                                         }}
                                     >적용하기</Button>
                                 </td>
-                                <td>0원</td>
-                                <td></td>
+                                <td>{numberCommaFormat(item.usedCoupon?.discountAmount)}원</td>
+                                <td>{numberCommaFormat(item.price - item.usedCoupon?.discountAmount)}원</td>
                             </tr>
                         );
                     })}
@@ -69,8 +98,12 @@ export default function OrderCouponPop() {
             </Table>
             <StyledButtonDiv>
                 <Button size="sm" className="mx-1" variant="outline-secondary" onClick={onClose} >취소</Button>
-                <Button size="sm" className="mx-1" variant="outline-primary">적용하기</Button>
+                <Button size="sm" className="mx-1" variant="outline-primary" onClick={onConfirm}>적용하기</Button>
             </StyledButtonDiv>
+
+            <CommonModal show={isCouponModalShow} handleClose={couponModalCloseHandle} headerMessage={"쿠폰목록"}>
+                <UsableCouponList couponModalData={couponModalData} handleClose={couponModalCloseHandle} confirmFunc={selectCoupon} />
+            </CommonModal>
         </StyledPopWrapper>
     );
 }
