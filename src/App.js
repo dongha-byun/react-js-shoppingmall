@@ -44,7 +44,6 @@ import PartnersListPage from './component/admin/approve/PartnersListPage';
 import ProductListPage from './component/product/list/ProductListPage';
 import ProductSearchListPage from './component/product/search/ProductSearchListPage';
 import InternalPayPage from './component/page/buy/pay/internal/InternalPayPage';
-import OrderCouponPop from './component/page/buy/pop/OrderCouponPop';
 
 function App() {
 
@@ -114,7 +113,6 @@ function App() {
                 <Route path="partners" element={<PartnersListPage/>}></Route>
               </Route>
             </Route>
-            <Route path="/order/coupon" element={<OrderCouponPop/>}></Route>
           </Routes>
       </BrowserRouter>
   );

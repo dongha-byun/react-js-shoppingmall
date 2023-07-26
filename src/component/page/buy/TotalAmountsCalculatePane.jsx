@@ -20,7 +20,7 @@ export default function TotalAmountsCalculatePane(props) {
         let initTotalDiscountAmounts = 0;
         orderProductParam.forEach((param) => {
             initTotalAmounts += param.productPrice;
-            initTotalDiscountAmounts += param.gradeDiscountAmount;
+            initTotalDiscountAmounts += param.gradeDiscountAmount + param.usedCoupon.discountAmount;
         });
 
         setTotalAmounts(initTotalAmounts);

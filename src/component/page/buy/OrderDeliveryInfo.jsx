@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 const StyledWrapper = styled.div`
     padding: 10px 0;

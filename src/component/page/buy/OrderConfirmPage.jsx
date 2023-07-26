@@ -7,8 +7,8 @@ import OrderPaymentInfo from "./OrderPaymentInfo";
 import styled from "styled-components";
 import OrderDiscountForm from "./OrderDiscountForm";
 import { numberCommaFormat } from "../../../util/NumberFormat";
-import { TYPE_KAKAO_PAY } from "../../../api/component/pay/pay";
 import TotalAmountsCalculatePane from "./TotalAmountsCalculatePane";
+import { TYPE_KAKAO_PAY } from "../../../api/component/pay/pay";
 
 const StyledOrderConfirmPageWrapper = styled.div`
     margin-bottom: 20px
@@ -23,6 +23,12 @@ export default function OrderConfirmPage() {
 
     useEffect(() => {
         let items = state.items;
+        setOrderProductParam(items.map((item) => ({
+            ...item,
+            "usedCoupon" : {
+                "discountAmount": 0
+            }
+        })));
         
         let totalQuantity = 0;
         let totalProductPrice = 0;
@@ -38,13 +44,6 @@ export default function OrderConfirmPage() {
             let otherProductCount = items.length-1;
             payProductName += " 외 " + otherProductCount + "건";
         }
-
-        setOrderProductParam(items.map((item) => ({
-            ...item,
-            "usedCoupon" : {
-                "discountAmount": 0
-            }
-        }) ));
 
         setDeliveryParam({
             "receiverName" : state.receiverName,
@@ -85,14 +84,14 @@ export default function OrderConfirmPage() {
     return (
         <StyledOrderConfirmPageWrapper>
             <h2>주문정보 확인</h2>
-            <BuyingProductList items={state.items}/>
-            <OrderDeliveryInfo deliveryParam={deliveryParam} />
-            <OrderDiscountForm items={orderProductParam}/>
+            <BuyingProductList items={orderProductParam}/>
+            <OrderDeliveryInfo deliveryParam={deliveryParam}/>
+            <OrderDiscountForm orderProductParam={orderProductParam} setOrderProductParam={setOrderProductParam}/>
             <TotalAmountsCalculatePane orderProductParam={orderProductParam}/>
-            <OrderPaymentInfo changePayType={changePayType} />
+            <OrderPaymentInfo changePayType={changePayType}/>
             <Button className="w-100" size="lg" onClick={() => {
                 paying();
-            }}><b>{numberCommaFormat(payParam.total)}원</b> 결제하기</Button>
+            }}>결제하기</Button>
         </StyledOrderConfirmPageWrapper>
     );
 }

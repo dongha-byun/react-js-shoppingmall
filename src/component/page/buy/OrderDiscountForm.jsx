@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Button, Form, ListGroup } from "react-bootstrap";
-import { numberCommaFormat } from "../../../util/NumberFormat";
+import { ListGroup } from "react-bootstrap";
+import CouponChoiceCanvas from "./pop/CouponChoiceCanvas";
 
 const StyledWrapper = styled.div`
     padding: 10px 0;
@@ -14,45 +14,26 @@ const StyledDiscountFormWrapper = styled.div`
 `;
 
 export default function OrderDiscountForm(props) {
-    const { items } = props;
-    const [gradeDiscountTotalAmount, setGradeDiscountTotalAmount] = useState(0);
-
-    useEffect(() => {
-        let initGradeDiscountTotalAmount = 0;
-        items.forEach((item) => {
-            initGradeDiscountTotalAmount += item.gradeDiscountAmount;
-        });
-        setGradeDiscountTotalAmount(initGradeDiscountTotalAmount);
-    }, []);
-
-    const openCouponPop = () => {
-        let itemsString = JSON.stringify(items);
-        let param = encodeURIComponent(itemsString);
-        let url = "/order/coupon?data="+param;
-        window.open(url, "usableCouponPop", "popup=yes,width=900,height=500");
-    }
+    const { orderProductParam, setOrderProductParam } = props;
+    const gradeDiscountTotalAmounts = orderProductParam.reduce((total, item) => total + item.gradeDiscountAmount, 0);
 
     return (
         <StyledWrapper>
             <h4>할인</h4>
             <StyledDiscountFormWrapper>
                 <ListGroup as="ol" numbered>
-                    <ListGroup.Item as="li" 
-                        className="d-flex justify-content-between align-items-start"
-                    >
+                    <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
                         <div className="ms-2 me-auto">
                             <div>
-                                <span className="fw-bold">회원등급 할인(자동적용)</span> : {gradeDiscountTotalAmount}원
+                                <span className="fw-bold">회원등급 할인(자동적용)</span> : {gradeDiscountTotalAmounts}원
                             </div>
                         </div>
                     </ListGroup.Item>
-                    <ListGroup.Item as="li" 
-                        className="d-flex justify-content-between align-items-start" 
-                    >
+                    <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
                         <div className="ms-2 me-auto">
                             <div>
                                 <span className="fw-bold">쿠폰할인</span> : 
-                                <Button variant="link" size="sm" onClick={openCouponPop}>적용하기</Button>
+                                <CouponChoiceCanvas orderProductParam={orderProductParam} setOrderProductParam={setOrderProductParam} />
                             </div>
                         </div>
                     </ListGroup.Item>
