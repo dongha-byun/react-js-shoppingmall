@@ -6,7 +6,6 @@ import OrderDeliveryInfo from "./OrderDeliveryInfo";
 import OrderPaymentInfo from "./OrderPaymentInfo";
 import styled from "styled-components";
 import OrderDiscountForm from "./OrderDiscountForm";
-import { numberCommaFormat } from "../../../util/NumberFormat";
 import TotalAmountsCalculatePane from "./TotalAmountsCalculatePane";
 import { TYPE_KAKAO_PAY } from "../../../api/component/pay/pay";
 
@@ -29,15 +28,6 @@ export default function OrderConfirmPage() {
                 "discountAmount": 0
             }
         })));
-        
-        let totalQuantity = 0;
-        let totalProductPrice = 0;
-        let totalDiscountAmounts = 0;
-        items.forEach(item => {
-            totalQuantity += item.quantity
-            totalProductPrice += item.quantity * item.price;
-            totalDiscountAmounts += item.gradeDiscountAmount;
-        });
 
         let payProductName = items[0].productName;
         if(items.length > 1) {
@@ -56,22 +46,38 @@ export default function OrderConfirmPage() {
 
         setPayParam({
             "payType" : TYPE_KAKAO_PAY,
-            "productName" : payProductName,
-            "productPrice" : totalProductPrice,
-            "quantity": totalQuantity,
-            "deliveryFee" : state.deliveryFee,
-            "total" : state.total,
-            "totalDiscountAmounts" : totalDiscountAmounts
+            "productName" : payProductName
         });
     }, []);
 
     const paying = () => {
+        let totalProductPrice = orderProductParam.reduce(
+            (total, orderProduct) => total + orderProduct.productPrice, 0
+        );
+        let totalQuantity = orderProductParam.reduce(
+            (total, orderProduct) => total + orderProduct.quantity, 0
+        );
+        let totalDiscountAmounts = orderProductParam.reduce(
+            (total, orderProduct) => total + calculateTotalDiscountAmounts(orderProduct), 0
+        );
+
+        let paymentParam = {
+            ...payParam,
+            "totalProductPrice": totalProductPrice,
+            "totalDiscountAmounts": totalDiscountAmounts,
+            "totalQuantity": totalQuantity
+        };
+
         sessionStorage.setItem("orderParam", JSON.stringify({
             "orderProductParam" : orderProductParam,
             "deliveryParam": deliveryParam,
-            "payParam" : payParam
+            "payParam" : paymentParam
         }));
-        navigate("/pay/ready", {state : payParam});
+        navigate("/pay/ready", {state : paymentParam});
+    }
+
+    const calculateTotalDiscountAmounts = (orderProduct) => {
+        return orderProduct.gradeDiscountAmount + orderProduct.usedCoupon?.discountAmount;
     }
 
     const changePayType = (type) => {

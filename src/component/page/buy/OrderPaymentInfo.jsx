@@ -12,7 +12,7 @@ const StyledWrapper = styled.div`
 
 export default function OrderPaymentInfo(props) {
     const { changePayType } = props;
-    const [payType, setPayType] = useState(TYPE_CARD);
+    const [payType, setPayType] = useState(TYPE_KAKAO_PAY);
     const cardList = [
         {
             "id" : 10,
@@ -35,9 +35,9 @@ export default function OrderPaymentInfo(props) {
     return (
         <StyledWrapper>
             <h4>결제수단 선택</h4>
-            <Form.Select onChange={onChangeType}>
+            <Form.Select onChange={onChangeType} defaultValue={payType}>
                 <option value={TYPE_KAKAO_PAY}>카카오페이</option>
-                <option value={TYPE_CARD} selected>신용/체크 카드</option>
+                <option value={TYPE_CARD}>신용/체크 카드</option>
             </Form.Select>
             { payType == TYPE_CARD && <CardPayTypeSelectForm cardList={cardList} /> }
         </StyledWrapper>

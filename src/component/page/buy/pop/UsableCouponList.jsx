@@ -40,7 +40,7 @@ export default function UsableCouponList(props) {
             <Table>
                 <thead>
                     <tr>
-                        <th>라디오버튼</th>
+                        <th></th>
                         <th>쿠폰명</th>
                         <th>사용기한</th>
                         <th>할인율</th>

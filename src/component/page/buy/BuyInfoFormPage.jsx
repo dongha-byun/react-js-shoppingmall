@@ -43,22 +43,20 @@ function BuyInfoFormPage(){
 
     useEffect(() => {
         UserService.getGradeInfo().then((result) => {
-            let totalPrice = 0;
-            let totalDiscountAmounts = 0;
             let items = state.items.map((element) => {
                 let productPrice = element.price * element.quantity;
                 let gradeDiscountAmount = Math.round(productPrice * result.gradeDiscountRate / 100);
 
-                totalDiscountAmounts += gradeDiscountAmount;
-                totalPrice += productPrice - gradeDiscountAmount;
-                return {...element, ["productPrice"]: productPrice , ["gradeDiscountAmount"]: gradeDiscountAmount}
+                return {
+                    ...element, 
+                    ["productPrice"]: productPrice , 
+                    ["gradeDiscountAmount"]: gradeDiscountAmount
+                }
             });
     
             setOrderParam({
                 ...orderParam,
-                "items": items,
-                "total": totalPrice,
-                "deliveryFee": 0
+                "items": items
             });
             setTotal(totalPrice);
         });
