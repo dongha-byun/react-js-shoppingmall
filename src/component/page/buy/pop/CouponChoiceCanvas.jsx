@@ -34,6 +34,20 @@ export default function CouponChoiceCanvas(props) {
         couponModalOpen();
     }
 
+    const cancelUsedCoupon = (itemId) => {
+        setOrderProductParam(orderProductParam.map((item) => {
+            if(item.id === itemId) {
+                return {
+                    ...item, 
+                    "usedCoupon": {
+                        "discountAmount": 0
+                    }
+                }
+            }
+            return item;
+        }))
+    }
+
     return (
         <div>
             <Button variant="link" size="sm" onClick={handleShow} className="me-2">
@@ -45,6 +59,13 @@ export default function CouponChoiceCanvas(props) {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Table>
+                        <colgroup>
+                            <col width="30%"></col>
+                            <col width="15%"></col>
+                            <col width="25%"></col>
+                            <col width="15%"></col>
+                            <col width="15%"></col>
+                        </colgroup>
                         <thead>
                             <tr>
                                 <th>상품명</th>
@@ -66,9 +87,17 @@ export default function CouponChoiceCanvas(props) {
                                                     openCouponModal(item.id, item.partnersId, item.price);
                                                 }}
                                             >적용하기</Button>
+                                            {
+                                                item.usedCoupon.id && 
+                                                <Button size="sm" className="mx-1" variant="outline-danger" 
+                                                    onClick={() => {
+                                                        cancelUsedCoupon(item.id);
+                                                    }}
+                                                >적용 취소</Button>
+                                            }
                                         </td>
-                                        <td>{numberCommaFormat(item.usedCoupon?.discountAmount)}원</td>
-                                        <td>{numberCommaFormat(item.price - item.usedCoupon?.discountAmount)}원</td>
+                                        <td>{numberCommaFormat(item.usedCoupon.discountAmount)}원</td>
+                                        <td>{numberCommaFormat(item.price - item.usedCoupon.discountAmount)}원</td>
                                     </tr>
                                 );
                             })}
@@ -76,7 +105,7 @@ export default function CouponChoiceCanvas(props) {
                     </Table>
                 </Offcanvas.Body>
             </Offcanvas>
-            <CommonModal show={isCouponModalShow} handleClose={couponModalCloseHandle} headerMessage={"쿠폰목록"}>
+            <CommonModal show={isCouponModalShow} handleClose={couponModalCloseHandle} headerMessage={"쿠폰목록"} size="lg">
                 <UsableCouponList couponModalData={couponModalData} handleClose={couponModalCloseHandle} confirmFunc={selectCoupon} />
             </CommonModal>
         </div>

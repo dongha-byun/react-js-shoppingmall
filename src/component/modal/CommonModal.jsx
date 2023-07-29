@@ -2,9 +2,9 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 
 function CommonModal(props){
-    const {show, handleClose, headerMessage, footerEvent, footerMessage} = props;
+    const {show, handleClose, headerMessage, footerEvent, footerMessage, size} = props;
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} size={size || 'sm'}>
             {headerMessage && (
                 <Modal.Header closeButton>
                     <Modal.Title>{headerMessage}</Modal.Title>

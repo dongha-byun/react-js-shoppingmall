@@ -68,9 +68,9 @@ export default function UsableCouponList(props) {
                     })}
                 </tbody>
             </Table>
-            <div>
-                <Button size="sm" variant="outline-secondary" onClick={modalClose}>취소</Button>
-                <Button size="sm" variant="outline-primary" onClick={confirm}>적용하기</Button>
+            <div className="text-center">
+                <Button size="sm" className="mx-1" variant="outline-secondary" onClick={modalClose}>취소</Button>
+                <Button size="sm" className="mx-1" variant="outline-primary" onClick={confirm}>적용하기</Button>
             </div>
         </div>
     );

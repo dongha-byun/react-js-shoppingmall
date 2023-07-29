@@ -2,7 +2,6 @@ import React from "react";
 import styledComponents from "styled-components";
 import { numberCommaFormat } from "../../../util/NumberFormat";
 import { webThumbnailUrl } from "../../../api/axios";
-import { Button } from "react-bootstrap";
 
 const BuyingProductListWrapper = styledComponents.div`
     padding: 10px 0;
@@ -43,8 +42,8 @@ function BuyingProductList(props){
                                 <td>{numberCommaFormat(item.quantity)}</td>
                                 <td>{numberCommaFormat(item.productPrice)}원</td>
                                 <td>{numberCommaFormat(item.gradeDiscountAmount)}원</td>
-                                <td>{numberCommaFormat(item.usedCoupon?.discountAmount)}원</td>
-                                <td>{numberCommaFormat(item.productPrice - item.gradeDiscountAmount - item.usedCoupon?.discountAmount)}원</td>
+                                <td>{numberCommaFormat(item.usedCoupon.discountAmount)}원</td>
+                                <td>{numberCommaFormat(item.productPrice - item.gradeDiscountAmount - item.usedCoupon.discountAmount)}원</td>
                             </tr>
                         );
                     })}

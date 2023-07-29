@@ -56,8 +56,6 @@ function BuyInfoFormPage(){
                     }
                 }
             });
-
-            console.log(items);
     
             setOrderParam({
                 ...orderParam,
