@@ -39,7 +39,7 @@ function BasketList(props){
     }
 
     const removeCart = (cartId) => {
-        BasketService.removeBasket(cartId).then(result => {
+        BasketService.removeBasket(cartId).then(() => {
             setCarts(
                 carts.filter(cart => cart.id != cartId)
             );
@@ -55,7 +55,7 @@ function BasketList(props){
                     <th>상품정보</th>
                     <th>상품금액</th>
                     <th>수량</th>
-                    <th>배송비</th>
+                    <th>총 결제금액</th>
                     <th></th>
                 </tr>
             </thead>
@@ -81,7 +81,7 @@ function BasketList(props){
                         </StyledTd>
                         <StyledTd>{ numberCommaFormat(cart.price)}원</StyledTd>
                         <StyledTd>{ numberCommaFormat(cart.quantity)}</StyledTd>
-                        <StyledTd>무료</StyledTd>
+                        <StyledTd>{ numberCommaFormat(cart.price * cart.quantity)}원</StyledTd>
                         <StyledTd>
                             <Button variant="outline-danger" onClick={() => removeCart(cart.id)}>삭제</Button>
                         </StyledTd>

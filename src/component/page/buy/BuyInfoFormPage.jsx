@@ -50,15 +50,25 @@ function BuyInfoFormPage(){
                 return {
                     ...element, 
                     ["productPrice"]: productPrice , 
-                    ["gradeDiscountAmount"]: gradeDiscountAmount
+                    ["gradeDiscountAmount"]: gradeDiscountAmount,
+                    ["usedCoupon"]: {
+                        "discountAmount": 0
+                    }
                 }
             });
+
+            console.log(items);
     
             setOrderParam({
                 ...orderParam,
                 "items": items
             });
-            setTotal(totalPrice);
+
+            setTotal(
+                items.reduce(
+                    (total, item) => total + item.productPrice - item.gradeDiscountAmount, 0
+                )
+            );
         });
     }, []);
 

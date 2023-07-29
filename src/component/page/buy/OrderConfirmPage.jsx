@@ -23,10 +23,7 @@ export default function OrderConfirmPage() {
     useEffect(() => {
         let items = state.items;
         setOrderProductParam(items.map((item) => ({
-            ...item,
-            "usedCoupon" : {
-                "discountAmount": 0
-            }
+            ...item
         })));
 
         let payProductName = items[0].productName;
