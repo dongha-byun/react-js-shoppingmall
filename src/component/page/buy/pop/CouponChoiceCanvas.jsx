@@ -3,6 +3,11 @@ import { numberCommaFormat } from "../../../../util/NumberFormat";
 import { Button, Offcanvas, Table } from "react-bootstrap";
 import CommonModal from "../../../modal/CommonModal";
 import UsableCouponList from "./UsableCouponList";
+import styled from "styled-components";
+
+const StyledTd = styled.td`
+    vertical-align:middle
+`;
 
 export default function CouponChoiceCanvas(props) {
     const { orderProductParam, setOrderProductParam } = props;
@@ -26,12 +31,12 @@ export default function CouponChoiceCanvas(props) {
         }))
     }
     const openCouponModal = (itemId) => {
-        let findOrderProduct = orderProductParam.find((orderProduct) => orderProduct.id == itemId);
+        let findOrderProduct = orderProductParam.find((orderProduct) => orderProduct.id === itemId);
         setCouponModalData({
             "itemId" : findOrderProduct.id,
             "partnersId" : findOrderProduct.partnersId,
             "productPrice" : findOrderProduct.productPrice,
-            //"usedCouponId" : findOrderProduct.usedCoupon.id
+            "usedCouponId" : findOrderProduct.usedCoupon.id
         });
         couponModalOpen();
     }
@@ -81,9 +86,13 @@ export default function CouponChoiceCanvas(props) {
                             {orderProductParam.map((orderProduct) => {
                                 return(
                                     <tr key={orderProduct.id}>
-                                        <td>{`[${orderProduct.partnersName}]${orderProduct.productName}`}</td>
-                                        <td>{numberCommaFormat(orderProduct.productPrice)}원</td>
-                                        <td>
+                                        <StyledTd>{`[${orderProduct.partnersName}]${orderProduct.productName}`}</StyledTd>
+                                        <StyledTd>{numberCommaFormat(orderProduct.productPrice)}원</StyledTd>
+                                        <StyledTd>
+                                            {
+                                                orderProduct.usedCoupon.id && 
+                                                <div>{orderProduct.usedCoupon.name}</div>
+                                            }
                                             <Button size="sm" variant="outline-dark" 
                                                 onClick={() => {
                                                     openCouponModal(orderProduct.id);
@@ -97,9 +106,9 @@ export default function CouponChoiceCanvas(props) {
                                                     }}
                                                 >적용 취소</Button>
                                             }
-                                        </td>
-                                        <td>{numberCommaFormat(orderProduct.usedCoupon.discountAmount)}원</td>
-                                        <td>{numberCommaFormat(orderProduct.productPrice - orderProduct.usedCoupon.discountAmount)}원</td>
+                                        </StyledTd>
+                                        <StyledTd>{numberCommaFormat(orderProduct.usedCoupon.discountAmount)}원</StyledTd>
+                                        <StyledTd>{numberCommaFormat(orderProduct.productPrice - orderProduct.usedCoupon.discountAmount)}원</StyledTd>
                                     </tr>
                                 );
                             })}

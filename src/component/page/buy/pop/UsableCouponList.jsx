@@ -57,6 +57,7 @@ export default function UsableCouponList(props) {
                                         name="selectedCoupon"
                                         id={`selectedCoupon${coupon.id}`}
                                         onChange={() => onSelectCoupon(coupon)} 
+                                        defaultChecked={coupon.id === couponModalData.usedCouponId}
                                     />
                                 </td>
                                 <td>{coupon.name}</td>
