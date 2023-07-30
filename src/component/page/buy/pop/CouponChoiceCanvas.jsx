@@ -25,11 +25,13 @@ export default function CouponChoiceCanvas(props) {
             return item;
         }))
     }
-    const openCouponModal = (itemId, partnersId, productPrice) => {
+    const openCouponModal = (itemId) => {
+        let findOrderProduct = orderProductParam.find((orderProduct) => orderProduct.id == itemId);
         setCouponModalData({
-            "itemId" : itemId,
-            "partnersId" : partnersId,
-            "productPrice" : productPrice
+            "itemId" : findOrderProduct.id,
+            "partnersId" : findOrderProduct.partnersId,
+            "productPrice" : findOrderProduct.productPrice,
+            //"usedCouponId" : findOrderProduct.usedCoupon.id
         });
         couponModalOpen();
     }
@@ -76,28 +78,28 @@ export default function CouponChoiceCanvas(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {orderProductParam.map((item) => {
+                            {orderProductParam.map((orderProduct) => {
                                 return(
-                                    <tr key={item.id}>
-                                        <td>{`[${item.partnersName}]${item.productName}`}</td>
-                                        <td>{numberCommaFormat(item.price)}원</td>
+                                    <tr key={orderProduct.id}>
+                                        <td>{`[${orderProduct.partnersName}]${orderProduct.productName}`}</td>
+                                        <td>{numberCommaFormat(orderProduct.productPrice)}원</td>
                                         <td>
                                             <Button size="sm" variant="outline-dark" 
                                                 onClick={() => {
-                                                    openCouponModal(item.id, item.partnersId, item.price);
+                                                    openCouponModal(orderProduct.id);
                                                 }}
                                             >적용하기</Button>
                                             {
-                                                item.usedCoupon.id && 
+                                                orderProduct.usedCoupon.id && 
                                                 <Button size="sm" className="mx-1" variant="outline-danger" 
                                                     onClick={() => {
-                                                        cancelUsedCoupon(item.id);
+                                                        cancelUsedCoupon(orderProduct.id);
                                                     }}
                                                 >적용 취소</Button>
                                             }
                                         </td>
-                                        <td>{numberCommaFormat(item.usedCoupon.discountAmount)}원</td>
-                                        <td>{numberCommaFormat(item.price - item.usedCoupon.discountAmount)}원</td>
+                                        <td>{numberCommaFormat(orderProduct.usedCoupon.discountAmount)}원</td>
+                                        <td>{numberCommaFormat(orderProduct.productPrice - orderProduct.usedCoupon.discountAmount)}원</td>
                                     </tr>
                                 );
                             })}
