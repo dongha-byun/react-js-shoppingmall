@@ -2,7 +2,7 @@ import { api } from "../../axios";
 
 const CategoryService = {
     getCategories: async() => {
-        let result = await api.get("/categories");
+        let result = await api.get("/category-service/categories");
         return result.data.data;
     }
 }

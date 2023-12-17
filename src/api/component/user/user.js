@@ -3,7 +3,7 @@ import { headers } from "../login/headers";
 
 const UserService = {
     getGradeInfo: () => {
-        return ApiService.get("/user/grade-info", headers());
+        return ApiService.get("/users/grade-info", headers());
     }
 }
 

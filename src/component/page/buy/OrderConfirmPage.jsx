@@ -74,7 +74,7 @@ export default function OrderConfirmPage() {
     }
 
     const calculateTotalDiscountAmounts = (orderProduct) => {
-        return orderProduct.gradeDiscountAmount + orderProduct.usedCoupon?.discountAmount;
+        return orderProduct.gradeDiscountAmount + orderProduct.usedCoupon.discountAmount;
     }
 
     const changePayType = (type) => {

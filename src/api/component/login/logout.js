@@ -4,7 +4,7 @@ import { headers } from "./headers";
 
 
 export function logout(){
-    ApiService.post("/logout", {}, headers)
+    ApiService.post("/logout", {}, headers())
     .then((response) => {
         console.log(response);
     })

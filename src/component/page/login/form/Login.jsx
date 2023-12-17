@@ -8,7 +8,7 @@ function Login(props){
     return (
         <>
             <Form>
-                <Form.Group className="mb-3" controlId="loginId">
+                <Form.Group className="mb-3" controlId="email">
                     <Form.Control
                         type="text"
                         placeholder="아이디"

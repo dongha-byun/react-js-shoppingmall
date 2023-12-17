@@ -40,15 +40,7 @@ export default function PayApprovePage() {
             "payType": payParam.type,
             "items": orderProductParam,            
             "deliveryFee": payParam.deliveryFee,
-            "deliveryInfo" : {
-                "receiverName" : deliveryParam.receiverName,
-                "receiverPhoneNumber" : deliveryParam.receiverPhoneNumber,
-                "zipCode" : deliveryParam.zipCode,
-                "address" : deliveryParam.address,
-                "detailAddress" : deliveryParam.detailAddress,
-                "requestMessage" : deliveryParam.requestMessage
-            },
-            "totalPrice" : payParam.total
+            "deliveryInfo" : deliveryParam
         }
 
         // 여기서 Order Api Call

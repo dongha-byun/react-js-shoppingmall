@@ -6,8 +6,7 @@ export function loginApi(loginValue){
         if(response.data.accessToken){
             sessionStorage.setItem("user",
                 JSON.stringify({
-                    "access-token" : response.data.accessToken,
-                    "refresh-token" : response.data.refreshToken
+                    "access-token" : response.data.accessToken
                 })
             );
             window.location.replace(frontUrl);

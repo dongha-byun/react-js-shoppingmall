@@ -25,10 +25,14 @@ export default function CouponChoiceCanvas(props) {
     const selectCoupon = (itemId, coupon) => {
         setOrderProductParam(orderProductParam.map((item) => {
             if(item.id === itemId){
-                return {...item, "usedCoupon": coupon};
+                return {
+                    ...item, 
+                    "usedCouponId": coupon.id , 
+                    "usedCoupon": coupon
+                };
             }
             return item;
-        }))
+        }));
     }
     const openCouponModal = (itemId) => {
         let findOrderProduct = orderProductParam.find((orderProduct) => orderProduct.id === itemId);
@@ -36,7 +40,7 @@ export default function CouponChoiceCanvas(props) {
             "itemId" : findOrderProduct.id,
             "partnersId" : findOrderProduct.partnersId,
             "productPrice" : findOrderProduct.productPrice,
-            "usedCouponId" : findOrderProduct.usedCoupon.id
+            "usedCouponId" : findOrderProduct.usedCouponId
         });
         couponModalOpen();
     }
@@ -46,13 +50,14 @@ export default function CouponChoiceCanvas(props) {
             if(item.id === itemId) {
                 return {
                     ...item, 
+                    "usedCouponId": "",
                     "usedCoupon": {
                         "discountAmount": 0
                     }
                 }
             }
             return item;
-        }))
+        }));
     }
 
     return (

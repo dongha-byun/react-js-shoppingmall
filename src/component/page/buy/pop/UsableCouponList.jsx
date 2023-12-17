@@ -19,7 +19,7 @@ export default function UsableCouponList(props) {
                 ...coupon,
                 "discountAmount": Math.round(couponModalData.productPrice * coupon.discountRate / 100)
             })));
-        })
+        });
     }
 
     const onSelectCoupon = (coupon) => {
@@ -48,6 +48,12 @@ export default function UsableCouponList(props) {
                     </tr>
                 </thead>
                 <tbody>
+                    {
+                        couponList.length == 0 && 
+                        <tr>
+                            <td className="text-center" colSpan={5}>사용 가능한 쿠폰이 없습니다.</td>
+                        </tr>
+                    }
                     {couponList.map((coupon) => {
                         return (
                             <tr key={coupon.id}>
