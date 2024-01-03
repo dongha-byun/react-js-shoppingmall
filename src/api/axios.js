@@ -5,7 +5,7 @@ import { headers } from "./component/login/headers";
 
 export const webUrl = "http://localhost:8000";
 export const frontUrl = "http://localhost:3000";
-export const webThumbnailUrl = webUrl + "/thumbnail/";
+export const webThumbnailUrl = webUrl + "/image/";
 
 export const api = axios.create({
     baseURL: webUrl
@@ -40,16 +40,18 @@ const ApiService = {
 api.interceptors.response.use((response) => {
     return response
 }, async function(error) {
-    const originalRequest = error.config;
-    console.log(error);
-    if(error.response.statusText == UNAUTHORIZED){
+    if(error.response.statusText === UNAUTHORIZED){
         api.post("/refresh", headers()).then(result => {
             console.log(result);
             addUserAttribute("access-token", result.data.accessToken);
+        })
+        .finally(() => {
+            let originalRequest = error.config;
+            return api.request(originalRequest);
         });
     }
 
-    return api.request(originalRequest);
+    return error.response;
 });
 
 export default ApiService;

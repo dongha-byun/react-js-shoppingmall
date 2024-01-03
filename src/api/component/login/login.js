@@ -3,6 +3,7 @@ import { api, frontUrl } from "../../axios";
 export function loginApi(loginValue){
     api.post("/login", loginValue)
     .then((response) => {
+        console.log(response);
         if(response.data.accessToken){
             sessionStorage.setItem("user",
                 JSON.stringify({
@@ -10,11 +11,13 @@ export function loginApi(loginValue){
                 })
             );
             window.location.replace(frontUrl);
+        } else {
+            alert(response.data.message);
         }
     })
     .catch((error) => {
-        alert("오류가 발생했습니다.");
         console.log(error);
+        //alert(error.response.data.message);
     });
 }
 
