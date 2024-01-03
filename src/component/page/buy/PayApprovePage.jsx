@@ -14,10 +14,8 @@ export default function PayApprovePage() {
         let param = {
             "type": payParam.type,
             "data": {
-                "cid": payParam.cid,
                 "tid": payParam.tid,
-                "partner_order_id": payParam.partner_order_id,
-                "partner_user_id": payParam.partner_user_id,
+                "partner_order_id": payParam.orderCode,
                 "pg_token": searchParams.get("pg_token")
             }
         };
@@ -28,6 +26,9 @@ export default function PayApprovePage() {
     });
 
     const order = (tid) => {
+        let localPayParam = JSON.parse(localStorage.getItem("pay_param"));
+        let orderCode = localPayParam.orderCode;
+
         // 여기서 Order api call
         let orderParam = JSON.parse(sessionStorage.getItem("orderParam"));
         
@@ -37,7 +38,8 @@ export default function PayApprovePage() {
 
         let param = {
             "tid": tid,
-            "payType": payParam.type,
+            "orderCode": orderCode,
+            "payType": payParam.payType,
             "items": orderProductParam,            
             "deliveryFee": payParam.deliveryFee,
             "deliveryInfo" : deliveryParam

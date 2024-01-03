@@ -23,6 +23,7 @@ export default function PaySuccessPage() {
             setDeliveryParam(orderParam.deliveryParam);
             setPayParam(orderParam.payParam);
             sessionStorage.removeItem("orderParam");
+            localStorage.removeItem("pay_param");
         }
     }, []);
 

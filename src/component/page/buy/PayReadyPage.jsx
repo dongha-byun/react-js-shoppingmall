@@ -10,9 +10,6 @@ export default function PayReadyPage() {
         let param = {
             "type": state.payType,
             "data": {
-                "cid": TEST_PAY_CID,
-                "partner_order_id": "dongha_shopping_mall_order",
-                "partner_user_id": "TuserId",
                 "item_name": state.productName,
                 "quantity": state.totalQuantity,
                 "total_amount": state.totalProductPrice - state.totalDiscountAmounts,
@@ -26,12 +23,9 @@ export default function PayReadyPage() {
 
         PayService.readyPay(param).then(result => {         
             localStorage.setItem("pay_param", JSON.stringify({
-                "cid": TEST_PAY_CID,
                 "tid": result.tid,
-                "type" : state.payType,
-                "partner_order_id": "dongha_shopping_mall_order", // 주문 아이디 -> 주문 정보 저장이 먼저라는 뜻 아니야?
-                "partner_user_id": "TuserId", // 주문자 아이디
-                "pg_token": ""
+                "orderCode" : result.orderCode,
+                "type" : state.payType
             }));
             location.href = result.next_redirect_pc_url;
         });
