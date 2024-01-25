@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styledComponents from "styled-components";
 import { numberCommaFormat } from "../../../../util/NumberFormat";
 import UserService from "../../../../api/component/user/user";
+import { webUrl } from "../../../../api/axios";
 
 const StyledUserGradeWrapper = styledComponents.div`
     border-radius: 10px;
@@ -48,7 +49,7 @@ export default function UserGrade() {
     return(
         <StyledUserGradeWrapper>
             <StyledGradeIconWrapper>
-                <img src="/images/pot.jpeg" width={160} />
+                <img src={webUrl + userInfo.logoUrl} width={160} />
             </StyledGradeIconWrapper>
             <StyledUserWrapper>
                 <StyledTableRowDiv>
