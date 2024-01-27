@@ -11,7 +11,7 @@ function Login(props){
                 <Form.Group className="mb-3" controlId="email">
                     <Form.Control
                         type="text"
-                        placeholder="아이디"
+                        placeholder="이메일"
                         onChange={onChange}
                     />
                 </Form.Group>

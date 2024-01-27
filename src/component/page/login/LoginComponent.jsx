@@ -16,7 +16,7 @@ function LoginComponent(){
     
     const navigate = useNavigate();
     const [loginValue, setLoginValue] = useState({
-        loginId: "",
+        email: "",
         password: ""
     });
 
