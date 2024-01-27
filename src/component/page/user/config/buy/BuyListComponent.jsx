@@ -39,20 +39,25 @@ function BuyListComponent(props){
     }
 
     const cancelPay = () => {
-        let params = {
-            "type": TYPE_KAKAO_PAY,
-            "data": {
-                "cid": TEST_PAY_CID,
-                "tid": orderHistory.tid,
-                "cancel_amount": orderHistory.orderPrice,
-                "cancel_tax_free_amount": 0
-            }
-        };
+        // let params = {
+        //     "type": TYPE_KAKAO_PAY,
+        //     "data": {
+        //         "tid": orderHistory.tid,
+        //         "cancel_amount": orderHistory.orderPrice,
+        //         "cancel_tax_free_amount": 0
+        //     }
+        // };
 
-        PayService.cancelPay(params).then(result => {
-            cancelOrder();
-        }).catch(() => {
-            alert("결제 도중 오류가 발생했습니다.");
+        // PayService.cancelPay(params).then(result => {
+        //     cancelOrder();
+        // }).catch(() => {
+        //     alert("결제 도중 오류가 발생했습니다.");
+        // });
+
+        OrderService.cancel(orderHistory.orderId, orderHistory.orderItemId, cancelReason).then(result => {
+            alert("주문이 취소되었습니다.");
+            handleClose();
+            navigate("/my-page/buy");
         });
     }
 
@@ -87,7 +92,7 @@ function BuyListComponent(props){
                         </td>
                         <td>{orderHistory.partnerName}</td>
                         <td rowSpan={3} className="text-center">
-                            { orderHistory.orderStatus == 'READY' && 
+                            { orderHistory.orderStatus == 'PREPARED' && 
                                 <Button variant="outline-danger" onClick={showOrderCancelPop}>
                                     주문취소
                                 </Button>
