@@ -113,7 +113,7 @@ function ProductPriceComponent(props){
                                             onChangeQuantity(quantity);
                                         }} />
                                 </Col>
-                                <Form.Label column>(남은 수량 : {product.count}개)</Form.Label>
+                                <Form.Label column>(남은 수량 : {product.stock}개)</Form.Label>
                             </Form.Group>
                         </Col>
                     </Row>
