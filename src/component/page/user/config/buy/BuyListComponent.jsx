@@ -39,29 +39,6 @@ function BuyListComponent(props){
     }
 
     const cancelPay = () => {
-        // let params = {
-        //     "type": TYPE_KAKAO_PAY,
-        //     "data": {
-        //         "tid": orderHistory.tid,
-        //         "cancel_amount": orderHistory.orderPrice,
-        //         "cancel_tax_free_amount": 0
-        //     }
-        // };
-
-        // PayService.cancelPay(params).then(result => {
-        //     cancelOrder();
-        // }).catch(() => {
-        //     alert("결제 도중 오류가 발생했습니다.");
-        // });
-
-        OrderService.cancel(orderHistory.orderId, orderHistory.orderItemId, cancelReason).then(result => {
-            alert("주문이 취소되었습니다.");
-            handleClose();
-            navigate("/my-page/buy");
-        });
-    }
-
-    const cancelOrder = () => {
         OrderService.cancel(orderHistory.orderId, orderHistory.orderItemId, cancelReason).then(result => {
             alert("주문이 취소되었습니다.");
             handleClose();
