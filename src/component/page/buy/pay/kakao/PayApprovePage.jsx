@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import PayService, { TYPE_KAKAO_PAY } from "../../../api/component/pay/pay";
+import PayService, { TYPE_KAKAO_PAY } from "../../../../../api/component/pay/pay";
 import { Spinner } from "react-bootstrap";
-import OrderService from "../../../api/component/order/order";
+import OrderService from "../../../../../api/component/order/order";
 
 export default function PayApprovePage() {
     const navigate = useNavigate();

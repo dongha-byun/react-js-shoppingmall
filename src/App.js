@@ -37,13 +37,14 @@ import CategoryManagePage from './component/admin/category/CategoryManagePage';
 import CustomServicePage from './component/admin/cs/CustomServicePage';
 import OrderConfirmPage from './component/page/buy/OrderConfirmPage';
 import DeliveryFormPage from './component/delivery/DeliveryFormPage';
-import PayReadyPage from './component/page/buy/PayReadyPage';
-import PayApprovePage from './component/page/buy/PayApprovePage';
+import PayReadyPage from './component/page/buy/pay/kakao/PayReadyPage';
+import PayApprovePage from './component/page/buy/pay/kakao/PayApprovePage';
 import PaySuccessPage from './component/page/buy/PaySuccessPage';
 import PartnersListPage from './component/admin/approve/PartnersListPage';
 import ProductListPage from './component/product/list/ProductListPage';
 import ProductSearchListPage from './component/product/search/ProductSearchListPage';
 import InternalPayPage from './component/page/buy/pay/internal/InternalPayPage';
+import PaymentForm from './component/page/user/config/payment/PaymentForm';
 
 function App() {
 
@@ -87,6 +88,7 @@ function App() {
                 <Route path="delivery" element={<DeliveryConfig />}/>
                 <Route path="delivery/add" element={<DeliveryFormPage />}/>
                 <Route path="payment" element={<PaymentConfig />}/>
+                <Route path="payment/add" element={<PaymentForm />}/>
                 <Route path="buy" element={<BuyConfig />}/>
                 <Route path="buy/review-write" element={<ReviewWriteForm/>}></Route>
               </Route>
