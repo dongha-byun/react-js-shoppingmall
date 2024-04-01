@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import { useEffect } from "react";
-import BasketService from "../../../api/component/basket/basket";
+import BasketService from "../../../js/basket/basket";
 import { useNavigate } from "react-router-dom";
 import { numberCommaFormat } from "../../../util/NumberFormat";
 

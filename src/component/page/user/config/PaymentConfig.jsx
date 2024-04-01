@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styledComponents from "styled-components";
 import PaymentView from "./payment/PaymentView";
 import payments from "../../../../sample-data/payment.json";
-import PaymentForm from "./payment/PaymentForm";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const PaymentConfigWrapper = styledComponents.div`
     padding: 20px;
@@ -12,31 +12,8 @@ const PaymentConfigHeader = styledComponents.div`
     padding-bottom: 15px;
 `;
 
-
 function PaymentConfig(props){
-
-    const [paymentFormOpen, setPaymentFormOpen] = useState(false);
-    const handleClose = () => setPaymentFormOpen(false);
-
-
-    const [cardInfo, setCardInfo] = useState({
-        cardNo1: "",
-        cardNo2: "",
-        cardNo3: "",
-        cardNo4: "",
-        expireMM: "",
-        expireYY: "",
-        cvc: ""
-    });
-    const onChangeForm = (event) => {
-        setCardInfo({
-            ...cardInfo,
-            [event.target.name]: event.target.value
-        });
-    }
-    const addPayment = () => {
-        console.log(cardInfo);
-    }
+    const navigate = useNavigate();
 
     return (
         <PaymentConfigWrapper>
@@ -44,7 +21,7 @@ function PaymentConfig(props){
                 <h3 className="display-inline">결제수단 관리</h3>
                 <Button variant="outline-primary" className="float-right"
                     onClick={()=>{
-                        setPaymentFormOpen(!paymentFormOpen);
+                        navigate("add");
                     }}
                 >추가하기</Button>
             </PaymentConfigHeader>
@@ -53,10 +30,6 @@ function PaymentConfig(props){
                     <PaymentView key={payment.id} payment={payment} />
                 );
             })}
-
-            {/* <Modal open={paymentFormOpen} close={handleClose} confirm={addPayment} header="결제수단 추가" confirmMessage="추가">
-                <PaymentForm onChange={onChangeForm}/>
-            </Modal> */}
         </PaymentConfigWrapper>
     );
 }

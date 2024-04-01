@@ -31,7 +31,7 @@ import ReviewWriteForm from './component/page/user/config/buy/ReviewWriteForm';
 import IncomeComponent from './component/provide/component/IncomeComponent';
 import OrderComponent from './component/provide/component/OrderComponent';
 import QnaManageComponent from './component/provide/component/QnaManageComponent';
-import { getUserAttribute } from './api/component/login/login';
+import { getUserAttribute } from './js/login/login';
 import AdminPage from './component/admin/AdminPage';
 import CategoryManagePage from './component/admin/category/CategoryManagePage';
 import CustomServicePage from './component/admin/cs/CustomServicePage';

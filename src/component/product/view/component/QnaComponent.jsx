@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import ProductQnaService from "../../../../api/component/product/productQna";
+import ProductQnaService from "../../../../js/product/productQna";
 
 const ProductQuestionWrapper = styled.div`
     margin-top: 5px;

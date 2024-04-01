@@ -6,9 +6,8 @@ import { toDateFormat } from "../../../../../util/DateFormat";
 import { numberCommaFormat } from "../../../../../util/NumberFormat";
 import CommonModal from "../../../../modal/CommonModal";
 import OrderCancelPop from "./pop/OrderCancelPop";
-import OrderService from "../../../../../api/component/order/order";
+import OrderService from "../../../../../js/order/order";
 import DeliveryEndButton from "./DeliveryEndButton";
-import PayService, { TEST_PAY_CID, TYPE_KAKAO_PAY } from "../../../../../api/component/pay/pay";
 
 const StyledBuyListComponent = styled.div`
     border: 1px solid black;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { frontUrl } from "../../../../../api/axios";
+import { frontUrl } from "../../../../../js/axios";
 import { Spinner } from "react-bootstrap";
 import styled from "styled-components";
 

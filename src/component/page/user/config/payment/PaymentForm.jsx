@@ -11,7 +11,25 @@ const StyledDelimiterSpan = styled.span`
 `;
 
 function PaymentForm(props){
-    const {onChange} = props;
+    const [cardInfo, setCardInfo] = useState({
+        cardNo1: "",
+        cardNo2: "",
+        cardNo3: "",
+        cardNo4: "",
+        expireMM: "",
+        expireYY: "",
+        cvc: "",
+        cardCom: "",
+    });
+    const onChangeForm = (event) => {
+        setCardInfo({
+            ...cardInfo,
+            [event.target.name]: event.target.value
+        });
+    }
+    const addPayment = () => {
+        console.log(cardInfo);
+    }
 
     return (
         <StyledPaymentFormWrapper>
@@ -26,7 +44,7 @@ function PaymentForm(props){
                             name="cardNo1"
                             id="cardNo1"
                             textAlign="center"
-                            onChange={onChange}
+                            onChange={onChangeForm}
                         />
                         <StyledDelimiterSpan>-</StyledDelimiterSpan>
                         <TextInput 
@@ -34,7 +52,7 @@ function PaymentForm(props){
                             name="cardNo2"
                             id="cardNo2"
                             textAlign="center"
-                            onChange={onChange}
+                            onChange={onChangeForm}
                         />
                         <StyledDelimiterSpan>-</StyledDelimiterSpan>
                         <TextInput 
@@ -42,7 +60,7 @@ function PaymentForm(props){
                             name="cardNo3"
                             id="cardNo3"
                             textAlign="center"
-                            onChange={onChange}
+                            onChange={onChangeForm}
                         />
                         <StyledDelimiterSpan>-</StyledDelimiterSpan>
                         <TextInput 
@@ -50,7 +68,7 @@ function PaymentForm(props){
                             name="cardNo4"
                             id="cardNo4"
                             textAlign="center"
-                            onChange={onChange}
+                            onChange={onChangeForm}
                         />
                     </div>
                 </div>
@@ -64,7 +82,7 @@ function PaymentForm(props){
                             name="expireMM"
                             id="expireMM"
                             textAlign="center"
-                            onChange={onChange}
+                            onChange={onChangeForm}
                         />
                         <StyledDelimiterSpan />
                         <TextInput 
@@ -72,7 +90,7 @@ function PaymentForm(props){
                             name="expireYY"
                             id="expireYY"
                             textAlign="center"
-                            onChange={onChange}
+                            onChange={onChangeForm}
                         />
                     </div>
                 </div>
@@ -86,7 +104,7 @@ function PaymentForm(props){
                             name="cvc"
                             id="cvc"
                             textAlign="center"
-                            onChange={onChange}
+                            onChange={onChangeForm}
                         />
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import { Button, Table, Form, Pagination} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CategorySelect from "./select/CategorySelect";
 import { useEffect } from "react";
-import ProductService from "../../api/component/product/product";
+import ProductService from "../../js/product/product";
 
 const StyledTableHeader = styled.div`
     margin-bottom: 25px;

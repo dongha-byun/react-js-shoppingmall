@@ -3,7 +3,7 @@ import styledComponents from "styled-components";
 import DeliveryView from "../../../delivery/DeliveryView";
 import { useNavigate } from "react-router-dom";
 import ProviderHeader from "../../../provide/component/ProviderHeader";
-import DeliveryService from "../../../../api/component/delivery/delivery";
+import DeliveryService from "../../../../js/delivery/delivery";
 
 const DeliveryConfigWrapper = styledComponents.div`
     padding: 20px;

@@ -1,4 +1,4 @@
-import { api } from "../../axios"
+import { api } from "../axios"
 import { headers } from "../login/headers";
 
 const ProductQnaService = {

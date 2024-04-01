@@ -7,8 +7,8 @@ import QnaComponent from "./component/QnaComponent";
 import DetailComponent from "./component/DetailComponent";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ProductService from "../../../api/component/product/product";
-import { webThumbnailUrl } from "../../../api/axios";
+import ProductService from "../../../js/product/product";
+import { webThumbnailUrl } from "../../../js/axios";
 
 const ProductViewPageWrapper = styledComponents.div`
     width: 100%;
@@ -38,7 +38,7 @@ function ProductView(){
     useEffect(()=>{
         ProductService.getProduct(productId).then(data => {
             setProduct(data);
-            setReviews(data.reviews);
+            setReviews([]);
         })
     }, []);
 

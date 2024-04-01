@@ -1,5 +1,5 @@
 import { headers } from "../login/headers";
-import ApiService, { api } from "../../axios";
+import ApiService, { api } from "../axios";
 
 const OrderService = {
     order: async(params) => {

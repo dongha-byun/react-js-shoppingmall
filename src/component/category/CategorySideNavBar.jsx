@@ -9,7 +9,7 @@ import Search from '../header/Search';
 import LoginComponent from '../page/login/LoginComponent';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import CategoryService from '../../api/component/category/category';
+import CategoryService from '../../js/category/category';
 import { useNavigate } from 'react-router-dom';
 
 function CategorySideNavBar() {

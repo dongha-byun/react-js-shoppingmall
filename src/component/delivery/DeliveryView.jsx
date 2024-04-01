@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import styledComponents from "styled-components";
-import DeliveryService from "../../api/component/delivery/delivery";
+import DeliveryService from "../../js/delivery/delivery";
 
 const DeliveryViewWrapper = styledComponents.div`
     border: 1px solid black;

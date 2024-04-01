@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from 'react';
 import { Form, Row, Col } from "react-bootstrap";
-import CategoryService, { getCategory } from "../../../api/component/category/category";
+import CategoryService, { getCategory } from "../../../js/category/category";
 
 function CategorySelect(props){
     const {categoryId, subCategoryId, setCategoryId, setSubCategoryId} = props;

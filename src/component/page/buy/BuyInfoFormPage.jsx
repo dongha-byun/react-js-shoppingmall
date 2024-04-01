@@ -5,7 +5,7 @@ import DeliveryInfoForm from "./DeliveryInfoForm";
 import { useLocation, useNavigate } from "react-router-dom";
 import { numberCommaFormat } from "../../../util/NumberFormat";
 import { Button } from "react-bootstrap";
-import UserService from "../../../api/component/user/user";
+import UserService from "../../../js/user/user";
 
 const BuyInfoFormPageWrapper = styledComponents.div`
     padding: 20px;

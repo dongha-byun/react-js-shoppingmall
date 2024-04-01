@@ -1,4 +1,4 @@
-import ApiService from "../../axios";
+import ApiService from "../axios";
 import { headers } from "../login/headers";
 
 const UserCouponService = {

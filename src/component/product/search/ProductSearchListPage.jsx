@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import ProductSearchList from "./ProductSearchList";
 import SearchFilter from "./filter/SearchFilter";
-import ProductService from "../../../api/component/product/product";
+import ProductService from "../../../js/product/product";
 import { Button } from "react-bootstrap";
 
 const StyledSearchListPageWrapper = styled.div`

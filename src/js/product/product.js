@@ -1,4 +1,4 @@
-import { api } from "../../axios";
+import { api } from "../axios";
 
 const ProductService = {
     getProducts: async (categoryId, subCategoryId, orderType, limit, offset) => {

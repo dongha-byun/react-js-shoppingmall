@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { logout } from "../../../api/component/login/logout";
+import { logout } from "../../../js/login/logout";
 
 function SessionOnComponent(){
     const navigate = useNavigate();

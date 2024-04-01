@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import styled from "styled-components";
-import { TYPE_CARD, TYPE_KAKAO_PAY } from "../../../api/component/pay/pay";
+import { TYPE_CARD, TYPE_KAKAO_PAY } from "../../../js/pay/pay";
 import CardPayTypeSelectForm from "./CardPayTypeSelectForm";
 
 const StyledWrapper = styled.div`

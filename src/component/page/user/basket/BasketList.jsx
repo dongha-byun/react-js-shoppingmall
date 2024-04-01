@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button, Form, Table } from "react-bootstrap";
 import BasketItemInfo from "./BasketItemInfo";
-import BasketService from "../../../../api/component/basket/basket";
-import { webThumbnailUrl } from "../../../../api/axios";
+import BasketService from "../../../../js/basket/basket";
+import { webThumbnailUrl } from "../../../../js/axios";
 import { numberCommaFormat } from "../../../../util/NumberFormat";
 
 const StyledCheckTh = styled.th`

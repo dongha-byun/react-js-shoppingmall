@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ProviderHeader from "../provide/component/ProviderHeader";
-import DeliveryService from "../../api/component/delivery/delivery";
+import DeliveryService from "../../js/delivery/delivery";
 import { useNavigate } from "react-router-dom";
 import DeliveryForm from "./DeliveryForm";
 import { useState } from "react";

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Form, Row, Col } from "react-bootstrap";
 import ProviderHeader from "./component/ProviderHeader";
 import CategorySelect from "./select/CategorySelect";
-import ProductService, { saveProduct } from "../../api/component/product/product";
+import ProductService, { saveProduct } from "../../js/product/product";
 
 const StyledFormWrapper = styled.div`
     padding: 20px;

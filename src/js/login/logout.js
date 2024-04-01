@@ -1,5 +1,5 @@
-import ApiService from "../../axios";
-import { UNAUTHORIZED } from "../../constants";
+import ApiService from "../axios";
+import { UNAUTHORIZED } from "../constants";
 import { headers } from "./headers";
 
 

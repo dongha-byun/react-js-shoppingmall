@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Login from "./form/Login";
 import { useNavigate } from "react-router-dom";
 import CommonModal from "../../modal/CommonModal";
-import { isValidToken, loginApi } from "../../../api/component/login/login";
+import { isValidToken, loginApi } from "../../../js/login/login";
 import SessionOffComponent from "./SessionOffComponent";
 import SessionOnComponent from "./SessionOnComponent";
 

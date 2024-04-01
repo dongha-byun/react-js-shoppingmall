@@ -1,4 +1,4 @@
-import ApiService, { api } from "../../axios";
+import ApiService, { api } from "../axios";
 import { headers } from "../login/headers";
 
 const BasketService = {

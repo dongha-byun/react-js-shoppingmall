@@ -11,3 +11,11 @@ export function headers(headerParam){
 
     return headers;
 }
+
+export function expireHeader(headerParam) {
+    return {
+        "expire-token": getUserAttribute("access-token"),
+        headerParam
+    }
+    
+}

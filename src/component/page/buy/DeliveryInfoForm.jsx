@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styledComponents from "styled-components";
 import DeliveryForm from "../../delivery/DeliveryForm";
-import DeliveryService from "../../../api/component/delivery/delivery";
+import DeliveryService from "../../../js/delivery/delivery";
 import { Form } from "react-bootstrap";
 
 const DeliveryInfoFormWrapper = styledComponents.div`

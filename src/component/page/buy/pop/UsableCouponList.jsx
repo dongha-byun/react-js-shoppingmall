@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Table } from "react-bootstrap";
 import { numberCommaFormat } from "../../../../util/NumberFormat";
-import UserCouponService from "../../../../api/component/coupon/userCoupon";
+import UserCouponService from "../../../../js/coupon/userCoupon";
 
 export default function UsableCouponList(props) {
     const { couponModalData, handleClose, confirmFunc } = props;

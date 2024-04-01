@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Form, Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import ProductReviewService from "../../../../../api/component/product/productReview";
+import ProductReviewService from "../../../../../js/product/productReview";
 import CommonModal from "../../../../modal/CommonModal";
 import ProductReviewConfirmPop from "./pop/ProductReviewConfirmPop";
 

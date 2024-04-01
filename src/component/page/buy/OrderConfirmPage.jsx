@@ -7,7 +7,7 @@ import OrderPaymentInfo from "./OrderPaymentInfo";
 import styled from "styled-components";
 import OrderDiscountForm from "./OrderDiscountForm";
 import TotalAmountsCalculatePane from "./TotalAmountsCalculatePane";
-import { TYPE_KAKAO_PAY } from "../../../api/component/pay/pay";
+import { TYPE_KAKAO_PAY } from "../../../js/pay/pay";
 
 const StyledOrderConfirmPageWrapper = styled.div`
     margin-bottom: 20px
@@ -15,7 +15,7 @@ const StyledOrderConfirmPageWrapper = styled.div`
 
 export default function OrderConfirmPage() {
     const navigate = useNavigate();
-    const {state} = useLocation();
+    const {state} = useLocation();  
     const [orderProductParam, setOrderProductParam] = useState([]);
     const [deliveryParam, setDeliveryParam] = useState({});
     const [payParam, setPayParam] = useState({});

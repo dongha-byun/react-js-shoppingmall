@@ -1,4 +1,4 @@
-import { api, frontUrl } from "../../axios";
+import { api, frontUrl } from "../axios";
 
 export function loginApi(loginValue){
     api.post("/login", loginValue)

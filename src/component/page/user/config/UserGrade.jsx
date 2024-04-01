@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styledComponents from "styled-components";
 import { numberCommaFormat } from "../../../../util/NumberFormat";
-import UserService from "../../../../api/component/user/user";
-import { webUrl } from "../../../../api/axios";
+import UserService from "../../../../js/user/user";
+import { webUrl } from "../../../../js/axios";
 
 const StyledUserGradeWrapper = styledComponents.div`
     border-radius: 10px;
@@ -23,6 +23,9 @@ const StyledUserWrapper = styledComponents.div`
     display: table;
     width: 75%;
     padding: 15px 0 15px 25px;
+`;
+
+const StyledCautionDiv = styledComponents.div`
 `;
 
 const StyledTableRowDiv = styledComponents.div`
@@ -66,6 +69,9 @@ export default function UserGrade() {
                     남은 주문횟수는 <b>{numberCommaFormat(userInfo.remainedOrderCountForNextGrade)}</b>회, 
                     남은 주문금액은 <b>{numberCommaFormat(userInfo.remainedAmountsForNextGrade)}</b>원 입니다.
                 </StyledTableRowDiv>
+                <StyledCautionDiv>
+                    주의! 주문횟수, 주문금액은 "구매확정" 처리가 된 구매내역에 대해서 적용됩니다.
+                </StyledCautionDiv>
             </StyledUserWrapper>
         </StyledUserGradeWrapper>
     );

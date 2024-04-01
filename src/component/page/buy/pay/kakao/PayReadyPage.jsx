@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import PayService, { TEST_PAY_CID, TYPE_KAKAO_PAY } from "../../../../../api/component/pay/pay";
-import { frontUrl } from "../../../../../api/axios";
+import PayService from "../../../../../js/pay/pay";
+import { frontUrl } from "../../../../../js/axios";
 import { useLocation } from "react-router-dom";
 
 export default function PayReadyPage() {

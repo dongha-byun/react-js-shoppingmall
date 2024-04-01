@@ -17,7 +17,7 @@ function DetailComponent(props){
     return(
         <ProductDetailWrapper>
             <DetailWrapper >
-                {detail}
+                <div dangerouslySetInnerHTML={{__html: detail}}></div>
             </DetailWrapper>
         </ProductDetailWrapper>
     );

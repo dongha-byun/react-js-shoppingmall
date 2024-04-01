@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BuyListComponent from "./buy/BuyListComponent";
 import { Form, Row, Col } from "react-bootstrap";
 import { format } from "date-fns";
-import OrderService from "../../../../api/component/order/order";
+import OrderService from "../../../../js/order/order";
 import { aMonthTime } from "../../../../util/DateFormat";
 
 const BuyWrapper = styled.div`

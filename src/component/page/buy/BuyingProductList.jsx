@@ -1,7 +1,7 @@
 import React from "react";
 import styledComponents from "styled-components";
 import { numberCommaFormat } from "../../../util/NumberFormat";
-import { webThumbnailUrl } from "../../../api/axios";
+import { webThumbnailUrl } from "../../../js/axios";
 
 const BuyingProductListWrapper = styledComponents.div`
     padding: 10px 0;

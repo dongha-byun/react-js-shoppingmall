@@ -1,7 +1,7 @@
 import React from "react";
 import ProductItem from "./ProductItem";
 import styledComponents from "styled-components";
-import { webUrl } from "../../api/axios";
+import { webUrl } from "../../js/axios";
 import { useNavigate } from "react-router-dom";
 
 const ProductListWrapper = styledComponents.div`

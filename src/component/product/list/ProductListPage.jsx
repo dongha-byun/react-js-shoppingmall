@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import ProductService from "../../../api/component/product/product";
+import ProductService from "../../../js/product/product";
 import ProductList from "./ProductList";
 import SearchFilter from "../search/filter/SearchFilter";
 import { Button } from "react-bootstrap";

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { webThumbnailUrl } from "../../../api/axios";
+import { webThumbnailUrl } from "../../../js/axios";
 import ProductItem from "../ProductItem";
 
 const StyledSearchListWrapper = styled.div`

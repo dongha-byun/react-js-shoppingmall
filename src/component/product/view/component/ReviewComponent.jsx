@@ -36,6 +36,10 @@ function ReviewComponent(props){
 
     return(
         <ProductReviewComponentWrapper>
+            {
+                (!reviews || reviews.length == 0 ) &&
+                <div>등록된 리뷰가 없습니다.</div>
+            }
             {reviews.map((review) => {
                 return (
                     <ProductReviewWrapper key={review.id}>
@@ -58,10 +62,6 @@ function ReviewComponent(props){
                     </ProductReviewWrapper>
                 );
             })}
-            {
-                reviews.length == 0 &&
-                <div>등록된 리뷰가 없습니다.</div>
-            }
         </ProductReviewComponentWrapper>
     );
         

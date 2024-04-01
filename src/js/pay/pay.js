@@ -1,5 +1,5 @@
-import ApiService from "../../axios";
-import { headers } from "../login/headers";
+import ApiService from "../axios";
+import { headers } from "../../js/login/headers";
 
 export const TEST_PAY_CID = "TC0ONETIME";
 

@@ -1,7 +1,7 @@
 import axios from "axios";
-import { addUserAttribute } from "./component/login/login";
+import { addUserAttribute } from "../js/login/login";
 import { UNAUTHORIZED } from "./constants";
-import { headers } from "./component/login/headers";
+import { expireHeader, headers } from "../js/login/headers";
 
 export const webUrl = "http://localhost:8000";
 export const frontUrl = "http://localhost:3000";
@@ -40,8 +40,11 @@ const ApiService = {
 api.interceptors.response.use((response) => {
     return response
 }, async function(error) {
+    console.log(error);
+    console.log(error.response.statusText);
+    console.log(error.response.statusText === UNAUTHORIZED);
     if(error.response.statusText === UNAUTHORIZED){
-        api.post("/refresh", headers()).then(result => {
+        api.post("/refresh", '', expireHeader()).then(result => {
             console.log(result);
             addUserAttribute("access-token", result.data.accessToken);
         })

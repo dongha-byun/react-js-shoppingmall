@@ -4,7 +4,7 @@ import BasketItemInfo from "../../page/user/basket/BasketItemInfo";
 import ProductQuestionForm from "./ProductQuestionForm";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import ProductQnaService from "../../../api/component/product/productQna";
+import ProductQnaService from "../../../js/product/productQna";
 
 const ProductQuestionPageWrapper = styledComponents.div`
     margin-top: 20px;
