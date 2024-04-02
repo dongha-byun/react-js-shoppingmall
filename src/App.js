@@ -95,13 +95,6 @@ function App() {
               <Route path="/find-id" element={<FindId/>}></Route>
               <Route path="/find-pw" element={<FindPw/>}></Route>
               <Route path="/sign-up" element={<SignUp/>}></Route>
-              <Route path="/provide-manage" element={<ProvideManagePage/>}>
-                <Route path="product" element={<ProvideProductList/>}></Route>
-                <Route path="product/add" element={<ProvideProductAddForm/>}></Route>
-                <Route path="income" element={<IncomeComponent/>}></Route>
-                <Route path="order" element={<OrderComponent/>}></Route>
-                <Route path="qna" element={<QnaManageComponent/>}></Route>
-              </Route>
 
               <Route path="/admin" element={<AdminPage />}>
                 <Route path="category" element={<CategoryManagePage/>}></Route>
