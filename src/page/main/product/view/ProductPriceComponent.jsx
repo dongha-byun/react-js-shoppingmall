@@ -73,6 +73,10 @@ function ProductPriceComponent(props){
         BasketService.saveBasket(params).then(result => {
             alert("장바구니에 상품이 추가되었습니다.");
             navigate("/my-page/basket");
+        }).catch(error => {
+            if(confirm("로그인 후 가능합니다. 로그인 페이지로 이동하시겠습니까?")) {
+                navigate("/login");
+            }
         });
     }
 
