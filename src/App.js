@@ -39,6 +39,7 @@ import ProductListPage from './page/main/product/list/ProductListPage';
 import ProductSearchListPage from './page/main/product/search/ProductSearchListPage';
 import InternalPayPage from './page/main/pay/internal/InternalPayPage';
 import PaymentForm from './page/main/user/payment/PaymentForm';
+import LoginPage from './page/main/login/LoginPage';
 
 function App() {
 
@@ -92,6 +93,7 @@ function App() {
               <Route path="/pay/success" element={<PaySuccessPage/>}></Route>
               <Route path="/pay/internal/approve" element={<InternalPayPage/>}></Route>
 
+              <Route path="/login" element={<LoginPage/>}></Route>
               <Route path="/find-id" element={<FindId/>}></Route>
               <Route path="/find-pw" element={<FindPw/>}></Route>
               <Route path="/sign-up" element={<SignUp/>}></Route>

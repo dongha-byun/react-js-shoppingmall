@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Login from "./Login";
-import { useNavigate } from "react-router-dom";
-import CommonModal from "../../modal/CommonModal";
-import { isValidToken, loginApi } from "../../../js/login/login";
+import { isValidToken } from "../../../js/login/login";
 import SessionOffComponent from "./SessionOffComponent";
 import SessionOnComponent from "./SessionOnComponent";
 
@@ -11,46 +8,16 @@ const StyledLoginComponentWrapper = styled.div`
 `;
 
 function LoginComponent(){
-    const [isOpen, setOpen] = useState(false);
-    const handleClose = () => setOpen(false);
-    
-    const navigate = useNavigate();
-    const [loginValue, setLoginValue] = useState({
-        email: "",
-        password: ""
-    });
-
-    const login = () => {
-        loginApi(loginValue);
-    }
-
-    const loginInputChange = (event) => {
-        setLoginValue({
-            ...loginValue,
-            [event.target.id]: event.target.value
-        });
-    }
-
-    const menuClick = (menuURI) => {
-        navigate(menuURI);
-        handleClose();
-    }
-
     return(
         <StyledLoginComponentWrapper>
             {
                 !isValidToken() &&
-                <SessionOffComponent
-                    setOpen={setOpen} isOpen={isOpen}
-                />
+                <SessionOffComponent />
             }
             {
                 isValidToken() &&
                 <SessionOnComponent />
             }
-            <CommonModal show={isOpen} handleClose={handleClose} headerMessage={"로그인"}>
-                <Login menuClick={menuClick} login={login} onChange={loginInputChange}/>
-            </CommonModal>
         </StyledLoginComponentWrapper>
     );
 }
