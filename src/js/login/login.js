@@ -17,7 +17,7 @@ export function loginApi(loginValue){
     })
     .catch((error) => {
         console.log(error);
-        //alert(error.response.data.message);
+        alert(error.response.data.message);
     });
 }
 
